@@ -6,7 +6,7 @@ package com.amazon.android.n;
 
 import com.amazon.android.d.a;
 import com.amazon.android.framework.util.KiwiLogger;
-import com.amazon.android.i.b;
+import com.amazon.android.i.Expirable_b;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -21,7 +21,7 @@ public final class ExpirableValueDataStore_d
 {
 
 	private static final KiwiLogger a = new KiwiLogger("ExpirableValueDataStore");
-	private com.amazon.android.framework.resource.a b;
+	private com.amazon.android.framework.resource.ResourceManager_a b;
 	private final Map c = new HashMap();
 
 	public ExpirableValueDataStore_d()
@@ -160,7 +160,7 @@ _L3:
 		throw exception;
 	}
 
-	public final volatile void observe(b b1)
+	public final void observe(b b1)
 	{
 		a((com.amazon.android.n.b)b1);
 	}

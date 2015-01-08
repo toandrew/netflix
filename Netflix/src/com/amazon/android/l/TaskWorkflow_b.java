@@ -1,7 +1,3 @@
-// Decompiled by Jad v1.5.8e2. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://kpdus.tripod.com/jad.html
-// Decompiler options: packimports(3) fieldsfirst ansi space 
-
 package com.amazon.android.l;
 
 import com.amazon.android.d.a;
@@ -20,7 +16,7 @@ public abstract class TaskWorkflow_b extends c
 {
 
 	private static final KiwiLogger a = new KiwiLogger("TaskWorkflow");
-	private com.amazon.android.framework.resource.a b;
+	private com.amazon.android.framework.resource.ResourceManager_a b;
 	private List c;
 	private AtomicBoolean d;
 

@@ -10,8 +10,8 @@ import android.content.Intent;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.RemoteException;
-import com.amazon.android.DrmFullApplicationLaunchTaskWorkflow_b.f;
-import com.amazon.android.DrmFullApplicationLaunchTaskWorkflow_b.g;
+import com.amazon.android.b.CommandServiceBindFailureKiwiException_f;
+import com.amazon.android.b.CommandServiceNotInstalledKiwiException_g;
 import com.amazon.android.framework.util.KiwiLogger;
 import com.amazon.venezia.command.h;
 import com.amazon.venezia.command.n;
@@ -79,7 +79,7 @@ public final class CommandServiceClient_b
 		return c();
 	}
 
-	public final k a(r r1, a a1)
+	public final k a(r r1, FailedReason_a a1)
 		throws RemoteException
 	{
 		r1.a(new com.amazon.android.framework.task.command.h(this, a1));
@@ -87,7 +87,7 @@ public final class CommandServiceClient_b
 	}
 
 	public final k a(w w)
-		throws g, f, RemoteException
+		throws CommandServiceNotInstalledKiwiException_g, CommandServiceBindFailureKiwiException_f, RemoteException
 	{
 		boolean flag;
 		if (b != null)
@@ -107,9 +107,9 @@ public final class CommandServiceClient_b
 			else
 				flag1 = false;
 			if (!flag1)
-				throw new g();
+				throw new CommandServiceNotInstalledKiwiException_g();
 			if (!e.bindService(intent, f, 1))
-				throw new f();
+				throw new CommandServiceBindFailureKiwiException_f();
 			try
 			{
 				a.trace("Blocking while service is being bound!!");
@@ -124,7 +124,7 @@ public final class CommandServiceClient_b
 			catch (InterruptedException interruptedexception)
 			{
 				Thread.currentThread().interrupt();
-				throw new f();
+				throw new CommandServiceBindFailureKiwiException_f();
 			}
 		}
 		b.a(w, g);

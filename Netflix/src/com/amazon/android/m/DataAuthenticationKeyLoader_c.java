@@ -6,7 +6,7 @@ package com.amazon.android.m;
 
 import android.app.Application;
 import com.amazon.android.framework.util.KiwiLogger;
-import com.amazon.android.h.a;
+import com.amazon.android.h.CertFailedToLoadKiwiException_a;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.security.PublicKey;
@@ -29,14 +29,14 @@ public final class DataAuthenticationKeyLoader_c
 
 	private static final KiwiLogger a = new KiwiLogger("DataAuthenticationKeyLoader");
 	private Application b;
-	private com.amazon.android.n.a c;
+	private com.amazon.android.n.DataStore_a c;
 
 	public DataAuthenticationKeyLoader_c()
 	{
 	}
 
 	private static CertPath a(JarFile jarfile, JarEntry jarentry)
-		throws a
+		throws CertFailedToLoadKiwiException_a
 	{
 		CertPath certpath;
 		try
@@ -50,13 +50,13 @@ public final class DataAuthenticationKeyLoader_c
 		}
 		catch (Exception exception)
 		{
-			throw com.amazon.android.h.a.a(exception);
+			throw com.amazon.android.h.CertFailedToLoadKiwiException_a.a(exception);
 		}
 		return certpath;
 	}
 
 	private static JarEntry a(JarFile jarfile)
-		throws a
+		throws CertFailedToLoadKiwiException_a
 	{
 		if (KiwiLogger.TRACE_ON)
 			a.trace("Searching for cert in apk");
@@ -67,11 +67,11 @@ public final class DataAuthenticationKeyLoader_c
 				return jarentry;
 		}
 
-		throw new a("CERT_NOT_FOUND", null);
+		throw new CertFailedToLoadKiwiException_a("CERT_NOT_FOUND", null);
 	}
 
 	private JarFile b()
-		throws a
+		throws CertFailedToLoadKiwiException_a
 	{
 		String s = b.getPackageCodePath();
 		if (KiwiLogger.TRACE_ON)
@@ -83,28 +83,28 @@ public final class DataAuthenticationKeyLoader_c
 		}
 		catch (IOException ioexception)
 		{
-			throw com.amazon.android.h.a.a(ioexception);
+			throw com.amazon.android.h.CertFailedToLoadKiwiException_a.a(ioexception);
 		}
 		return jarfile;
 	}
 
-	private static b c()
-		throws a
+	private static CertVerifier_b c()
+		throws CertFailedToLoadKiwiException_a
 	{
-		b b1;
+	    CertVerifier_b b1;
 		try
 		{
-			b1 = new b();
+			b1 = new CertVerifier_b();
 		}
 		catch (GeneralSecurityException generalsecurityexception)
 		{
-			throw new a("FAILED_TO_ESTABLISH_TRUST", generalsecurityexception);
+			throw new CertFailedToLoadKiwiException_a("FAILED_TO_ESTABLISH_TRUST", generalsecurityexception);
 		}
 		return b1;
 	}
 
 	public final PublicKey a()
-		throws a
+		throws CertFailedToLoadKiwiException_a
 	{
 		CertPath certpath;
 		if (KiwiLogger.TRACE_ON)
@@ -144,14 +144,14 @@ _L3:
 			flag = false;
 _L5:
 		if (!flag)
-			throw new a("CERT_INVALID", null);
+			throw new CertFailedToLoadKiwiException_a("CERT_INVALID", null);
 		break; /* Loop/switch isn't completed */
 _L2:
 		flag = false;
 		if (true) goto _L5; else goto _L4
 _L4:
 		if (!c().a(certpath))
-			throw new a("VERIFICATION_FAILED", null);
+			throw new CertFailedToLoadKiwiException_a("VERIFICATION_FAILED", null);
 		PublicKey publickey1 = ((X509Certificate)certpath.getCertificates().get(0)).getPublicKey();
 		if (KiwiLogger.TRACE_ON)
 			a.trace("Placing auth key into storage");

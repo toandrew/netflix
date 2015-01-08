@@ -4,7 +4,7 @@
 
 package com.amazon.android.licensing;
 
-import com.amazon.android.DrmFullApplicationLaunchTaskWorkflow_b.h;
+import com.amazon.android.b.MalformedResponseKiwiException_h;
 import java.util.Map;
 
 public final class c
@@ -15,11 +15,11 @@ public final class c
 	final String c;
 
 	public c(Map map)
-		throws h
+		throws MalformedResponseKiwiException_h
 	{
 		if (map == null)
 		{
-			throw new h("EMPTY", null);
+			throw new MalformedResponseKiwiException_h("EMPTY", null);
 		} else
 		{
 			a = a("license", map);
@@ -30,7 +30,7 @@ public final class c
 	}
 
 	private static String a(String s, Map map)
-		throws h
+		throws MalformedResponseKiwiException_h
 	{
 		String s1 = (String)map.get(s);
 		boolean flag;
@@ -39,7 +39,7 @@ public final class c
 		else
 			flag = false;
 		if (flag)
-			throw new h("MISSING_FIELD", s);
+			throw new MalformedResponseKiwiException_h("MISSING_FIELD", s);
 		else
 			return s1;
 	}

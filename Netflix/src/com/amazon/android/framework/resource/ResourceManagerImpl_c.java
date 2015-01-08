@@ -1,7 +1,3 @@
-// Decompiled by Jad v1.5.8e2. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://kpdus.tripod.com/jad.html
-// Decompiler options: packimports(3) fieldsfirst ansi space 
-
 package com.amazon.android.framework.resource;
 
 import com.amazon.android.d.a;
@@ -14,7 +10,7 @@ import java.util.*;
 //			a, Resource, b
 
 public final class ResourceManagerImpl_c
-	implements com.amazon.android.framework.resource.a
+	implements com.amazon.android.framework.resource.ResourceManager_a
 {
 
 	private static KiwiLogger a = new KiwiLogger("ResourceManagerImpl");

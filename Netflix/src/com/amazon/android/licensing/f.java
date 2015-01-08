@@ -5,8 +5,8 @@
 package com.amazon.android.licensing;
 
 import com.amazon.android.framework.util.a;
-import com.amazon.android.DrmFreeApplicationLaunchTaskWorkflow_h.b;
-import com.amazon.android.m.d;
+import com.amazon.android.h.SignedTokenParseFailureKiwiException_b;
+import com.amazon.android.m.SignedToken_d;
 import java.util.Date;
 
 public final class f
@@ -18,8 +18,8 @@ public final class f
 	final Date d;
 	final String e;
 
-	public f(d d1)
-		throws b
+	public f(SignedToken_d d1)
+		throws SignedTokenParseFailureKiwiException_b
 	{
 		a = a("checksum", d1);
 		b = a("customerId", d1);
@@ -28,18 +28,18 @@ public final class f
 		d = b("expiration", d1);
 	}
 
-	private static String a(String s, d d1)
-		throws b
+	private static String a(String s, SignedToken_d d1)
+		throws SignedTokenParseFailureKiwiException_b
 	{
 		String s1 = d1.a(s);
 		if (com.amazon.android.framework.util.a.a(s1))
-			throw new b("MISSING_FIELD", s);
+			throw new SignedTokenParseFailureKiwiException_b("MISSING_FIELD", s);
 		else
 			return s1;
 	}
 
-	private static Date b(String s, d d1)
-		throws b
+	private static Date b(String s, SignedToken_d d1)
+		throws SignedTokenParseFailureKiwiException_b
 	{
 		String s1 = a(s, d1);
 		Date date;
@@ -49,7 +49,7 @@ public final class f
 		}
 		catch (NumberFormatException numberformatexception)
 		{
-			throw new b("INVALID_FIELD_VALUE", (new StringBuilder()).append(s).append(":").append(s1).toString());
+			throw new SignedTokenParseFailureKiwiException_b("INVALID_FIELD_VALUE", (new StringBuilder()).append(s).append(":").append(s1).toString());
 		}
 		return date;
 	}

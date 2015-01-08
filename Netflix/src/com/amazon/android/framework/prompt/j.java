@@ -34,8 +34,8 @@ final class j
 			PromptManagerImpl.b(a).expire();
 	}
 
-	public final com.amazon.android.o.a b()
+	public final com.amazon.android.o.Order_a b()
 	{
-		return com.amazon.android.o.a.b;
+		return com.amazon.android.o.Order_a.b;
 	}
 }

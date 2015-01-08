@@ -5,7 +5,7 @@
 package com.amazon.android.r;
 
 import android.os.RemoteException;
-import com.amazon.android.c.b;
+import com.amazon.android.c.CrashReport_b;
 import com.amazon.android.c.d;
 import com.amazon.android.framework.exception.KiwiException;
 import com.amazon.android.framework.task.command.AbstractCommandTask;
@@ -29,7 +29,7 @@ public final class SubmitCrashReportsTask_a extends AbstractCommandTask
 	{
 		HashMap hashmap = new HashMap();
 		ArrayList arraylist = new ArrayList();
-		for (Iterator iterator = c.iterator(); iterator.hasNext(); arraylist.add(((ResultManager_b)iterator.next()).a()));
+		for (Iterator iterator = c.iterator(); iterator.hasNext(); arraylist.add(((CrashReport_b)iterator.next()).a()));
 		hashmap.put("reports", arraylist);
 		return hashmap;
 	}

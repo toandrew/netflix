@@ -13,9 +13,9 @@ final class ExpireTask_a
 	implements Task
 {
 
-	private b a;
+	private Expirable_b a;
 
-	ExpireTask_a(b b1)
+	ExpireTask_a(Expirable_b b1)
 	{
 		a = b1;
 	}

@@ -37,7 +37,7 @@ public abstract class Expirable_b
 
 	private void scheduleExpiration()
 	{
-		a a1 = new a(this);
+	    ExpireTask_a a1 = new ExpireTask_a(this);
 		taskManager.enqueueAtTime(TaskPipelineId.BACKGROUND, a1, getExpiration());
 	}
 

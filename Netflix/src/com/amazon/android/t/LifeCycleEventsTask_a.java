@@ -5,18 +5,21 @@
 package com.amazon.android.t;
 
 import android.os.RemoteException;
+
 import com.amazon.android.framework.exception.KiwiException;
 import com.amazon.android.framework.task.command.AbstractCommandTask;
 import com.amazon.venezia.command.FailureResult;
 import com.amazon.venezia.command.SuccessResult;
+
+import java.util.HashMap;
 import java.util.Map;
 
-public final class a extends AbstractCommandTask
+public final class LifeCycleEventsTask_a extends AbstractCommandTask
 {
 
 	private Map a;
 
-	public a(Map map)
+	public LifeCycleEventsTask_a(HashMap map)
 	{
 		a = map;
 	}

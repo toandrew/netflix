@@ -9,7 +9,7 @@ import android.app.Dialog;
 import com.amazon.android.framework.task.TaskManager;
 import com.amazon.android.framework.task.pipeline.TaskPipelineId;
 import com.amazon.android.framework.util.KiwiLogger;
-import com.amazon.android.i.c;
+import com.amazon.android.i.RelativeExpirable_c;
 import com.amazon.android.n.DataStore_a;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 // Referenced classes of package com.amazon.android.framework.prompt:
 //			b, a, d
 
-public abstract class Prompt extends c
+public abstract class Prompt extends RelativeExpirable_c
 {
 
 	private static final KiwiLogger LOGGER = new KiwiLogger("Prompt");
@@ -26,7 +26,7 @@ public abstract class Prompt extends c
 	private Dialog dialog;
 	private AtomicBoolean dismissed;
 	private final int identifier = createIdentifier();
-	private d manualExpirationReason;
+	private PromptFailedReason_d manualExpirationReason;
 
 	public Prompt()
 	{
@@ -53,7 +53,7 @@ public abstract class Prompt extends c
 		dialog = null;
 	}
 
-	private void expire(d d1)
+	private void expire(PromptFailedReason_d d1)
 	{
 		if (KiwiLogger.TRACE_ON)
 			LOGGER.trace((new StringBuilder()).append("Expiring prompt pre-maturely: id: ").append(getIdentifier()).append(", prompt: ").append(this).append(",").append(", reason: ").append(d1).toString());
@@ -83,7 +83,7 @@ public abstract class Prompt extends c
 		context = activity;
 		dialog = doCreate(activity);
 		dialog.setCancelable(false);
-		dialog.setOnKeyListener(new b(this));
+		dialog.setOnKeyListener(new PromptKeyListener_b(this));
 		return dialog;
 	}
 
@@ -115,19 +115,19 @@ public abstract class Prompt extends c
 	{
 		if (KiwiLogger.TRACE_ON)
 			LOGGER.trace((new StringBuilder()).append("Expiring prompt: ").append(this).toString());
-		com.amazon.android.framework.prompt.a a1 = new com.amazon.android.framework.prompt.a(this);
+		com.amazon.android.framework.prompt.DismissPromptTask_a a1 = new com.amazon.android.framework.prompt.DismissPromptTask_a(this);
 		taskManager.enqueue(TaskPipelineId.FOREGROUND, a1);
 		doExpiration(getExpirationReason());
 	}
 
-	protected abstract void doExpiration(d d1);
+	protected abstract void doExpiration(PromptFailedReason_d d1);
 
-	protected d getExpirationReason()
+	protected PromptFailedReason_d getExpirationReason()
 	{
 		if (!isExpired())
 			return null;
 		if (manualExpirationReason == null)
-			return d.b;
+			return PromptFailedReason_d.EXPIRATION_DURATION_ELAPSED_b;
 		else
 			return manualExpirationReason;
 	}
@@ -163,7 +163,7 @@ public abstract class Prompt extends c
 			return;
 		} else
 		{
-			expire(com.amazon.android.framework.prompt.d.a);
+			expire(com.amazon.android.framework.prompt.PromptFailedReason_d.NOT_COMPATIBLE_a);
 			return;
 		}
 	}

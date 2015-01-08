@@ -21,7 +21,7 @@ public class Metric_b
 		a.put("time", String.valueOf(System.currentTimeMillis()));
 	}
 
-	public final b a(String s, String s1)
+	public final Metric_b a(String s, String s1)
 	{
 		a.put(s, s1);
 		return this;

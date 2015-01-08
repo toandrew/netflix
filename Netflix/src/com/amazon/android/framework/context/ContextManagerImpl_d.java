@@ -72,7 +72,7 @@ public final class ContextManagerImpl_d
 				}
 		} while (true);
 		Activity activity = d1.getRoot();
-		com.amazon.android.framework.context.a a1;
+		com.amazon.android.framework.context.KillRootTask_a a1;
 		if (activity == null)
 		{
 			a.trace("Shutdown found no root, no activities to pop off stack!");
@@ -86,7 +86,7 @@ public final class ContextManagerImpl_d
 			intent.addFlags(0x20000000);
 			activity.startActivity(intent);
 		}
-		a1 = new com.amazon.android.framework.context.a(d1);
+		a1 = new com.amazon.android.framework.context.KillRootTask_a(d1);
 		d1.j.enqueue(TaskPipelineId.FOREGROUND, a1);
 	}
 
@@ -177,7 +177,7 @@ _L6:
 			a.trace(Thread.currentThread().toString());
 			a.trace("---------------------------------------------------");
 		}
-		com.amazon.android.framework.context.c c1 = new com.amazon.android.framework.context.c(this);
+		com.amazon.android.framework.context.InitAppShutDownTask_c c1 = new com.amazon.android.framework.context.InitAppShutDownTask_c(this);
 		j.enqueue(TaskPipelineId.FOREGROUND, c1);
 	}
 
@@ -291,7 +291,7 @@ _L4:
 	{
 		String s = i.getPackageName();
 		l = (new StringBuilder()).append("com.amazon.").append(s).append(".shutdown").toString();
-		com.amazon.android.framework.context.b b1 = new com.amazon.android.framework.context.b(this);
+		com.amazon.android.framework.context.ContextReceiver_b b1 = new com.amazon.android.framework.context.ContextReceiver_b(this);
 		IntentFilter intentfilter = new IntentFilter(l);
 		i.registerReceiver(b1, intentfilter);
 	}

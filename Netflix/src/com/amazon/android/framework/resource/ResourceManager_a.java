@@ -2,16 +2,15 @@
 // Jad home page: http://kpdus.tripod.com/jad.html
 // Decompiler options: packimports(3) fieldsfirst ansi space 
 
-package com.amazon.android.q;
+package com.amazon.android.framework.resource;
 
 
-// Referenced classes of package com.amazon.android.q:
-//			a, b
-
-public interface d
+public interface ResourceManager_a
 {
 
-	public abstract MetricBatch_a a();
+	public abstract void a();
 
-	public abstract void a(Metric_b b);
+	public abstract void a(Object obj);
+
+	public abstract void b(Object obj);
 }

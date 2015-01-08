@@ -13,12 +13,12 @@ public final class DataStore_a
 	implements b
 {
 
-	public d a;
-	private com.amazon.android.framework.resource.a b;
+	public ExpirableValueDataStore_d a;
+	private com.amazon.android.framework.resource.ResourceManager_a b;
 
 	public DataStore_a()
 	{
-		a = new d();
+		a = new ExpirableValueDataStore_d();
 	}
 
 	public final Object a(String s)

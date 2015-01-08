@@ -7,7 +7,7 @@ package com.amazon.android.c;
 import android.app.Application;
 import com.amazon.android.framework.resource.b;
 import com.amazon.android.framework.util.KiwiLogger;
-import com.amazon.android.o.g;
+import com.amazon.android.o.EventManager_g;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -29,7 +29,7 @@ public final class CrashManagerImpl_a
 {
 
 	private static final KiwiLogger a = new KiwiLogger("CrashManagerImpl");
-	private g b;
+	private EventManager_g b;
 	private com.amazon.android.g.b c;
 	private Application d;
 	private Thread.UncaughtExceptionHandler e;
@@ -70,13 +70,13 @@ _L1:
 		throw exception;
 	}
 
-	private com.amazon.android.c.b b(String s)
+	private com.amazon.android.c.CrashReport_b b(String s)
 	{
-		com.amazon.android.c.b b1;
+		com.amazon.android.c.CrashReport_b b1;
 		try
 		{
 			String s1 = c(s);
-			b1 = (com.amazon.android.c.b)com.amazon.android.u.a.a(c.b(s1));
+			b1 = (com.amazon.android.c.CrashReport_b)com.amazon.android.u.a.a(c.b(s1));
 		}
 		catch (Exception exception)
 		{
@@ -146,7 +146,7 @@ _L1:
 			{
 				String s = as[i];
 				String s1 = (new StringBuilder()).append(d.getFilesDir().getAbsolutePath()).append("/").append(s).toString();
-				com.amazon.android.c.b b1 = b(s1);
+				com.amazon.android.c.CrashReport_b b1 = b(s1);
 				if (b1 != null)
 				{
 					f.put(b1, s1);
@@ -163,10 +163,10 @@ _L1:
 
 	public final void a(List list)
 	{
-		com.amazon.android.c.b b1;
+		com.amazon.android.c.CrashReport_b b1;
 		for (Iterator iterator = list.iterator(); iterator.hasNext(); f.remove(b1))
 		{
-			b1 = (com.amazon.android.c.b)iterator.next();
+			b1 = (com.amazon.android.c.CrashReport_b)iterator.next();
 			d((String)f.get(b1));
 		}
 
@@ -192,7 +192,7 @@ _L1:
 			a.trace("Crash detected", throwable);
 			a.trace("---------------------------------------------------");
 		}
-		String s = com.amazon.android.u.a.a(new com.amazon.android.c.b(d, throwable));
+		String s = com.amazon.android.u.Serializer_a.a(new com.amazon.android.c.CrashReport_b(d, throwable));
 		a(c.a(s));
 _L2:
 		Throwable throwable1;

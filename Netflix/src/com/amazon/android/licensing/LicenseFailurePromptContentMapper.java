@@ -4,16 +4,16 @@
 
 package com.amazon.android.licensing;
 
-import com.amazon.android.DrmFullApplicationLaunchTaskWorkflow_b.a;
-import com.amazon.android.DrmFullApplicationLaunchTaskWorkflow_b.b;
-import com.amazon.android.DrmFullApplicationLaunchTaskWorkflow_b.d;
-import com.amazon.android.DrmFullApplicationLaunchTaskWorkflow_b.e;
-import com.amazon.android.DrmFullApplicationLaunchTaskWorkflow_b.f;
-import com.amazon.android.DrmFullApplicationLaunchTaskWorkflow_b.g;
-import com.amazon.android.DrmFullApplicationLaunchTaskWorkflow_b.h;
+import com.amazon.android.b.CommandServiceKiwiException_a;
+import com.amazon.android.b.UnhandledKiwiException_b;
+import com.amazon.android.b.AuthTokenVerFailureKiwiException_d;
+import com.amazon.android.b.ResultFailureKiwiException_e;
+import com.amazon.android.b.CommandServiceBindFailureKiwiException_f;
+import com.amazon.android.b.CommandServiceNotInstalledKiwiException_g;
+import com.amazon.android.b.MalformedResponseKiwiException_h;
 import com.amazon.android.framework.exception.KiwiException;
 import com.amazon.android.framework.prompt.PromptContent;
-import com.amazon.android.DrmFreeApplicationLaunchTaskWorkflow_h.c;
+import com.amazon.android.h.SignedTokenVerFailureKiwiException_c;
 import java.util.HashMap;
 import java.util.Map;
 

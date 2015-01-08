@@ -6,10 +6,22 @@ package com.amazon.android.licensing;
 
 import com.amazon.android.k.c;
 
-public final class k extends Enum
+public enum LicenseDataFields_k
 	implements c
 {
 
+    EXPIRATION_a,
+    CUSTOMER_ID_b,
+    DEVICE_ID_c,
+    PACKAGE_NAME_d,
+    CHECKSUM_e;
+    
+    public final String a()
+    {
+        return name();
+    }
+    
+    /*
 	public static final k a;
 	public static final k b;
 	public static final k c;
@@ -17,7 +29,7 @@ public final class k extends Enum
 	public static final k e;
 	private static final k f[];
 
-	private k(String s, int i)
+	private LicenseDataFields(String s, int i)
 	{
 		super(s, i);
 	}
@@ -52,4 +64,5 @@ public final class k extends Enum
 		ak[4] = e;
 		f = ak;
 	}
+	*/
 }

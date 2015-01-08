@@ -1,7 +1,3 @@
-// Decompiled by Jad v1.5.8e2. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://kpdus.tripod.com/jad.html
-// Decompiler options: packimports(3) fieldsfirst ansi space 
-
 package com.amazon.android.framework.task.command;
 
 import android.os.RemoteException;
@@ -14,37 +10,27 @@ import java.util.concurrent.BlockingQueue;
 // Referenced classes of package com.amazon.android.framework.task.command:
 //			b, k
 
-final class j extends o
-{
+final class j extends o {
 
-	private CommandServiceClient_b a;
+    private CommandServiceClient_b a;
 
-	j(CommandServiceClient_b b1)
-	{
-		a = b1;
-	}
+    j(CommandServiceClient_b b1) {
+        a = b1;
+    }
 
-	public final void a(FailureResult failureresult)
-		throws RemoteException
-	{
-		CommandServiceClient_b.b(a).add(new k(failureresult));
-	}
+    public final void a(FailureResult failureresult) throws RemoteException {
+        CommandServiceClient_b.b(a).add(new CommandResult_k(failureresult));
+    }
 
-	public final void a(SuccessResult successresult)
-		throws RemoteException
-	{
-		CommandServiceClient_b.b(a).add(new k(successresult));
-	}
+    public final void a(SuccessResult successresult) throws RemoteException {
+        CommandServiceClient_b.b(a).add(new CommandResult_k(successresult));
+    }
 
-	public final void a(com.amazon.venezia.command.j j1)
-		throws RemoteException
-	{
-		CommandServiceClient_b.b(a).add(new k(j1));
-	}
+    public final void a(com.amazon.venezia.command.j j1) throws RemoteException {
+        CommandServiceClient_b.b(a).add(new CommandResult_k(j1));
+    }
 
-	public final void a(r r)
-		throws RemoteException
-	{
-		CommandServiceClient_b.b(a).add(new k(r));
-	}
+    public final void a(r r) throws RemoteException {
+        CommandServiceClient_b.b(a).add(new CommandResult_k(r));
+    }
 }

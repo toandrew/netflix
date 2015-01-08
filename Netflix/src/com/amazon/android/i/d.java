@@ -11,5 +11,5 @@ package com.amazon.android.i;
 public interface d
 {
 
-	public abstract void observe(b b);
+	public abstract void observe(Expirable_b b);
 }

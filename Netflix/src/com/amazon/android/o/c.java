@@ -15,5 +15,5 @@ public interface c
 
 	public abstract void a(d d);
 
-	public abstract a b();
+	public abstract Order_a b();
 }

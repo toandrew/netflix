@@ -7,12 +7,12 @@ package com.amazon.android.framework.prompt;
 import android.app.Activity;
 import android.app.Dialog;
 import com.amazon.android.framework.context.ContextManager;
-import com.amazon.android.framework.resource.a;
+import com.amazon.android.framework.resource.ResourceManager_a;
 import com.amazon.android.framework.resource.b;
 import com.amazon.android.framework.task.TaskManager;
 import com.amazon.android.framework.task.pipeline.TaskPipelineId;
 import com.amazon.android.framework.util.KiwiLogger;
-import com.amazon.android.o.g;
+import com.amazon.android.o.EventManager_g;
 import java.util.Iterator;
 import java.util.LinkedHashSet;
 import java.util.Set;
@@ -28,10 +28,10 @@ public class PromptManagerImpl
 
 	public static final KiwiLogger LOGGER = new KiwiLogger("PromptManagerImpl");
 	private ContextManager contextManager;
-	private g eventManager;
+	private EventManager_g eventManager;
 	private final AtomicBoolean finished = new AtomicBoolean(false);
 	private Set pending;
-	private a resourceManager;
+	private ResourceManager_a resourceManager;
 	private Prompt showing;
 	private TaskManager taskManager;
 
@@ -190,11 +190,11 @@ _L5:
 
 	public void observe(Prompt prompt)
 	{
-		e e1 = new e(this, prompt);
+	    RemoveExpiredPrompt_e e1 = new RemoveExpiredPrompt_e(this, prompt);
 		taskManager.enqueue(TaskPipelineId.FOREGROUND, e1);
 	}
 
-	public volatile void observe(com.amazon.android.i.b b1)
+	public void observe(com.amazon.android.i.Expirable_b b1)
 	{
 		observe((Prompt)b1);
 	}
@@ -246,7 +246,7 @@ _L5:
 			return;
 		} else
 		{
-			h h1 = new h(this, prompt);
+		    MainThreadPromptTask_h h1 = new MainThreadPromptTask_h(this, prompt);
 			taskManager.enqueue(TaskPipelineId.FOREGROUND, h1);
 			return;
 		}

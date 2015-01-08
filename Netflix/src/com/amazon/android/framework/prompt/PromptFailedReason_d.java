@@ -5,14 +5,18 @@
 package com.amazon.android.framework.prompt;
 
 
-public final class d extends Enum
+public enum PromptFailedReason_d
 {
+    NOT_COMPATIBLE_a,
+    EXPIRATION_DURATION_ELAPSED_b
+    
+    /*
 
 	public static final d a;
 	public static final d b;
 	private static final d c[];
 
-	private d(String s, int i)
+	private PromptFailedReason_d(String s, int i)
 	{
 		super(s, i);
 	}
@@ -36,4 +40,5 @@ public final class d extends Enum
 		ad[1] = b;
 		c = ad;
 	}
+	*/
 }

@@ -6,7 +6,7 @@ package com.amazon.android.licensing;
 
 import com.amazon.android.framework.exception.KiwiException;
 import com.amazon.android.framework.prompt.PromptContent;
-import com.amazon.android.s.a;
+import com.amazon.android.s.LicenseVerFailureKiwiException_a;
 import java.util.Map;
 
 // Referenced classes of package com.amazon.android.licensing:
@@ -25,9 +25,9 @@ final class j
 	{
 	}
 
-	public final volatile PromptContent a(KiwiException kiwiexception)
+	public final PromptContent a(KiwiException kiwiexception)
 	{
-		com.amazon.android.k.a a1 = ((a)kiwiexception).a;
+		com.amazon.android.k.Verifier_a a1 = ((LicenseVerFailureKiwiException_a)kiwiexception).a;
 		k k1 = com.amazon.android.licensing.k.a;
 		if (a1.a.containsKey(k1))
 			return i.d;

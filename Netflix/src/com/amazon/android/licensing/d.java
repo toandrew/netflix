@@ -15,17 +15,16 @@ import java.util.Date;
 final class d extends b
 {
 
-	private l b;
+	private VerifyApplicationEntitlmentTask_l b;
 
-	d(l l1, Object obj, Date date)
+	d(VerifyApplicationEntitlmentTask_l l1, Object obj, Date date)
 	{
 		b = l1;
-		super(obj, date);
 	}
 
 	public final void doExpiration()
 	{
-		l l1 = new l();
+	    VerifyApplicationEntitlmentTask_l l1 = new VerifyApplicationEntitlmentTask_l();
 		taskManager.enqueue(TaskPipelineId.COMMAND, l1);
 	}
 }

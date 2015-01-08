@@ -7,16 +7,16 @@ package com.amazon.android.licensing;
 import com.amazon.android.d.a;
 import com.amazon.android.framework.task.Task;
 import com.amazon.android.framework.util.KiwiLogger;
-import com.amazon.android.framework.util.c;
+import com.amazon.android.framework.util.Reflection_c;
 import java.lang.reflect.Method;
 
-public final class n
+public final class DRMSuccessTask_n
 	implements Task
 {
 
 	private static final KiwiLogger a = new KiwiLogger("DRMSuccessTask");
 
-	public n()
+	public DRMSuccessTask_n()
 	{
 	}
 
@@ -45,19 +45,19 @@ public final class n
 		} else
 		{
 			method1.setAccessible(true);
-			if (!c.c(method1))
+			if (!Reflection_c.c(method1))
 			{
 				if (KiwiLogger.TRACE_ON)
 					a.trace((new StringBuilder()).append("Callback ").append(s).append(" isn't static, ignoring...").toString());
 				return null;
 			}
-			if (!c.b(method1))
+			if (!Reflection_c.b(method1))
 			{
 				if (KiwiLogger.TRACE_ON)
 					a.trace((new StringBuilder()).append("Callback ").append(s).append(" returns a value, ignoring...").toString());
 				return null;
 			}
-			if (c.a(method1))
+			if (Reflection_c.a(method1))
 			{
 				if (KiwiLogger.TRACE_ON)
 					a.trace((new StringBuilder()).append("Callback ").append(s).append(" takes parameters, ignoring...").toString());
@@ -69,7 +69,7 @@ public final class n
 
 	public final void execute()
 	{
-		Class class1 = c.a("com.amazon.drm.AmazonLicenseVerificationCallback");
+		Class class1 = Reflection_c.a("com.amazon.drm.AmazonLicenseVerificationCallback");
 		Method method;
 		if (class1 != null)
 			if ((method = a(class1, "onDRMSuccess")) != null)

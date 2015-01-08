@@ -13,8 +13,8 @@ import com.amazon.android.framework.task.command.AbstractCommandTask;
 import com.amazon.android.framework.task.pipeline.TaskPipelineId;
 import com.amazon.android.framework.util.KiwiLogger;
 import com.amazon.android.k.b;
-import com.amazon.android.m.c;
-import com.amazon.android.m.d;
+import com.amazon.android.m.DataAuthenticationKeyLoader_c;
+import com.amazon.android.m.SignedToken_d;
 import com.amazon.android.n.DataStore_a;
 import com.amazon.mas.kiwi.util.BC1;
 import com.amazon.venezia.command.FailureResult;
@@ -32,11 +32,11 @@ public final class VerifyApplicationEntitlmentTask_l extends AbstractCommandTask
 
 	private static final KiwiLogger a = new KiwiLogger("VerifyApplicationEntitlmentTask");
 	private LicenseFailurePromptContentMapper b;
-	private com.amazon.android.q.d c;
+	private com.amazon.android.q.MetricsManager_d c;
 	private Application d;
 	private TaskManager e;
 	private DataStore_a f;
-	private c g;
+	private DataAuthenticationKeyLoader_c g;
 
 	public VerifyApplicationEntitlmentTask_l()
 	{
@@ -84,14 +84,14 @@ public final class VerifyApplicationEntitlmentTask_l extends AbstractCommandTask
 	{
 		com.amazon.android.licensing.c c1 = new com.amazon.android.licensing.c(successresult.getData());
 		java.security.PublicKey publickey = g.a();
-		f f1 = new f(new d(c1.a, publickey));
-		com.amazon.android.k.a a1 = new com.amazon.android.k.a();
-		a1.a(c1.b, f1.b, com.amazon.android.licensing.k.b);
-		a1.a(c1.c, f1.c, com.amazon.android.licensing.k.c);
-		a1.a(f1.e, d.getPackageName(), com.amazon.android.licensing.k.d);
+		f f1 = new f(new SignedToken_d(c1.a, publickey));
+		com.amazon.android.k.Verifier_a a1 = new com.amazon.android.k.Verifier_a();
+		a1.a(c1.b, f1.b, com.amazon.android.licensing.LicenseDataFields_k.CUSTOMER_ID_b);
+		a1.a(c1.c, f1.c, com.amazon.android.licensing.LicenseDataFields_k.DEVICE_ID_c);
+		a1.a(f1.e, d.getPackageName(), com.amazon.android.licensing.LicenseDataFields_k.PACKAGE_NAME_d);
 		Date date = f1.d;
 		Date date1 = new Date();
-		k k1 = com.amazon.android.licensing.k.a;
+		LicenseDataFields_k k1 = com.amazon.android.licensing.LicenseDataFields_k.EXPIRATION_a;
 		if (date.compareTo(date1) <= 0)
 		{
 			b b1 = new b(k1, (new StringBuilder()).append("'").append(date).append("' <= '").append(date1).append("'").toString());
@@ -100,24 +100,24 @@ public final class VerifyApplicationEntitlmentTask_l extends AbstractCommandTask
 		try
 		{
 			String s = BC1.getBC1ChecksumBase64(d.getPackageCodePath());
-			a1.a(f1.a, s, k.e);
+			a1.a(f1.a, s, LicenseDataFields_k.CHECKSUM_e);
 		}
 		catch (IOException ioexception)
 		{
-			k k2 = k.e;
+		    LicenseDataFields_k k2 = LicenseDataFields_k.CHECKSUM_e;
 			b b2 = new b(k2, (new StringBuilder()).append("Exception: ").append(ioexception).toString());
 			a1.a.put(k2, b2);
 		}
 		if (a1.a())
 		{
-			throw new com.amazon.android.s.a(a1);
+			throw new com.amazon.android.s.LicenseVerFailureKiwiException_a(a1);
 		} else
 		{
 			a.trace("License Verification succeeded!");
 			com.amazon.android.licensing.d d1 = new com.amazon.android.licensing.d(this, f1, f1.d);
 			f.a.a("APPLICATION_LICENSE", d1);
-			c.a(new com.amazon.android.p.a());
-			e.enqueue(TaskPipelineId.BACKGROUND, new n());
+			c.a(new com.amazon.android.p.LicenseVerSuccessMetric_a());
+			e.enqueue(TaskPipelineId.BACKGROUND, new DRMSuccessTask_n());
 			return;
 		}
 	}

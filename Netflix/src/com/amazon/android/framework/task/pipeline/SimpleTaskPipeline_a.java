@@ -36,19 +36,19 @@ public final class SimpleTaskPipeline_a
 		b = new Handler();
 	}
 
-	public static a a(String s)
+	public static SimpleTaskPipeline_a a(String s)
 	{
-		return new a(new HandlerThread((new StringBuilder()).append("KIWI_").append(s).toString()));
+		return new SimpleTaskPipeline_a(new HandlerThread((new StringBuilder()).append("KIWI_").append(s).toString()));
 	}
 
-	static Set a(a a1)
+	static Set a(SimpleTaskPipeline_a a1)
 	{
 		return a1.c;
 	}
 
-	public static a b(String s)
+	public static SimpleTaskPipeline_a b(String s)
 	{
-		return new a(s);
+		return new SimpleTaskPipeline_a(s);
 	}
 
 	static KiwiLogger b()

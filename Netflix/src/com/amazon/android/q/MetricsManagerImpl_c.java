@@ -11,7 +11,7 @@ import java.util.List;
 //			d, a, b
 
 public final class MetricsManagerImpl_c
-	implements d
+	implements MetricsManager_d
 {
 
 	private static final KiwiLogger a = new KiwiLogger("MetricsManagerImpl");
@@ -28,14 +28,14 @@ public final class MetricsManagerImpl_c
 		JVM INSTR monitorenter ;
 		if (!b.a()) goto _L2; else goto _L1
 _L1:
-		a a1 = b;
+        MetricBatch_a a1 = b;
 _L4:
 		this;
 		JVM INSTR monitorexit ;
 		return a1;
 _L2:
 		a1 = b;
-		b = new a();
+		b = new MetricBatch_a();
 		if (true) goto _L4; else goto _L3
 _L3:
 		Exception exception;

@@ -16,8 +16,8 @@ public class CertFailedToLoadKiwiException_a extends KiwiException
 		super("DATA_AUTH_KEY_LOAD_FAILURE", s, throwable);
 	}
 
-	public static a a(Throwable throwable)
+	public static CertFailedToLoadKiwiException_a a(Throwable throwable)
 	{
-		return new a("CERT_FAILED_TO_LOAD", throwable);
+		return new CertFailedToLoadKiwiException_a("CERT_FAILED_TO_LOAD", throwable);
 	}
 }

@@ -42,7 +42,7 @@ public final class EventListenerNotificationQueue_e
 
 	}
 
-	public final volatile int compare(Object obj, Object obj1)
+	public final int compare(Object obj, Object obj1)
 	{
 		c c1 = (c)obj;
 		c c2 = (c)obj1;

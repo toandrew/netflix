@@ -5,9 +5,13 @@
 package com.amazon.android.o;
 
 
-public final class a extends Enum
+public enum Order_a
 {
-
+    FIRST_a,
+    MIDDLE_b,
+    LAST_c;
+    
+    /*
 	public static final a a;
 	public static final a b;
 	public static final a c;
@@ -39,4 +43,5 @@ public final class a extends Enum
 		aa[2] = c;
 		d = aa;
 	}
+	*/
 }

@@ -6,8 +6,8 @@ package com.amazon.android.m;
 
 import com.amazon.android.d.a;
 import com.amazon.android.framework.util.KiwiLogger;
-import com.amazon.android.DrmFreeApplicationLaunchTaskWorkflow_h.b;
-import com.amazon.android.DrmFreeApplicationLaunchTaskWorkflow_h.c;
+import com.amazon.android.h.SignedTokenParseFailureKiwiException_b;
+import com.amazon.android.h.SignedTokenVerFailureKiwiException_c;
 import com.amazon.mas.kiwi.util.Base64;
 import java.io.IOException;
 import java.security.PublicKey;
@@ -23,12 +23,12 @@ public final class SignedToken_d
 	private final Map b = new HashMap();
 
 	public SignedToken_d(String s, PublicKey publickey)
-		throws b, ResourceManagerImpl_c
+		throws SignedTokenParseFailureKiwiException_b, SignedTokenVerFailureKiwiException_c
 	{
 		String s1 = b(s);
 		int i = s1.lastIndexOf("|");
 		if (i == -1)
-			throw com.amazon.android.DrmFreeApplicationLaunchTaskWorkflow_h.b.a();
+			throw com.amazon.android.h.SignedTokenParseFailureKiwiException_b.a();
 		String s2 = s1.substring(0, i);
 		String s3 = s1.substring(i + 1);
 		if (KiwiLogger.TRACE_ON)
@@ -36,9 +36,9 @@ public final class SignedToken_d
 			a.trace((new StringBuilder()).append("Token data: ").append(s2).toString());
 			a.trace((new StringBuilder()).append("Signature: ").append(s3).toString());
 		}
-		if (!com.amazon.android.m.a.a(s2, s3, publickey))
+		if (!com.amazon.android.m.SignatureVerifier_a.a(s2, s3, publickey))
 		{
-			throw new ResourceManagerImpl_c();
+			throw new SignedTokenVerFailureKiwiException_c();
 		} else
 		{
 			c(s2);
@@ -47,7 +47,7 @@ public final class SignedToken_d
 	}
 
 	private static String b(String s)
-		throws b
+		throws SignedTokenParseFailureKiwiException_b
 	{
 		String s1;
 		try
@@ -56,13 +56,13 @@ public final class SignedToken_d
 		}
 		catch (IOException ioexception)
 		{
-			throw new b("DECODE", ioexception.getMessage());
+			throw new SignedTokenParseFailureKiwiException_b("DECODE", ioexception.getMessage());
 		}
 		return s1;
 	}
 
 	private void c(String s)
-		throws b
+		throws SignedTokenParseFailureKiwiException_b
 	{
 		String s2;
 		String s3;
@@ -72,7 +72,7 @@ public final class SignedToken_d
 			a.trace((new StringBuilder()).append("Field: ").append(s1).toString());
 			int i = s1.indexOf("=");
 			if (i == -1)
-				throw com.amazon.android.DrmFreeApplicationLaunchTaskWorkflow_h.b.a();
+				throw com.amazon.android.h.SignedTokenParseFailureKiwiException_b.a();
 			s2 = s1.substring(0, i);
 			s3 = s1.substring(i + 1);
 			a.trace((new StringBuilder()).append("FieldName: ").append(s2).toString());

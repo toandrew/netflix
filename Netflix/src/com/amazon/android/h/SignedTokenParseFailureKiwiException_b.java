@@ -16,8 +16,8 @@ public class SignedTokenParseFailureKiwiException_b extends KiwiException
 		super("SIGNED_TOKEN_PARSE_FAILURE", s, s1);
 	}
 
-	public static b a()
+	public static SignedTokenParseFailureKiwiException_b a()
 	{
-		return new b("INVALID_FORMAT", null);
+		return new SignedTokenParseFailureKiwiException_b("INVALID_FORMAT", null);
 	}
 }

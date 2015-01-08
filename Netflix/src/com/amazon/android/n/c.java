@@ -13,17 +13,16 @@ import java.util.Date;
 final class c extends b
 {
 
-	private d b;
+	private ExpirableValueDataStore_d b;
 
-	c(d d1, Object obj, Date date)
+	c(ExpirableValueDataStore_d d1, Object obj, Date date)
 	{
 		b = d1;
-		super(obj, date);
 	}
 
 	protected final void doExpiration()
 	{
 		if (KiwiLogger.ERROR_ON)
-			d.a().error("Woah, non-expirable value was expired!!!!");
+		    ExpirableValueDataStore_d.a().error("Woah, non-expirable value was expired!!!!");
 	}
 }

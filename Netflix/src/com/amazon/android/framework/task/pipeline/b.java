@@ -4,7 +4,7 @@
 
 package com.amazon.android.framework.task.pipeline;
 
-import com.amazon.android.o.a;
+import com.amazon.android.o.Order_a;
 import com.amazon.android.o.c;
 import com.amazon.android.o.d;
 import com.amazon.android.o.f;
@@ -28,7 +28,7 @@ final class b
 		return com.amazon.android.j.c.c;
 	}
 
-	public final volatile void a(d d)
+	public final void a(d d)
 	{
 		com.amazon.android.framework.task.pipeline.e.a(a);
 	}

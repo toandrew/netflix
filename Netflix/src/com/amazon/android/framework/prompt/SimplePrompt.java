@@ -36,7 +36,7 @@ public abstract class SimplePrompt extends Prompt
 		return builder.create();
 	}
 
-	protected void doExpiration(d d)
+	protected void doExpiration(PromptFailedReason_d d)
 	{
 		doAction();
 	}

@@ -5,9 +5,12 @@
 package com.amazon.android.framework.task.pipeline;
 
 
-public final class TaskPipelineId extends Enum
+public enum TaskPipelineId
 {
-
+    FOREGROUND,
+    COMMAND,
+    BACKGROUND
+    /*
 	private static final TaskPipelineId $VALUES[];
 	public static final TaskPipelineId BACKGROUND;
 	public static final TaskPipelineId COMMAND;
@@ -39,4 +42,5 @@ public final class TaskPipelineId extends Enum
 		ataskpipelineid[2] = BACKGROUND;
 		$VALUES = ataskpipelineid;
 	}
+	*/
 }

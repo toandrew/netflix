@@ -5,7 +5,7 @@
 package com.amazon.android.framework.prompt;
 
 import com.amazon.android.j.d;
-import com.amazon.android.o.a;
+import com.amazon.android.o.Order_a;
 import com.amazon.android.o.c;
 import com.amazon.android.o.f;
 
@@ -28,7 +28,7 @@ final class i
 		return d.b;
 	}
 
-	public final volatile void a(com.amazon.android.o.d d1)
+	public final void a(com.amazon.android.o.d d1)
 	{
 		com.amazon.android.framework.prompt.PromptManagerImpl.a(a);
 	}

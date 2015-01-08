@@ -4,7 +4,7 @@
 
 package com.amazon.android.licensing;
 
-import com.amazon.android.DrmFullApplicationLaunchTaskWorkflow_b.e;
+import com.amazon.android.b.ResultFailureKiwiException_e;
 import com.amazon.android.framework.exception.KiwiException;
 import com.amazon.android.framework.prompt.PromptContent;
 import java.util.Map;
@@ -28,13 +28,13 @@ final class m
 		a = new a(this);
 	}
 
-	public final volatile PromptContent a(KiwiException kiwiexception)
+	public final PromptContent a(KiwiException kiwiexception)
 	{
-		e e1 = (e)kiwiexception;
+	    ResultFailureKiwiException_e e1 = (ResultFailureKiwiException_e)kiwiexception;
 		PromptContent promptcontent = (PromptContent)a.get(e1.getReason());
 		if (promptcontent != null)
 			return promptcontent;
 		else
-			return com.amazon.android.licensing.i.e;
+			return com.amazon.android.licensing.AllPromptContents_i.e;
 	}
 }

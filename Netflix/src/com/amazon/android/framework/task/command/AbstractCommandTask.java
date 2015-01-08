@@ -6,15 +6,15 @@ package com.amazon.android.framework.task.command;
 
 import android.app.Application;
 import android.os.RemoteException;
-import com.amazon.android.b.a;
-import com.amazon.android.b.e;
-import com.amazon.android.f.f;
+import com.amazon.android.b.CommandServiceKiwiException_a;
+import com.amazon.android.b.ResultFailureKiwiException_e;
+import com.amazon.android.f.MyActivtyResult_f;
 import com.amazon.android.framework.exception.KiwiException;
 import com.amazon.android.framework.prompt.PromptManager;
 import com.amazon.android.framework.util.KiwiLogger;
 import com.amazon.android.l.c;
-import com.amazon.android.q.b;
-import com.amazon.android.q.d;
+import com.amazon.android.q.Metric_b;
+import com.amazon.android.q.MetricsManager_d;
 import com.amazon.venezia.command.FailureResult;
 import com.amazon.venezia.command.SuccessResult;
 import com.amazon.venezia.command.j;
@@ -32,11 +32,11 @@ public abstract class AbstractCommandTask extends c
 
 	private static final KiwiLogger LOGGER = new KiwiLogger("AbstractCommandTask");
 	private Application application;
-	private com.amazon.android.framework.task.command.e authTokenVerifier;
-	private com.amazon.android.framework.task.command.b client;
-	private d metricsManager;
+	private com.amazon.android.framework.task.command.CommandResultVerifier_e authTokenVerifier;
+	private com.amazon.android.framework.task.command.CommandServiceClient_b client;
+	private MetricsManager_d metricsManager;
 	private PromptManager promptManager;
-	protected com.amazon.android.f.b resultManager;
+	protected com.amazon.android.f.ResultManager_b resultManager;
 
 	public AbstractCommandTask()
 	{
@@ -47,7 +47,7 @@ public abstract class AbstractCommandTask extends c
 		return abstractcommandtask.application;
 	}
 
-	private void expire(r r, com.amazon.android.framework.task.command.a a1)
+	private void expire(r r, com.amazon.android.framework.task.command.FailedReason_a a1)
 		throws RemoteException, KiwiException
 	{
 		if (KiwiLogger.TRACE_ON)
@@ -55,9 +55,9 @@ public abstract class AbstractCommandTask extends c
 		handleCommandResult(client.a(r, a1));
 	}
 
-	private b extractMetric(KiwiException kiwiexception)
+	private Metric_b extractMetric(KiwiException kiwiexception)
 	{
-		b b1 = new b(getFailureMetricName());
+	    Metric_b b1 = new Metric_b(getFailureMetricName());
 		b1.a("subType", kiwiexception.getType()).a("reason", kiwiexception.getReason()).a("context", kiwiexception.getContext());
 		return b1;
 	}
@@ -82,19 +82,19 @@ public abstract class AbstractCommandTask extends c
 		{
 			if (KiwiLogger.TRACE_ON)
 				LOGGER.trace("Choice has intent, scheduling it to be fired!!");
-			f f1 = resultManager.a(intent);
+			MyActivtyResult_f f1 = resultManager.a(intent);
 			if (f1 == null)
 			{
 				if (KiwiLogger.TRACE_ON)
 					LOGGER.trace("No result recived, expiring decision");
-				expire(r, com.amazon.android.framework.task.command.a.a);
+				expire(r, com.amazon.android.framework.task.command.FailedReason_a.EXPIRATION_DURATION_ELAPSED_a);
 				return;
 			}
 			if (f1.b == 0)
 			{
 				if (KiwiLogger.TRACE_ON)
 					LOGGER.trace("Result canceled, expiring decision");
-				expire(r, com.amazon.android.framework.task.command.a.c);
+				expire(r, com.amazon.android.framework.task.command.FailedReason_a.ACTION_CANCELED_c);
 				return;
 			}
 			if (KiwiLogger.TRACE_ON)
@@ -149,7 +149,7 @@ public abstract class AbstractCommandTask extends c
 		if (KiwiLogger.TRACE_ON)
 			LOGGER.trace("Handling Decision");
 		n n1;
-		com.amazon.android.framework.task.command.c c1 = new com.amazon.android.framework.task.command.c(r);
+		com.amazon.android.framework.task.command.DecisionDialog_c c1 = new com.amazon.android.framework.task.command.DecisionDialog_c(r);
 		promptManager.present(c1);
 		n1 = c1.a();
 		if (n1 == null)
@@ -158,14 +158,14 @@ public abstract class AbstractCommandTask extends c
 			{
 				if (KiwiLogger.TRACE_ON)
 					LOGGER.trace("DecisionChooser returned null!!, expiring");
-				expire(r, com.amazon.android.framework.task.command.a.a);
+				expire(r, com.amazon.android.framework.task.command.FailedReason_a.EXPIRATION_DURATION_ELAPSED_a);
 				return;
 			}
-			catch (com.amazon.android.b.c c2)
+			catch (com.amazon.android.b.MiscKiwiException_c c2)
 			{
 				expire(r, c2.a);
 			}
-			break MISSING_BLOCK_LABEL_85;
+			return;
 		}
 		handleChoice(r, n1);
 		return;
@@ -174,7 +174,7 @@ public abstract class AbstractCommandTask extends c
 	private void handleException(j j)
 		throws RemoteException, KiwiException
 	{
-		throw new e(j);
+		throw new ResultFailureKiwiException_e(j);
 	}
 
 	private void handleExecutionException(Throwable throwable)
@@ -183,7 +183,7 @@ public abstract class AbstractCommandTask extends c
 			LOGGER.trace((new StringBuilder()).append("Exception occurred while processing task: ").append(throwable).toString(), throwable);
 		KiwiException kiwiexception = translate(throwable);
 		onException(kiwiexception);
-		b b1 = extractMetric(kiwiexception);
+		Metric_b b1 = extractMetric(kiwiexception);
 		metricsManager.a(b1);
 	}
 
@@ -214,9 +214,9 @@ public abstract class AbstractCommandTask extends c
 		if (throwable instanceof KiwiException)
 			return (KiwiException)throwable;
 		if (throwable instanceof RemoteException)
-			return new a((RemoteException)throwable);
+			return new CommandServiceKiwiException_a((RemoteException)throwable);
 		else
-			return new com.amazon.android.b.b(throwable);
+			return new com.amazon.android.b.UnhandledKiwiException_b(throwable);
 	}
 
 	public final void execute()

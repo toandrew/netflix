@@ -29,10 +29,10 @@ public final class EventManagerImpl_b
 		com.amazon.android.d.a.a();
 		f f = c1.a();
 		a.trace((new StringBuilder()).append("Registering listener for event: ").append(f).append(", ").append(c1).toString());
-		e e1 = (e)b.get(f);
+		EventListenerNotificationQueue_e e1 = (EventListenerNotificationQueue_e)b.get(f);
 		if (e1 == null)
 		{
-			e1 = new e();
+			e1 = new EventListenerNotificationQueue_e();
 			b.put(f, e1);
 		}
 		e1.a(c1);
@@ -50,7 +50,7 @@ public final class EventManagerImpl_b
 			return;
 		} else
 		{
-			((e)b.get(f)).a(d1);
+			((EventListenerNotificationQueue_e)b.get(f)).a(d1);
 			return;
 		}
 	}
