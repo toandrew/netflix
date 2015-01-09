@@ -1,7 +1,3 @@
-// Decompiled by Jad v1.5.8e2. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://kpdus.tripod.com/jad.html
-// Decompiler options: packimports(3) fieldsfirst ansi space 
-
 package com.amazon.android.framework.task.pipeline;
 
 import com.amazon.android.o.Order_a;
@@ -16,26 +12,26 @@ final class b
 	implements c
 {
 
-	private e a;
+	private ForegroundTaskPipeline_e a;
 
-	b(e e1)
+	b(ForegroundTaskPipeline_e e1)
 	{
 		a = e1;
 	}
 
 	public final f a()
 	{
-		return com.amazon.android.j.c.c;
+		return com.amazon.android.j.ActivityState_c.RESUME_c;
 	}
 
 	public final void a(d d)
 	{
-		com.amazon.android.framework.task.pipeline.e.a(a);
+		com.amazon.android.framework.task.pipeline.ForegroundTaskPipeline_e.a(a);
 	}
 
-	public final a b()
+	public final Order_a b()
 	{
-		return a.b;
+		return Order_a.MIDDLE_b;
 	}
 
 	public final String toString()

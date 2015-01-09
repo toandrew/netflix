@@ -9,11 +9,8 @@ public class CommandServiceKiwiException_a extends KiwiException {
     private static final long serialVersionUID = 1L;
 
     public CommandServiceKiwiException_a(RemoteException remoteexception) {
-        String s;
-        if (remoteexception instanceof DeadObjectException)
-            s = "COMMAND_SERVICE_DEAD_OBJECT_EXCEPTION";
-        else
-            s = "COMMAND_SERVICE_REMOTE_EXCEPTION";
-        super(s);
+        super(
+                remoteexception instanceof DeadObjectException ? "COMMAND_SERVICE_DEAD_OBJECT_EXCEPTION"
+                        : "COMMAND_SERVICE_REMOTE_EXCEPTION");
     }
 }

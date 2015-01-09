@@ -11,7 +11,7 @@ public final class CommandResult_k {
     SuccessResult c;
     FailureResult d;
     r e;
-    j f;
+    com.amazon.venezia.command.j f;
     private int g;
 
     public CommandResult_k(FailureResult failureresult) {
@@ -36,7 +36,7 @@ public final class CommandResult_k {
         }
     }
 
-    public CommandResult_k(j j) {
+    public CommandResult_k(com.amazon.venezia.command.j j) {
         f = j;
         g = Binder.getCallingUid();
     }

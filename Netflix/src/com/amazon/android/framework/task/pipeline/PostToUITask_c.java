@@ -1,7 +1,3 @@
-// Decompiled by Jad v1.5.8e2. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://kpdus.tripod.com/jad.html
-// Decompiler options: packimports(3) fieldsfirst ansi space 
-
 package com.amazon.android.framework.task.pipeline;
 
 import com.amazon.android.framework.task.Task;
@@ -9,27 +5,22 @@ import com.amazon.android.framework.task.Task;
 // Referenced classes of package com.amazon.android.framework.task.pipeline:
 //			e
 
-final class PostToUITask_c
-	implements Task
-{
+final class PostToUITask_c implements Task {
 
-	private Task a;
-	private e b;
+    private Task a;
+    private ForegroundTaskPipeline_e b;
 
-	PostToUITask_c(e e1, Task task)
-	{
-		b = e1;
-		a = task;
-		super();
-	}
+    PostToUITask_c(ForegroundTaskPipeline_e e1, Task task) {
+        b = e1;
+        a = task;
+    }
 
-	public final void execute()
-	{
-		e.a(b, a);
-	}
+    public final void execute() {
+        ForegroundTaskPipeline_e.a(b, a);
+    }
 
-	public final String toString()
-	{
-		return (new StringBuilder()).append("Future:PostToUITask: ").append(a.toString()).toString();
-	}
+    public final String toString() {
+        return (new StringBuilder()).append("Future:PostToUITask: ")
+                .append(a.toString()).toString();
+    }
 }

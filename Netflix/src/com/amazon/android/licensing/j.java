@@ -1,7 +1,3 @@
-// Decompiled by Jad v1.5.8e2. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://kpdus.tripod.com/jad.html
-// Decompiler options: packimports(3) fieldsfirst ansi space 
-
 package com.amazon.android.licensing;
 
 import com.amazon.android.framework.exception.KiwiException;
@@ -28,10 +24,10 @@ final class j
 	public final PromptContent a(KiwiException kiwiexception)
 	{
 		com.amazon.android.k.Verifier_a a1 = ((LicenseVerFailureKiwiException_a)kiwiexception).a;
-		k k1 = com.amazon.android.licensing.k.a;
+		LicenseDataFields_k k1 = com.amazon.android.licensing.LicenseDataFields_k.EXPIRATION_a;
 		if (a1.a.containsKey(k1))
-			return i.d;
+			return AllPromptContents_i.d;
 		else
-			return i.e;
+			return AllPromptContents_i.e;
 	}
 }

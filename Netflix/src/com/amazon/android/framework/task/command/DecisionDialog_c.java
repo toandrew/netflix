@@ -147,7 +147,7 @@ public final class DecisionDialog_c extends Prompt {
         return alertdialog;
     }
 
-    protected final void doExpiration(OnChoiceClickListener_d d1) {
+    protected final void doExpiration(PromptFailedReason_d d1) {
         if (KiwiLogger.TRACE_ON)
             a.trace((new StringBuilder())
                     .append("Expiring Decision Dialog: Thread: ")
@@ -163,5 +163,4 @@ public final class DecisionDialog_c extends Prompt {
         return (new StringBuilder()).append("DecisionDialog: ").append(c.a)
                 .toString();
     }
-
 }

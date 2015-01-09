@@ -1,7 +1,3 @@
-// Decompiled by Jad v1.5.8e2. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://kpdus.tripod.com/jad.html
-// Decompiler options: packimports(3) fieldsfirst ansi space 
-
 package com.amazon.android.framework.prompt;
 
 import android.app.Activity;
@@ -22,234 +18,207 @@ import java.util.concurrent.atomic.AtomicBoolean;
 //			PromptManager, Prompt, f, i, 
 //			j, e, h
 
-public class PromptManagerImpl
-	implements PromptManager, b
-{
+public class PromptManagerImpl implements PromptManager, b {
 
-	public static final KiwiLogger LOGGER = new KiwiLogger("PromptManagerImpl");
-	private ContextManager contextManager;
-	private EventManager_g eventManager;
-	private final AtomicBoolean finished = new AtomicBoolean(false);
-	private Set pending;
-	private ResourceManager_a resourceManager;
-	private Prompt showing;
-	private TaskManager taskManager;
+    public static final KiwiLogger LOGGER = new KiwiLogger("PromptManagerImpl");
+    private ContextManager contextManager;
+    private EventManager_g eventManager;
+    private final AtomicBoolean finished = new AtomicBoolean(false);
+    private Set pending;
+    private ResourceManager_a resourceManager;
+    private Prompt showing;
+    private TaskManager taskManager;
 
-	public PromptManagerImpl()
-	{
-		pending = new LinkedHashSet();
-	}
+    public PromptManagerImpl() {
+        pending = new LinkedHashSet();
+    }
 
-	static void a(PromptManagerImpl promptmanagerimpl)
-	{
-		promptmanagerimpl.finish();
-	}
+    static void a(PromptManagerImpl promptmanagerimpl) {
+        promptmanagerimpl.finish();
+    }
 
-	static void a(PromptManagerImpl promptmanagerimpl, Activity activity)
-	{
-		promptmanagerimpl.onResume(activity);
-	}
+    static void a(PromptManagerImpl promptmanagerimpl, Activity activity) {
+        promptmanagerimpl.onResume(activity);
+    }
 
-	static void a(PromptManagerImpl promptmanagerimpl, Prompt prompt)
-	{
-		promptmanagerimpl.presentImpl(prompt);
-	}
+    static void a(PromptManagerImpl promptmanagerimpl, Prompt prompt) {
+        promptmanagerimpl.presentImpl(prompt);
+    }
 
-	static Prompt b(PromptManagerImpl promptmanagerimpl)
-	{
-		return promptmanagerimpl.showing;
-	}
+    static Prompt b(PromptManagerImpl promptmanagerimpl) {
+        return promptmanagerimpl.showing;
+    }
 
-	static void b(PromptManagerImpl promptmanagerimpl, Prompt prompt)
-	{
-		promptmanagerimpl.removeExpiredPrompt(prompt);
-	}
+    static void b(PromptManagerImpl promptmanagerimpl, Prompt prompt) {
+        promptmanagerimpl.removeExpiredPrompt(prompt);
+    }
 
-	private void finish()
-	{
-		if (finished.compareAndSet(false, true))
-		{
-			if (KiwiLogger.TRACE_ON)
-				LOGGER.trace("PromptManager finishing....");
-			Prompt prompt;
-			for (Iterator iterator = pending.iterator(); iterator.hasNext(); prompt.expire())
-			{
-				prompt = (Prompt)iterator.next();
-				iterator.remove();
-			}
+    private void finish() {
+        if (finished.compareAndSet(false, true)) {
+            if (KiwiLogger.TRACE_ON)
+                LOGGER.trace("PromptManager finishing....");
+            Prompt prompt;
+            for (Iterator iterator = pending.iterator(); iterator.hasNext(); prompt
+                    .expire()) {
+                prompt = (Prompt) iterator.next();
+                iterator.remove();
+            }
 
-			if (showing != null)
-			{
-				showing.dismiss();
-				return;
-			}
-		}
-	}
+            if (showing != null) {
+                showing.dismiss();
+                return;
+            }
+        }
+    }
 
-	private Prompt getNextPending()
-	{
-		if (pending.isEmpty())
-			return null;
-		else
-			return (Prompt)pending.iterator().next();
-	}
+    private Prompt getNextPending() {
+        if (pending.isEmpty())
+            return null;
+        else
+            return (Prompt) pending.iterator().next();
+    }
 
-	private void onResume(Activity activity)
-	{
-		if (showing != null)
-		{
-			show(showing, activity);
-			return;
-		} else
-		{
-			presentNextPending(activity);
-			return;
-		}
-	}
+    private void onResume(Activity activity) {
+        if (showing != null) {
+            show(showing, activity);
+            return;
+        } else {
+            presentNextPending(activity);
+            return;
+        }
+    }
 
-	private void presentImpl(Prompt prompt)
-	{
-		if (!finished.get()) goto _L2; else goto _L1
-_L1:
-		if (KiwiLogger.ERROR_ON)
-			LOGGER.error((new StringBuilder()).append("Prompt: ").append(prompt).append(" presented after app").append(" destruction expiring it now!").toString());
-		prompt.expire();
-_L4:
-		return;
-_L2:
-		if (KiwiLogger.TRACE_ON)
-			LOGGER.trace((new StringBuilder()).append("Presening Prompt: ").append(prompt).toString());
-		prompt.register(this);
-		pending.add(prompt);
-		if (showing == null)
-			break; /* Loop/switch isn't completed */
-		if (KiwiLogger.TRACE_ON)
-		{
-			LOGGER.trace("Dialog currently showing, not presenting given dialog");
-			return;
-		}
-		if (true) goto _L4; else goto _L3
-_L3:
-		Activity activity = contextManager.getVisible();
-		if (activity != null)
-		{
-			presentNextPending(activity);
-			return;
-		}
-		if (true) goto _L4; else goto _L5
-_L5:
-	}
+    private void presentImpl(Prompt prompt) {
+        if (finished.get()) {
+            if (KiwiLogger.ERROR_ON)
+                LOGGER.error((new StringBuilder()).append("Prompt: ")
+                        .append(prompt).append(" presented after app")
+                        .append(" destruction expiring it now!").toString());
+            prompt.expire();
+            return;
+        }
 
-	private void presentNextPending(Activity activity)
-	{
-		Prompt prompt = getNextPending();
-		if (prompt == null)
-		{
-			return;
-		} else
-		{
-			show(prompt, activity);
-			return;
-		}
-	}
+        if (KiwiLogger.TRACE_ON)
+            LOGGER.trace((new StringBuilder()).append("Presening Prompt: ")
+                    .append(prompt).toString());
+        prompt.register(this);
+        pending.add(prompt);
+        if (showing != null) {
+            if (KiwiLogger.TRACE_ON) {
+                LOGGER.trace("Dialog currently showing, not presenting given dialog");
+                return;
+            }
+            return;
+        }
 
-	private void registerActivityResumedListener()
-	{
-		eventManager.a(new f(this));
-	}
+        Activity activity = contextManager.getVisible();
+        if (activity != null) {
+            presentNextPending(activity);
+            return;
+        }
+    }
 
-	private void registerAppDestructionListener()
-	{
-		i k = new i(this);
-		eventManager.a(k);
-	}
+    private void presentNextPending(Activity activity) {
+        Prompt prompt = getNextPending();
+        if (prompt == null) {
+            return;
+        } else {
+            show(prompt, activity);
+            return;
+        }
+    }
 
-	private void registerTestModeListener()
-	{
-		j j1 = new j(this);
-		eventManager.a(j1);
-	}
+    private void registerActivityResumedListener() {
+        eventManager.a(new f(this));
+    }
 
-	private void removeExpiredPrompt(Prompt prompt)
-	{
-		pending.remove(prompt);
-		if (showing == prompt)
-		{
-			showing = null;
-			Activity activity = contextManager.getVisible();
-			if (activity != null)
-				presentNextPending(activity);
-		}
-	}
+    private void registerAppDestructionListener() {
+        i k = new i(this);
+        eventManager.a(k);
+    }
 
-	private void show(Prompt prompt, Activity activity)
-	{
-		showing = prompt;
-		prompt.show(activity);
-	}
+    private void registerTestModeListener() {
+        j j1 = new j(this);
+        eventManager.a(j1);
+    }
 
-	public void observe(Prompt prompt)
-	{
-	    RemoveExpiredPrompt_e e1 = new RemoveExpiredPrompt_e(this, prompt);
-		taskManager.enqueue(TaskPipelineId.FOREGROUND, e1);
-	}
+    private void removeExpiredPrompt(Prompt prompt) {
+        pending.remove(prompt);
+        if (showing == prompt) {
+            showing = null;
+            Activity activity = contextManager.getVisible();
+            if (activity != null)
+                presentNextPending(activity);
+        }
+    }
 
-	public void observe(com.amazon.android.i.Expirable_b b1)
-	{
-		observe((Prompt)b1);
-	}
+    private void show(Prompt prompt, Activity activity) {
+        showing = prompt;
+        prompt.show(activity);
+    }
 
-	public Dialog onCreateDialog(Activity activity, int k)
-	{
-		if (KiwiLogger.TRACE_ON)
-			LOGGER.trace((new StringBuilder()).append("onCreateDialog, id: ").append(k).append(", activity: ").append(activity).toString());
-		if (showing == null)
-		{
-			if (KiwiLogger.TRACE_ON)
-				LOGGER.trace("Showing dialog is null, returning");
-			return null;
-		}
-		if (showing.getIdentifier() != k)
-		{
-			if (KiwiLogger.TRACE_ON)
-				LOGGER.trace((new StringBuilder()).append("Showing dialog id does not match given id: ").append(k).append(", returning").toString());
-			return null;
-		}
-		if (KiwiLogger.TRACE_ON)
-			LOGGER.trace((new StringBuilder()).append("Creating dialog prompt: ").append(showing).toString());
-		return showing.create(activity);
-	}
+    public void observe(Prompt prompt) {
+        RemoveExpiredPrompt_e e1 = new RemoveExpiredPrompt_e(this, prompt);
+        taskManager.enqueue(TaskPipelineId.FOREGROUND, e1);
+    }
 
-	public void onResourcesPopulated()
-	{
-		registerActivityResumedListener();
-		registerAppDestructionListener();
-		registerTestModeListener();
-	}
+    public void observe(com.amazon.android.i.Expirable_b b1) {
+        observe((Prompt) b1);
+    }
 
-	public void onWindowFocusChanged(Activity activity, boolean flag)
-	{
-		if (showing != null)
-			showing.onFocusChanged(activity, flag);
-	}
+    public Dialog onCreateDialog(Activity activity, int k) {
+        if (KiwiLogger.TRACE_ON)
+            LOGGER.trace((new StringBuilder()).append("onCreateDialog, id: ")
+                    .append(k).append(", activity: ").append(activity)
+                    .toString());
+        if (showing == null) {
+            if (KiwiLogger.TRACE_ON)
+                LOGGER.trace("Showing dialog is null, returning");
+            return null;
+        }
+        if (showing.getIdentifier() != k) {
+            if (KiwiLogger.TRACE_ON)
+                LOGGER.trace((new StringBuilder())
+                        .append("Showing dialog id does not match given id: ")
+                        .append(k).append(", returning").toString());
+            return null;
+        }
+        if (KiwiLogger.TRACE_ON)
+            LOGGER.trace((new StringBuilder())
+                    .append("Creating dialog prompt: ").append(showing)
+                    .toString());
+        return showing.create(activity);
+    }
 
-	public void present(Prompt prompt)
-	{
-		if (KiwiLogger.TRACE_ON)
-			LOGGER.trace((new StringBuilder()).append("Scheduling presentation: ").append(prompt).toString());
-		resourceManager.b(prompt);
-		if (finished.get())
-		{
-			if (KiwiLogger.ERROR_ON)
-				LOGGER.error((new StringBuilder()).append("Prompt: ").append(prompt).append(" presented after app").append(" destruction expiring it now!").toString());
-			prompt.expire();
-			return;
-		} else
-		{
-		    MainThreadPromptTask_h h1 = new MainThreadPromptTask_h(this, prompt);
-			taskManager.enqueue(TaskPipelineId.FOREGROUND, h1);
-			return;
-		}
-	}
+    public void onResourcesPopulated() {
+        registerActivityResumedListener();
+        registerAppDestructionListener();
+        registerTestModeListener();
+    }
+
+    public void onWindowFocusChanged(Activity activity, boolean flag) {
+        if (showing != null)
+            showing.onFocusChanged(activity, flag);
+    }
+
+    public void present(Prompt prompt) {
+        if (KiwiLogger.TRACE_ON)
+            LOGGER.trace((new StringBuilder())
+                    .append("Scheduling presentation: ").append(prompt)
+                    .toString());
+        resourceManager.b(prompt);
+        if (finished.get()) {
+            if (KiwiLogger.ERROR_ON)
+                LOGGER.error((new StringBuilder()).append("Prompt: ")
+                        .append(prompt).append(" presented after app")
+                        .append(" destruction expiring it now!").toString());
+            prompt.expire();
+            return;
+        } else {
+            MainThreadPromptTask_h h1 = new MainThreadPromptTask_h(this, prompt);
+            taskManager.enqueue(TaskPipelineId.FOREGROUND, h1);
+            return;
+        }
+    }
 
 }
