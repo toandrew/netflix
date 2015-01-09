@@ -6,11 +6,11 @@ import com.amazon.android.o.f;
 // Referenced classes of package com.amazon.android:
 //			j
 
-public final class a implements d {
+public final class c_a implements d {
 
     public static final f a = new SwitchToTestModeEvent_j();
 
-    public a() {
+    public c_a() {
     }
 
     public final f a() {

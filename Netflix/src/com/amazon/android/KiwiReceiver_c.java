@@ -28,6 +28,6 @@ final class KiwiReceiver_c extends BroadcastReceiver {
                 (new StringBuilder()).append("drm enabled: ").append(Kiwi.b(a))
                         .toString());
         com.amazon.android.Kiwi.a(a).a("TEST_MODE", Boolean.valueOf(true));
-        Kiwi.c(a).a(new com.amazon.android.a());
+        Kiwi.c(a).a(new com.amazon.android.c_a());
     }
 }

@@ -7,12 +7,12 @@ import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import com.amazon.android.f.f;
+import com.amazon.android.f.MyActivtyResult_f;
 import com.amazon.android.framework.context.ContextManager;
 import com.amazon.android.framework.context.ContextManagerImpl_d;
 import com.amazon.android.framework.prompt.PromptManager;
 import com.amazon.android.framework.prompt.PromptManagerImpl;
-import com.amazon.android.framework.resource.a;
+import com.amazon.android.framework.resource.ResourceManager_a;
 import com.amazon.android.framework.resource.b;
 import com.amazon.android.framework.resource.ResourceManagerImpl_c;
 import com.amazon.android.framework.task.Task;
@@ -195,7 +195,7 @@ _L3:
 	{
 		if (preProcess("onActivityResult", activity))
 		{
-			f f1 = new f(activity, i, j, intent);
+		    MyActivtyResult_f f1 = new MyActivtyResult_f(activity, i, j, intent);
 			return instance.resultManager.a(f1);
 		} else
 		{
@@ -337,31 +337,31 @@ _L3:
 
 	private void registerActivityLifeCyclePauseListener()
 	{
-		com.amazon.android.d d1 = new com.amazon.android.d(this);
+		com.amazon.android.c_d d1 = new com.amazon.android.c_d(this);
 		eventManager.a(d1);
 	}
 
 	private void registerActivityLifeCycleResumeListener()
 	{
-		com.amazon.android.f f1 = new com.amazon.android.f(this);
+		com.amazon.android.c_f f1 = new com.amazon.android.c_f(this);
 		eventManager.a(f1);
 	}
 
 	private void registerApplicationCreationListener()
 	{
-		com.amazon.android.g g1 = new com.amazon.android.g(this);
+		com.amazon.android.c_g g1 = new com.amazon.android.c_g(this);
 		eventManager.a(g1);
 	}
 
 	private void registerApplicationDestructionListener()
 	{
-		com.amazon.android.e e1 = new com.amazon.android.e(this);
+		com.amazon.android.c_e e1 = new com.amazon.android.c_e(this);
 		eventManager.a(e1);
 	}
 
 	private void registerTestModeReceiver(Application application1)
 	{
-		application1.registerReceiver(new com.amazon.android.c(this), new IntentFilter((new StringBuilder()).append(application1.getPackageName()).append(".enable.test.mode").toString()));
+		application1.registerReceiver(new com.amazon.android.KiwiReceiver_c(this), new IntentFilter((new StringBuilder()).append(application1.getPackageName()).append(".enable.test.mode").toString()));
 	}
 
 	public final void onResourcesPopulated()

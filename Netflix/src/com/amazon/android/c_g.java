@@ -8,11 +8,11 @@ import com.amazon.android.o.f;
 // Referenced classes of package com.amazon.android:
 //			Kiwi
 
-final class g implements c {
+final class c_g implements c {
 
     private Kiwi a;
 
-    g(Kiwi kiwi) {
+    c_g(Kiwi kiwi) {
         a = kiwi;
     }
 

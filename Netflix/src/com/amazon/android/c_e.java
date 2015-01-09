@@ -10,11 +10,11 @@ import com.amazon.android.o.f;
 // Referenced classes of package com.amazon.android:
 //			Kiwi
 
-final class e implements c {
+final class c_e implements c {
 
     private Kiwi a;
 
-    e(Kiwi kiwi) {
+    c_e(Kiwi kiwi) {
         a = kiwi;
     }
 
