@@ -1,7 +1,3 @@
-// Decompiled by Jad v1.5.8e2. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://kpdus.tripod.com/jad.html
-// Decompiler options: packimports(3) fieldsfirst ansi space 
-
 package com.amazon.android.framework.context;
 
 import android.app.Activity;
@@ -14,7 +10,7 @@ import com.amazon.android.framework.task.TaskManager;
 import com.amazon.android.framework.task.pipeline.TaskPipelineId;
 import com.amazon.android.framework.util.KiwiLogger;
 import com.amazon.android.j.a;
-import com.amazon.android.j.c;
+import com.amazon.android.j.ActivityState_c;
 import com.amazon.android.o.EventManager_g;
 import java.util.Iterator;
 import java.util.WeakHashMap;
@@ -94,6 +90,7 @@ public final class ContextManagerImpl_d
 	{
 		if (KiwiLogger.TRACE_ON)
 			a.trace((new StringBuilder()).append("Received broadcast intent: ").append(intent).toString());
+		
 		if (intent.getAction().equals(d1.l)) goto _L2; else goto _L1
 _L1:
 		if (KiwiLogger.ERROR_ON)
@@ -139,13 +136,13 @@ _L5:
 _L6:
 	}
 
-	private void a(c c1, Activity activity)
+	private void a(ActivityState_c c1, Activity activity)
 	{
 		com.amazon.android.j.b b1 = new com.amazon.android.j.b(c1, activity);
 		k.a(b1);
 	}
 
-	private void a(com.amazon.android.j.d d1)
+	private void a(com.amazon.android.j.ApplicationState_d d1)
 	{
 		a a1 = new a(d1, i);
 		k.a(a1);
@@ -226,7 +223,7 @@ _L6:
 		if (flag)
 		{
 			m = true;
-			a(com.amazon.android.j.d.a);
+			a(com.amazon.android.j.ApplicationState_d.CREATE);
 		}
 	}
 
@@ -258,7 +255,7 @@ _L5:
 		if (flag)
 		{
 			m = false;
-			a(com.amazon.android.j.d.b);
+			a(com.amazon.android.j.ApplicationState_d.DESTROY);
 		}
 		return;
 _L2:
@@ -327,7 +324,7 @@ _L4:
 		e.b(activity);
 		a(c.f, activity);
 		if (e.a.isEmpty())
-			a(com.amazon.android.j.d.d);
+			a(com.amazon.android.j.ApplicationState_d.STOP);
 	}
 
 	public final void stopServices()
