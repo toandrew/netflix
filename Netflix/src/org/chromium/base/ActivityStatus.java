@@ -72,19 +72,10 @@ public class ActivityStatus
 			public void run()
 			{
 				ActivityStatus.sStateListeners.addObserver(new StateListener() {
-
-					final 1 this$0;
-
 					public void onActivityStateChange(int i)
 					{
 						ActivityStatus.nativeOnActivityStateChange(i);
 					}
-
-			
-			{
-				this$0 = 1.this;
-				super();
-			}
 				});
 			}
 

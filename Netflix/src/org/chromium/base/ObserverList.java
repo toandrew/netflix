@@ -65,7 +65,6 @@ public class ObserverList
 		private ObserverListIterator()
 		{
 			this$0 = ObserverList.this;
-			super();
 			mIndex = 0;
 			mIsExhausted = false;
 			incrementIterationDepth();
@@ -180,7 +179,7 @@ public class ObserverList
 	static 
 	{
 		boolean flag;
-		if (!org/chromium/base/ObserverList.desiredAssertionStatus())
+		if (!org.chromium.base.ObserverList.desiredAssertionStatus())
 			flag = true;
 		else
 			flag = false;

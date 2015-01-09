@@ -87,18 +87,16 @@ public interface SuccessResult
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
 			String s;
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.SuccessResult");
 			mRemote.transact(1, parcel, parcel1, 0);
 			parcel1.readException();
 			s = parcel1.readString();
+			}finally {
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return s;
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public Map getData()
@@ -109,18 +107,16 @@ public interface SuccessResult
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
 			java.util.HashMap hashmap;
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.SuccessResult");
 			mRemote.transact(2, parcel, parcel1, 0);
 			parcel1.readException();
 			hashmap = parcel1.readHashMap(getClass().getClassLoader());
+			}finally {
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return hashmap;
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public String getInterfaceDescriptor()

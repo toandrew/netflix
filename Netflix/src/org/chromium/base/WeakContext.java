@@ -25,8 +25,11 @@ public class WeakContext
 		return (Context)sWeakContext.get();
 	}
 
-	public static Object getSystemService(String s)
+	public static Object getSystemService(final String s)
 	{
+	    return null;
+	    //TODO
+	    /*
 		Context context = (Context)sWeakContext.get();
 		if (context == null)
 			return null;
@@ -34,22 +37,12 @@ public class WeakContext
 			return context.getSystemService(s);
 		else
 			return ThreadUtils.runOnUiThreadBlockingNoException(new Callable(context, s) {
-
-				final Context val$context;
-				final String val$name;
-
 				public Object call()
 				{
-					return context.getSystemService(name);
+					return context.getSystemService(s);
 				}
-
-			
-			{
-				context = context1;
-				name = s;
-				super();
-			}
 			});
+			*/
 	}
 
 	public static void initializeWeakContext(Context context)

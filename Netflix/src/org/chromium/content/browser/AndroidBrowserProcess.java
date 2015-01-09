@@ -79,11 +79,6 @@ public class AndroidBrowserProcess
 
 	static 
 	{
-		boolean flag;
-		if (!org/chromium/content/browser/AndroidBrowserProcess.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
+		$assertionsDisabled = false;
 	}
 }

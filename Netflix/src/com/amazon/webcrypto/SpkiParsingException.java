@@ -4,13 +4,10 @@
 
 package com.amazon.webcrypto;
 
+public class SpkiParsingException extends Exception {
 
-public class SpkiParsingException extends Exception
-{
+    private static final long serialVersionUID = 0x8f12b597843bf66cL;
 
-	private static final long serialVersionUID = 0x8f12b597843bf66cL;
-
-	public SpkiParsingException()
-	{
-	}
+    public SpkiParsingException() {
+    }
 }

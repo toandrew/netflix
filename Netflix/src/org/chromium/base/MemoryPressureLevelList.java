@@ -9,7 +9,7 @@ class MemoryPressureLevelList
 {
 
 	static final int MEMORY_PRESSURE_CRITICAL = 2;
-	static final int MEMORY_PRESSURE_MODERATE;
+	static final int MEMORY_PRESSURE_MODERATE = 3;//TODO
 
 	MemoryPressureLevelList()
 	{

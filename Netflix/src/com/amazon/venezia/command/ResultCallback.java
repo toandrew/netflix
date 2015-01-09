@@ -105,24 +105,23 @@ public interface ResultCallback
 			Parcel parcel1;
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.ResultCallback");
-			if (decisionresult == null)
-				break MISSING_BLOCK_LABEL_59;
-			IBinder ibinder = decisionresult.asBinder();
-_L1:
+			IBinder ibinder;
+			if (decisionresult == null) {
+			    ibinder = null;
+			} else {
+			    ibinder = decisionresult.asBinder();
+			}
+			
 			parcel.writeStrongBinder(ibinder);
 			mRemote.transact(3, parcel, parcel1, 0);
 			parcel1.readException();
+			}finally{
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return;
-			ibinder = null;
-			  goto _L1
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public void onException(ExceptionResult exceptionresult)
@@ -132,24 +131,21 @@ _L1:
 			Parcel parcel1;
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.ResultCallback");
-			if (exceptionresult == null)
-				break MISSING_BLOCK_LABEL_59;
-			IBinder ibinder = exceptionresult.asBinder();
-_L1:
+			if (exceptionresult == null) {
+			    ibinder = null;
+			} else {
+			    ibinder = exceptionresult.asBinder();
+			}
 			parcel.writeStrongBinder(ibinder);
 			mRemote.transact(4, parcel, parcel1, 0);
 			parcel1.readException();
+			}finally {
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return;
-			ibinder = null;
-			  goto _L1
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public void onFailure(FailureResult failureresult)
@@ -159,24 +155,22 @@ _L1:
 			Parcel parcel1;
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.ResultCallback");
-			if (failureresult == null)
-				break MISSING_BLOCK_LABEL_59;
-			IBinder ibinder = failureresult.asBinder();
-_L1:
+			IBinder ibinder;
+			if (failureresult == null) {
+			    ibinder = null;
+			} else {
+			    ibinder = failureresult.asBinder();
+			}
 			parcel.writeStrongBinder(ibinder);
 			mRemote.transact(2, parcel, parcel1, 0);
 			parcel1.readException();
+			}finally {
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return;
-			ibinder = null;
-			  goto _L1
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public void onSuccess(SuccessResult successresult)
@@ -186,24 +180,23 @@ _L1:
 			Parcel parcel1;
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.ResultCallback");
-			if (successresult == null)
-				break MISSING_BLOCK_LABEL_59;
-			IBinder ibinder = successresult.asBinder();
-_L1:
+			IBinder ibinder;
+			if (successresult == null) {
+			    ibinder = null;
+			} else{
+			ibinder = successresult.asBinder();
+			}
+			
 			parcel.writeStrongBinder(ibinder);
 			mRemote.transact(1, parcel, parcel1, 0);
 			parcel1.readException();
+			}finally {
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return;
-			ibinder = null;
-			  goto _L1
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		Stub.Proxy(IBinder ibinder)

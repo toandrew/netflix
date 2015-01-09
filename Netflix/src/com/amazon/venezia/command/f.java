@@ -10,19 +10,13 @@ import android.os.RemoteException;
 // Referenced classes of package com.amazon.venezia.command:
 //			FailureResult, SuccessResult, j, r
 
-public interface f
-	extends IInterface
-{
+public interface f extends IInterface {
 
-	public abstract void a(FailureResult failureresult)
-		throws RemoteException;
+    public abstract void a(FailureResult failureresult) throws RemoteException;
 
-	public abstract void a(SuccessResult successresult)
-		throws RemoteException;
+    public abstract void a(SuccessResult successresult) throws RemoteException;
 
-	public abstract void a(j j)
-		throws RemoteException;
+    public abstract void a(j j) throws RemoteException;
 
-	public abstract void a(r r)
-		throws RemoteException;
+    public abstract void a(r r) throws RemoteException;
 }

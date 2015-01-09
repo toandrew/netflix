@@ -12,19 +12,13 @@ import java.util.Map;
 // Referenced classes of package com.amazon.venezia.command:
 //			y
 
-public interface n
-	extends IInterface
-{
+public interface n extends IInterface {
 
-	public abstract String a()
-		throws RemoteException;
+    public abstract String a() throws RemoteException;
 
-	public abstract void a(y y)
-		throws RemoteException;
+    public abstract void a(y y) throws RemoteException;
 
-	public abstract Intent b()
-		throws RemoteException;
+    public abstract Intent b() throws RemoteException;
 
-	public abstract Map c()
-		throws RemoteException;
+    public abstract Map c() throws RemoteException;
 }

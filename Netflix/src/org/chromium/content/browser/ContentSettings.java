@@ -56,11 +56,6 @@ public class ContentSettings
 
 	static 
 	{
-		boolean flag;
-		if (!org/chromium/content/browser/ContentSettings.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
+		$assertionsDisabled = false;
 	}
 }

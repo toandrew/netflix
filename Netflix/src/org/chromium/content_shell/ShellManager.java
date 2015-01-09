@@ -29,10 +29,7 @@ public class ShellManager extends FrameLayout
 {
 	private class CheckNetflixConnectivityTask extends AsyncTask
 	{
-
-		final ShellManager this$0;
-
-		protected transient Boolean doInBackground(URL aurl[])
+		protected  Boolean doInBackground(URL aurl[])
 		{
 			boolean flag = true;
 			if ("file:///sdcard/NeroStartUrl.html".equals(aurl[0].toString()))
@@ -59,15 +56,9 @@ public class ShellManager extends FrameLayout
 			return boolean1;
 		}
 
-		protected volatile Object doInBackground(Object aobj[])
+		protected Object doInBackground(Object aobj[])
 		{
 			return doInBackground((URL[])aobj);
-		}
-
-		private CheckNetflixConnectivityTask()
-		{
-			this$0 = ShellManager.this;
-			super();
 		}
 
 	}
@@ -101,9 +92,6 @@ public class ShellManager extends FrameLayout
 		mActivity = (Activity)context;
 		nativeInit(this);
 		mContentViewRenderView = new ContentViewRenderView(context) {
-
-			final ShellManager this$0;
-
 			protected void onReadyToRender()
 			{
 				if (ShellManager.sStartup)
@@ -111,12 +99,6 @@ public class ShellManager extends FrameLayout
 					mStartupUrl = getDefaultStartupUrl();
 					loadStartupUrl();
 				}
-			}
-
-			
-			{
-				this$0 = ShellManager.this;
-				super(context);
 			}
 		};
 	}
@@ -344,9 +326,6 @@ _L1:
 		} else
 		{
 			(new Handler()).postDelayed(new Runnable() {
-
-				final ShellManager this$0;
-
 				public void run()
 				{
 					if (canConnectToNetflix())
@@ -361,12 +340,6 @@ _L1:
 						return;
 					}
 				}
-
-			
-			{
-				this$0 = ShellManager.this;
-				super();
-			}
 			}, 1L);
 			return;
 		}
@@ -381,28 +354,5 @@ _L1:
 	{
 		mWindow = windowandroid;
 	}
-
-
-
-
-/*
-	static boolean access$002(boolean flag)
-	{
-		sStartup = flag;
-		return flag;
-	}
-
-*/
-
-
-
-/*
-	static String access$102(ShellManager shellmanager, String s)
-	{
-		shellmanager.mStartupUrl = s;
-		return s;
-	}
-
-*/
 
 }

@@ -8,10 +8,7 @@ import android.os.IInterface;
 import android.os.RemoteException;
 import java.util.Map;
 
-public interface y
-	extends IInterface
-{
+public interface y extends IInterface {
 
-	public abstract Map a()
-		throws RemoteException;
+    public abstract Map a() throws RemoteException;
 }

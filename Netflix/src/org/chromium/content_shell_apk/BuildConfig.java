@@ -8,7 +8,7 @@ package org.chromium.content_shell_apk;
 public final class BuildConfig
 {
 
-	public static final boolean DEBUG;
+	public static final boolean DEBUG = true;
 
 	public BuildConfig()
 	{

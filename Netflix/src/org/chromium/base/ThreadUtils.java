@@ -146,11 +146,6 @@ public class ThreadUtils
 
 	static 
 	{
-		boolean flag;
-		if (!org/chromium/base/ThreadUtils.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
+		$assertionsDisabled = false;
 	}
 }

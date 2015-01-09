@@ -57,10 +57,11 @@ public class BuildInfo
 		{
 			return "";
 		}
-		if (charsequence == null)
-			break MISSING_BLOCK_LABEL_30;
+		if (charsequence == null) {
+		      return "";
+		}
 		return charsequence.toString();
-		return "";
+
 	}
 
 	public static String getPackageName(Context context)
@@ -91,8 +92,9 @@ public class BuildInfo
 			return s;
 		}
 		s = "";
-		if (packageinfo.versionCode <= 0)
-			break MISSING_BLOCK_LABEL_41;
+		if (packageinfo.versionCode <= 0) {
+		    return s;
+		}
 		s1 = Integer.toString(packageinfo.versionCode);
 		s = s1;
 		return s;

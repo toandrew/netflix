@@ -124,18 +124,16 @@ public interface FailureResult
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
 			String s;
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.FailureResult");
 			mRemote.transact(1, parcel, parcel1, 0);
 			parcel1.readException();
 			s = parcel1.readString();
+			}finally {
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return s;
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public String getButtonLabel()
@@ -146,18 +144,16 @@ public interface FailureResult
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
 			String s;
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.FailureResult");
 			mRemote.transact(4, parcel, parcel1, 0);
 			parcel1.readException();
 			s = parcel1.readString();
+			}finally {
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return s;
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public String getDisplayableMessage()
@@ -168,18 +164,15 @@ public interface FailureResult
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
 			String s;
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.FailureResult");
 			mRemote.transact(3, parcel, parcel1, 0);
 			parcel1.readException();
 			s = parcel1.readString();
+			}finally {
 			parcel1.recycle();
 			parcel.recycle();
-			return s;
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
+			}
 		}
 
 		public String getDisplayableName()
@@ -190,18 +183,16 @@ public interface FailureResult
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
 			String s;
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.FailureResult");
 			mRemote.transact(2, parcel, parcel1, 0);
 			parcel1.readException();
 			s = parcel1.readString();
+			}finally {
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return s;
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public Map getExtensionData()
@@ -212,18 +203,16 @@ public interface FailureResult
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
 			java.util.HashMap hashmap;
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.FailureResult");
 			mRemote.transact(6, parcel, parcel1, 0);
 			parcel1.readException();
 			hashmap = parcel1.readHashMap(getClass().getClassLoader());
+			}finally {
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return hashmap;
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public String getInterfaceDescriptor()
@@ -239,23 +228,22 @@ public interface FailureResult
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
 			int i;
+	        boolean flag;
+	        try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.FailureResult");
 			mRemote.transact(5, parcel, parcel1, 0);
 			parcel1.readException();
 			i = parcel1.readInt();
-			boolean flag;
+
 			if (i != 0)
 				flag = true;
 			else
 				flag = false;
+	        }finally {
 			parcel1.recycle();
 			parcel.recycle();
+	        }
 			return flag;
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		Stub.Proxy(IBinder ibinder)

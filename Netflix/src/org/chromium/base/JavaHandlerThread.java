@@ -28,22 +28,9 @@ class JavaHandlerThread
 	{
 		mThread.start();
 		(new Handler(mThread.getLooper())).post(new Runnable() {
-
-			final JavaHandlerThread this$0;
-			final int val$nativeEvent;
-			final int val$nativeThread;
-
 			public void run()
 			{
 				nativeInitializeThread(nativeThread, nativeEvent);
-			}
-
-			
-			{
-				this$0 = JavaHandlerThread.this;
-				nativeThread = i;
-				nativeEvent = j;
-				super();
 			}
 		});
 	}

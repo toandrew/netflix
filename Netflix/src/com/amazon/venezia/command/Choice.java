@@ -52,14 +52,14 @@ public interface Choice
 				parcel1.writeString("com.amazon.venezia.command.Choice");
 				return true;
 
-			case 1: // '\001'
+			case TRANSACTION_getDisplayableName: // '\001'
 				parcel.enforceInterface("com.amazon.venezia.command.Choice");
 				String s = getDisplayableName();
 				parcel1.writeNoException();
 				parcel1.writeString(s);
 				return true;
 
-			case 2: // '\002'
+			case TRANSACTION_getIntent: // '\002'
 				parcel.enforceInterface("com.amazon.venezia.command.Choice");
 				Intent intent = getIntent();
 				parcel1.writeNoException();
@@ -73,13 +73,13 @@ public interface Choice
 				}
 				return true;
 
-			case 3: // '\003'
+			case TRANSACTION_choose: // '\003'
 				parcel.enforceInterface("com.amazon.venezia.command.Choice");
 				choose(ChoiceContext.Stub.asInterface(parcel.readStrongBinder()));
 				parcel1.writeNoException();
 				return true;
 
-			case 4: // '\004'
+			case TRANSACTION_getExtensionData: // '\004'
 				parcel.enforceInterface("com.amazon.venezia.command.Choice");
 				Map map = getExtensionData();
 				parcel1.writeNoException();
@@ -112,24 +112,20 @@ public interface Choice
 			Parcel parcel1;
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.Choice");
-			if (choicecontext == null)
-				break MISSING_BLOCK_LABEL_59;
-			IBinder ibinder = choicecontext.asBinder();
-_L1:
+			IBinder ibinder;
+			if (choicecontext == null) {
+			    ibinder = null;
+			}
+			ibinder = choicecontext.asBinder();
 			parcel.writeStrongBinder(ibinder);
 			mRemote.transact(3, parcel, parcel1, 0);
 			parcel1.readException();
+		}finally{
 			parcel1.recycle();
 			parcel.recycle();
-			return;
-			ibinder = null;
-			  goto _L1
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
+		}
 		}
 
 		public String getDisplayableName()
@@ -140,18 +136,16 @@ _L1:
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
 			String s;
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.Choice");
 			mRemote.transact(1, parcel, parcel1, 0);
 			parcel1.readException();
 			s = parcel1.readString();
+			}finally{
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return s;
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public Map getExtensionData()
@@ -162,18 +156,16 @@ _L1:
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
 			java.util.HashMap hashmap;
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.Choice");
 			mRemote.transact(4, parcel, parcel1, 0);
 			parcel1.readException();
 			hashmap = parcel1.readHashMap(getClass().getClassLoader());
+			}finally{
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return hashmap;
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public Intent getIntent()
@@ -183,25 +175,20 @@ _L1:
 			Parcel parcel1;
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.Choice");
 			mRemote.transact(2, parcel, parcel1, 0);
 			parcel1.readException();
-			if (parcel1.readInt() == 0) goto _L2; else goto _L1
-_L1:
-			Intent intent = (Intent)Intent.CREATOR.createFromParcel(parcel1);
-_L4:
+			Intent intent;
+			if (parcel1.readInt() == 0) {
+			    intent = null;
+			} else 
+			intent = (Intent)Intent.CREATOR.createFromParcel(parcel1);
+			}finally{
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return intent;
-_L2:
-			intent = null;
-			if (true) goto _L4; else goto _L3
-_L3:
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public String getInterfaceDescriptor()

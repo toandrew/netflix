@@ -79,34 +79,32 @@ public interface CommandService
 			Parcel parcel1;
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.command.CommandService");
-			if (command == null) goto _L2; else goto _L1
-_L1:
-			IBinder ibinder = command.asBinder();
-_L5:
+			IBinder ibinder;
+			if (command == null)  {
+			    ibinder = null;
+			} else {
+
+			ibinder = command.asBinder();
+			}
+
 			parcel.writeStrongBinder(ibinder);
-			if (resultcallback == null) goto _L4; else goto _L3
-_L3:
-			IBinder ibinder1 = resultcallback.asBinder();
-_L6:
+			IBinder ibinder1;
+			if (resultcallback == null) {
+			    ibinder1 = null;
+			} else {
+			    ibinder1 = resultcallback.asBinder();
+			}
+
 			parcel.writeStrongBinder(ibinder1);
 			mRemote.transact(1, parcel, parcel1, 0);
 			parcel1.readException();
+			}finally{
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return;
-_L2:
-			ibinder = null;
-			  goto _L5
-_L4:
-			ibinder1 = null;
-			  goto _L6
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
-			  goto _L5
 		}
 
 		public String getInterfaceDescriptor()

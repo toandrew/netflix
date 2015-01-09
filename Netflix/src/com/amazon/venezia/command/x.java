@@ -10,63 +10,52 @@ import java.util.Map;
 // Referenced classes of package com.amazon.venezia.command:
 //			SuccessResult
 
-final class x
-	implements SuccessResult
-{
+final class x implements SuccessResult {
 
-	private IBinder a;
+    private IBinder a;
 
-	x(IBinder ibinder)
-	{
-		a = ibinder;
-	}
+    x(IBinder ibinder) {
+        a = ibinder;
+    }
 
-	public final IBinder asBinder()
-	{
-		return a;
-	}
+    public final IBinder asBinder() {
+        return a;
+    }
 
-	public final String getAuthToken()
-		throws RemoteException
-	{
-		Parcel parcel;
-		Parcel parcel1;
-		parcel = Parcel.obtain();
-		parcel1 = Parcel.obtain();
-		String s;
-		parcel.writeInterfaceToken("com.amazon.venezia.command.SuccessResult");
-		a.transact(1, parcel, parcel1, 0);
-		parcel1.readException();
-		s = parcel1.readString();
-		parcel1.recycle();
-		parcel.recycle();
-		return s;
-		Exception exception;
-		exception;
-		parcel1.recycle();
-		parcel.recycle();
-		throw exception;
-	}
+    public final String getAuthToken() throws RemoteException {
+        Parcel parcel;
+        Parcel parcel1;
+        parcel = Parcel.obtain();
+        parcel1 = Parcel.obtain();
 
-	public final Map getData()
-		throws RemoteException
-	{
-		Parcel parcel;
-		Parcel parcel1;
-		parcel = Parcel.obtain();
-		parcel1 = Parcel.obtain();
-		java.util.HashMap hashmap;
-		parcel.writeInterfaceToken("com.amazon.venezia.command.SuccessResult");
-		a.transact(2, parcel, parcel1, 0);
-		parcel1.readException();
-		hashmap = parcel1.readHashMap(getClass().getClassLoader());
-		parcel1.recycle();
-		parcel.recycle();
-		return hashmap;
-		Exception exception;
-		exception;
-		parcel1.recycle();
-		parcel.recycle();
-		throw exception;
-	}
+        String s;
+        try {
+            parcel.writeInterfaceToken("com.amazon.venezia.command.SuccessResult");
+            a.transact(1, parcel, parcel1, 0);
+            parcel1.readException();
+            s = parcel1.readString();
+        } finally {
+            parcel1.recycle();
+            parcel.recycle();
+        }
+        return s;
+    }
+
+    public final Map getData() throws RemoteException {
+        Parcel parcel;
+        Parcel parcel1;
+        parcel = Parcel.obtain();
+        parcel1 = Parcel.obtain();
+        java.util.HashMap hashmap;
+        try {
+            parcel.writeInterfaceToken("com.amazon.venezia.command.SuccessResult");
+            a.transact(2, parcel, parcel1, 0);
+            parcel1.readException();
+            hashmap = parcel1.readHashMap(getClass().getClassLoader());
+        } finally {
+            parcel1.recycle();
+            parcel.recycle();
+        }
+        return hashmap;
+    }
 }

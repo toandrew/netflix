@@ -10,10 +10,7 @@ import android.os.RemoteException;
 // Referenced classes of package com.amazon.venezia.command:
 //			w, f
 
-public interface h
-	extends IInterface
-{
+public interface h extends IInterface {
 
-	public abstract void a(w w, f f)
-		throws RemoteException;
+    public abstract void a(w w, f f) throws RemoteException;
 }

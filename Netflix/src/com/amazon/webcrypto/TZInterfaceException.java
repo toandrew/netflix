@@ -4,13 +4,10 @@
 
 package com.amazon.webcrypto;
 
+public class TZInterfaceException extends Exception {
 
-public class TZInterfaceException extends Exception
-{
+    private static final long serialVersionUID = 0x709c37b33f2afc7eL;
 
-	private static final long serialVersionUID = 0x709c37b33f2afc7eL;
-
-	public TZInterfaceException()
-	{
-	}
+    public TZInterfaceException() {
+    }
 }

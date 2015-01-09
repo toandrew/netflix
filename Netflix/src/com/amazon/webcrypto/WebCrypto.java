@@ -24,79 +24,25 @@ import org.json.JSONObject;
 
 public class WebCrypto
 {
-	static final class Algorithm extends Enum
+	static enum Algorithm
 	{
 
-		private static final Algorithm $VALUES[];
-		public static final Algorithm AES_CBC;
-		public static final Algorithm AES_CTR;
-		public static final Algorithm AES_GCM;
-		public static final Algorithm AES_KW;
-		public static final Algorithm DH;
-		public static final Algorithm HMAC;
-		public static final Algorithm INVALID_ALGORITHM;
-		public static final Algorithm RSAES_PKCS1_V1_5;
-		public static final Algorithm RSASSA_PKCS1_V1_5;
-		public static final Algorithm RSA_OAEP;
-		public static final Algorithm SHA1;
-		public static final Algorithm SHA224;
-		public static final Algorithm SHA256;
-		public static final Algorithm SHA384;
-		public static final Algorithm SHA512;
-		public static final Algorithm SYSTEM;
-
-		public static Algorithm valueOf(String s)
-		{
-			return (Algorithm)Enum.valueOf(com/amazon/webcrypto/WebCrypto$Algorithm, s);
-		}
-
-		public static Algorithm[] values()
-		{
-			return (Algorithm[])$VALUES.clone();
-		}
-
-		static 
-		{
-			HMAC = new Algorithm("HMAC", 0);
-			AES_CBC = new Algorithm("AES_CBC", 1);
-			AES_GCM = new Algorithm("AES_GCM", 2);
-			AES_CTR = new Algorithm("AES_CTR", 3);
-			RSAES_PKCS1_V1_5 = new Algorithm("RSAES_PKCS1_V1_5", 4);
-			RSASSA_PKCS1_V1_5 = new Algorithm("RSASSA_PKCS1_V1_5", 5);
-			RSA_OAEP = new Algorithm("RSA_OAEP", 6);
-			SHA1 = new Algorithm("SHA1", 7);
-			SHA224 = new Algorithm("SHA224", 8);
-			SHA256 = new Algorithm("SHA256", 9);
-			SHA384 = new Algorithm("SHA384", 10);
-			SHA512 = new Algorithm("SHA512", 11);
-			AES_KW = new Algorithm("AES_KW", 12);
-			DH = new Algorithm("DH", 13);
-			SYSTEM = new Algorithm("SYSTEM", 14);
-			INVALID_ALGORITHM = new Algorithm("INVALID_ALGORITHM", 15);
-			Algorithm aalgorithm[] = new Algorithm[16];
-			aalgorithm[0] = HMAC;
-			aalgorithm[1] = AES_CBC;
-			aalgorithm[2] = AES_GCM;
-			aalgorithm[3] = AES_CTR;
-			aalgorithm[4] = RSAES_PKCS1_V1_5;
-			aalgorithm[5] = RSASSA_PKCS1_V1_5;
-			aalgorithm[6] = RSA_OAEP;
-			aalgorithm[7] = SHA1;
-			aalgorithm[8] = SHA224;
-			aalgorithm[9] = SHA256;
-			aalgorithm[10] = SHA384;
-			aalgorithm[11] = SHA512;
-			aalgorithm[12] = AES_KW;
-			aalgorithm[13] = DH;
-			aalgorithm[14] = SYSTEM;
-			aalgorithm[15] = INVALID_ALGORITHM;
-			$VALUES = aalgorithm;
-		}
-
-		private Algorithm(String s, int i)
-		{
-			super(s, i);
-		}
+			HMAC,
+			AES_CBC,
+			AES_GCM,
+			AES_CTR,
+			RSAES_PKCS1_V1_5,
+			RSASSA_PKCS1_V1_5,
+			RSA_OAEP,
+			SHA1,
+			SHA224,
+			SHA256,
+			SHA384,
+			SHA512,
+			AES_KW,
+			DH,
+			SYSTEM,
+			INVALID_ALGORITHM;
 	}
 
 	public static interface HandleWebcryptoResponseInterface
@@ -105,106 +51,34 @@ public class WebCrypto
 		public abstract void onHandleResponse(String s);
 	}
 
-	static final class WebCryptoErr extends Enum
+	static enum WebCryptoErr
 	{
 
-		private static final WebCryptoErr $VALUES[];
-		public static final WebCryptoErr WC_ERR_ALREADY_INITIALIZED;
-		public static final WebCryptoErr WC_ERR_BADARG;
-		public static final WebCryptoErr WC_ERR_BADCONTEXTNAME;
-		public static final WebCryptoErr WC_ERR_BADENCODING;
-		public static final WebCryptoErr WC_ERR_BADIV;
-		public static final WebCryptoErr WC_ERR_BADKEYINDEX;
-		public static final WebCryptoErr WC_ERR_BADKEYNAME;
-		public static final WebCryptoErr WC_ERR_CIPHERERROR;
-		public static final WebCryptoErr WC_ERR_DHERROR;
-		public static final WebCryptoErr WC_ERR_END;
-		public static final WebCryptoErr WC_ERR_HMACERROR;
-		public static final WebCryptoErr WC_ERR_INTERNAL;
-		public static final WebCryptoErr WC_ERR_KEYDERIVE;
-		public static final WebCryptoErr WC_ERR_KEYGEN;
-		public static final WebCryptoErr WC_ERR_KEY_USAGE;
-		public static final WebCryptoErr WC_ERR_NOMETHOD;
-		public static final WebCryptoErr WC_ERR_NOT_IMPLEMENTED;
-		public static final WebCryptoErr WC_ERR_NOT_INITIALIZED;
-		public static final WebCryptoErr WC_ERR_OK;
-		public static final WebCryptoErr WC_ERR_REGERROR;
-		public static final WebCryptoErr WC_ERR_REGISTERED;
-		public static final WebCryptoErr WC_ERR_STORE;
-		public static final WebCryptoErr WC_ERR_UNKNOWN;
-		public static final WebCryptoErr WC_ERR_UNKNOWN_ALGO;
-		public static final WebCryptoErr WC_ERR_UNSUPPORTED_KEY_ENCODING;
-
-		public static WebCryptoErr valueOf(String s)
-		{
-			return (WebCryptoErr)Enum.valueOf(com/amazon/webcrypto/WebCrypto$WebCryptoErr, s);
-		}
-
-		public static WebCryptoErr[] values()
-		{
-			return (WebCryptoErr[])$VALUES.clone();
-		}
-
-		static 
-		{
-			WC_ERR_OK = new WebCryptoErr("WC_ERR_OK", 0);
-			WC_ERR_BADARG = new WebCryptoErr("WC_ERR_BADARG", 1);
-			WC_ERR_KEYDERIVE = new WebCryptoErr("WC_ERR_KEYDERIVE", 2);
-			WC_ERR_NOMETHOD = new WebCryptoErr("WC_ERR_NOMETHOD", 3);
-			WC_ERR_BADKEYINDEX = new WebCryptoErr("WC_ERR_BADKEYINDEX", 4);
-			WC_ERR_BADENCODING = new WebCryptoErr("WC_ERR_BADENCODING", 5);
-			WC_ERR_BADKEYNAME = new WebCryptoErr("WC_ERR_BADKEYNAME", 6);
-			WC_ERR_STORE = new WebCryptoErr("WC_ERR_STORE", 7);
-			WC_ERR_CIPHERERROR = new WebCryptoErr("WC_ERR_CIPHERERROR", 8);
-			WC_ERR_BADIV = new WebCryptoErr("WC_ERR_BADIV", 9);
-			WC_ERR_DHERROR = new WebCryptoErr("WC_ERR_DHERROR", 10);
-			WC_ERR_UNKNOWN = new WebCryptoErr("WC_ERR_UNKNOWN", 11);
-			WC_ERR_NOT_INITIALIZED = new WebCryptoErr("WC_ERR_NOT_INITIALIZED", 12);
-			WC_ERR_NOT_IMPLEMENTED = new WebCryptoErr("WC_ERR_NOT_IMPLEMENTED", 13);
-			WC_ERR_BADCONTEXTNAME = new WebCryptoErr("WC_ERR_BADCONTEXTNAME", 14);
-			WC_ERR_HMACERROR = new WebCryptoErr("WC_ERR_HMACERROR", 15);
-			WC_ERR_REGISTERED = new WebCryptoErr("WC_ERR_REGISTERED", 16);
-			WC_ERR_REGERROR = new WebCryptoErr("WC_ERR_REGERROR", 17);
-			WC_ERR_UNKNOWN_ALGO = new WebCryptoErr("WC_ERR_UNKNOWN_ALGO", 18);
-			WC_ERR_UNSUPPORTED_KEY_ENCODING = new WebCryptoErr("WC_ERR_UNSUPPORTED_KEY_ENCODING", 19);
-			WC_ERR_KEYGEN = new WebCryptoErr("WC_ERR_KEYGEN", 20);
-			WC_ERR_ALREADY_INITIALIZED = new WebCryptoErr("WC_ERR_ALREADY_INITIALIZED", 21);
-			WC_ERR_INTERNAL = new WebCryptoErr("WC_ERR_INTERNAL", 22);
-			WC_ERR_KEY_USAGE = new WebCryptoErr("WC_ERR_KEY_USAGE", 23);
-			WC_ERR_END = new WebCryptoErr("WC_ERR_END", 24);
-			WebCryptoErr awebcryptoerr[] = new WebCryptoErr[25];
-			awebcryptoerr[0] = WC_ERR_OK;
-			awebcryptoerr[1] = WC_ERR_BADARG;
-			awebcryptoerr[2] = WC_ERR_KEYDERIVE;
-			awebcryptoerr[3] = WC_ERR_NOMETHOD;
-			awebcryptoerr[4] = WC_ERR_BADKEYINDEX;
-			awebcryptoerr[5] = WC_ERR_BADENCODING;
-			awebcryptoerr[6] = WC_ERR_BADKEYNAME;
-			awebcryptoerr[7] = WC_ERR_STORE;
-			awebcryptoerr[8] = WC_ERR_CIPHERERROR;
-			awebcryptoerr[9] = WC_ERR_BADIV;
-			awebcryptoerr[10] = WC_ERR_DHERROR;
-			awebcryptoerr[11] = WC_ERR_UNKNOWN;
-			awebcryptoerr[12] = WC_ERR_NOT_INITIALIZED;
-			awebcryptoerr[13] = WC_ERR_NOT_IMPLEMENTED;
-			awebcryptoerr[14] = WC_ERR_BADCONTEXTNAME;
-			awebcryptoerr[15] = WC_ERR_HMACERROR;
-			awebcryptoerr[16] = WC_ERR_REGISTERED;
-			awebcryptoerr[17] = WC_ERR_REGERROR;
-			awebcryptoerr[18] = WC_ERR_UNKNOWN_ALGO;
-			awebcryptoerr[19] = WC_ERR_UNSUPPORTED_KEY_ENCODING;
-			awebcryptoerr[20] = WC_ERR_KEYGEN;
-			awebcryptoerr[21] = WC_ERR_ALREADY_INITIALIZED;
-			awebcryptoerr[22] = WC_ERR_INTERNAL;
-			awebcryptoerr[23] = WC_ERR_KEY_USAGE;
-			awebcryptoerr[24] = WC_ERR_END;
-			$VALUES = awebcryptoerr;
-		}
-
-		private WebCryptoErr(String s, int i)
-		{
-			super(s, i);
-		}
+			WC_ERR_OK,
+			WC_ERR_BADARG,
+			WC_ERR_KEYDERIVE,
+			WC_ERR_NOMETHOD,
+			WC_ERR_BADKEYINDEX,
+			WC_ERR_BADENCODING,
+			WC_ERR_BADKEYNAME,
+			WC_ERR_STORE,
+			WC_ERR_CIPHERERROR,
+			WC_ERR_BADIV,
+			WC_ERR_DHERROR,
+			WC_ERR_UNKNOWN,
+			WC_ERR_NOT_INITIALIZED,
+			WC_ERR_NOT_IMPLEMENTED,
+			WC_ERR_BADCONTEXTNAME,
+			WC_ERR_HMACERROR,
+			WC_ERR_REGISTERED,
+			WC_ERR_REGERROR,
+			WC_ERR_UNKNOWN_ALGO,
+			WC_ERR_UNSUPPORTED_KEY_ENCODING,
+			WC_ERR_KEYGEN,
+			WC_ERR_ALREADY_INITIALIZED,
+			WC_ERR_INTERNAL,
+			WC_ERR_KEY_USAGE,
+			WC_ERR_END;
 	}
 
 
@@ -226,35 +100,24 @@ public class WebCrypto
 		mHandleWebcryptoResponseInterface = handlewebcryptoresponseinterface;
 		mTZInterface = new TZInterface(context);
 		mThread = new Thread(new Runnable() {
-
-			final WebCrypto this$0;
-
 			public void run()
 			{
 _L2:
-				if (!mStop)
-					break MISSING_BLOCK_LABEL_40;
-				String s;
-				boolean flag;
-				s = (String)mReqQueue.take();
-				flag = mStop;
-				if (flag)
-					break MISSING_BLOCK_LABEL_49;
-				Log.w("WebCrypto Class", "Thread Joined");
-				return;
-				try
-				{
-					invoke(s);
-				}
-				catch (Exception exception) { }
-				if (true) goto _L2; else goto _L1
-_L1:
-			}
+				while (!mStop) {
 
-			
-			{
-				this$0 = WebCrypto.this;
-				super();
+				String s;
+
+                try
+                {
+				s = (String)mReqQueue.take();
+
+					invoke(s);
+				}catch(Exception e) {
+				    
+				}
+				}
+                Log.w("WebCrypto Class", "Thread Joined");
+                return;
 			}
 		});
 		mThread.start();

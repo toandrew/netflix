@@ -34,18 +34,11 @@ public class Shell extends LinearLayout
 		super(context, attributeset);
 		mClearProgressRunnable = new Runnable() {
 
-			final Shell this$0;
-
 			public void run()
 			{
 				mProgressDrawable.setLevel(0);
 			}
 
-			
-			{
-				this$0 = Shell.this;
-				super();
-			}
 		};
 		mLoading = false;
 	}
@@ -64,36 +57,19 @@ public class Shell extends LinearLayout
 	{
 		mPrevButton = (ImageButton)findViewById(R.id.prev);
 		mPrevButton.setOnClickListener(new android.view.View.OnClickListener() {
-
-			final Shell this$0;
-
 			public void onClick(View view)
 			{
 				if (mContentView.canGoBack())
 					mContentView.goBack();
 			}
-
-			
-			{
-				this$0 = Shell.this;
-				super();
-			}
 		});
 		mNextButton = (ImageButton)findViewById(R.id.next);
 		mNextButton.setOnClickListener(new android.view.View.OnClickListener() {
-
-			final Shell this$0;
 
 			public void onClick(View view)
 			{
 				if (mContentView.canGoForward())
 					mContentView.goForward();
-			}
-
-			
-			{
-				this$0 = Shell.this;
-				super();
 			}
 		});
 	}
@@ -102,9 +78,6 @@ public class Shell extends LinearLayout
 	{
 		mUrlTextView = (EditText)findViewById(R.id.url);
 		mUrlTextView.setOnEditorActionListener(new android.widget.TextView.OnEditorActionListener() {
-
-			final Shell this$0;
-
 			public boolean onEditorAction(TextView textview, int i, KeyEvent keyevent)
 			{
 				if (i != 2 && (keyevent == null || keyevent.getKeyCode() != 66 || keyevent.getAction() != 0))
@@ -118,16 +91,8 @@ public class Shell extends LinearLayout
 					return true;
 				}
 			}
-
-			
-			{
-				this$0 = Shell.this;
-				super();
-			}
 		});
 		mUrlTextView.setOnFocusChangeListener(new android.view.View.OnFocusChangeListener() {
-
-			final Shell this$0;
 
 			public void onFocusChange(View view, boolean flag)
 			{
@@ -147,12 +112,6 @@ public class Shell extends LinearLayout
 				imagebutton1.setVisibility(byte0);
 				if (!flag)
 					mUrlTextView.setText(mContentView.getUrl());
-			}
-
-			
-			{
-				this$0 = Shell.this;
-				super();
 			}
 		});
 	}

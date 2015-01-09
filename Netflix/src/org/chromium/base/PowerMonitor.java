@@ -79,7 +79,7 @@ public class PowerMonitor
 			return;
 		int i = intent.getIntExtra("plugged", -1);
 		PowerMonitor powermonitor = sInstance;
-		if (i == 2 || i == flag)
+		if (i == 2 || i == 1)
 			flag = false;
 		powermonitor.mIsBatteryPower = flag;
 		nativeOnBatteryChargingChanged();

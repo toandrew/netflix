@@ -107,18 +107,16 @@ public interface IApplicationVerificationService
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
 			String s;
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.service.verify.IApplicationVerificationService");
 			mRemote.transact(3, parcel, parcel1, 0);
 			parcel1.readException();
 			s = parcel1.readString();
+			}finally {
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return s;
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public String getDeviceId()
@@ -129,18 +127,16 @@ public interface IApplicationVerificationService
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
 			String s;
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.service.verify.IApplicationVerificationService");
 			mRemote.transact(4, parcel, parcel1, 0);
 			parcel1.readException();
 			s = parcel1.readString();
+			}finally{
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return s;
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public String getInterfaceDescriptor()
@@ -156,19 +152,17 @@ public interface IApplicationVerificationService
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
 			String s1;
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.service.verify.IApplicationVerificationService");
 			parcel.writeString(s);
 			mRemote.transact(2, parcel, parcel1, 0);
 			parcel1.readException();
 			s1 = parcel1.readString();
+			}finally {
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return s1;
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		public void reportVerificationResults(String s, boolean flag, String s1)
@@ -178,6 +172,7 @@ public interface IApplicationVerificationService
 			Parcel parcel1;
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
+			try {
 			parcel.writeInterfaceToken("com.amazon.venezia.service.verify.IApplicationVerificationService");
 			parcel.writeString(s);
 			int i;
@@ -189,14 +184,11 @@ public interface IApplicationVerificationService
 			parcel.writeString(s1);
 			mRemote.transact(1, parcel, parcel1, 0);
 			parcel1.readException();
+			}finally {
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return;
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
 		}
 
 		Stub.Proxy(IBinder ibinder)

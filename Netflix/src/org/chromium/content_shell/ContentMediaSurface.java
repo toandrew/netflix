@@ -17,12 +17,8 @@ public class ContentMediaSurface extends FrameLayout
 {
 	private class MediaSurface extends SurfaceView
 	{
-
-		final ContentMediaSurface this$0;
-
 		public MediaSurface(Context context)
 		{
-			this$0 = ContentMediaSurface.this;
 			super(context);
 		}
 	}

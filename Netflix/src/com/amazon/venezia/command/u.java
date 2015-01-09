@@ -10,63 +10,51 @@ import java.util.Map;
 // Referenced classes of package com.amazon.venezia.command:
 //			s
 
-final class u
-	implements s
-{
+final class u implements s {
 
-	private IBinder a;
+    private IBinder a;
 
-	u(IBinder ibinder)
-	{
-		a = ibinder;
-	}
+    u(IBinder ibinder) {
+        a = ibinder;
+    }
 
-	public final String a()
-		throws RemoteException
-	{
-		Parcel parcel;
-		Parcel parcel1;
-		parcel = Parcel.obtain();
-		parcel1 = Parcel.obtain();
-		String s1;
-		parcel.writeInterfaceToken("com.amazon.venezia.command.DecisionExpirationContext");
-		a.transact(1, parcel, parcel1, 0);
-		parcel1.readException();
-		s1 = parcel1.readString();
-		parcel1.recycle();
-		parcel.recycle();
-		return s1;
-		Exception exception;
-		exception;
-		parcel1.recycle();
-		parcel.recycle();
-		throw exception;
-	}
+    public final String a() throws RemoteException {
+        Parcel parcel;
+        Parcel parcel1;
+        parcel = Parcel.obtain();
+        parcel1 = Parcel.obtain();
+        String s1;
+        try {
+            parcel.writeInterfaceToken("com.amazon.venezia.command.DecisionExpirationContext");
+            a.transact(1, parcel, parcel1, 0);
+            parcel1.readException();
+            s1 = parcel1.readString();
+        } finally {
+            parcel1.recycle();
+            parcel.recycle();
+        }
+        return s1;
+    }
 
-	public final IBinder asBinder()
-	{
-		return a;
-	}
+    public final IBinder asBinder() {
+        return a;
+    }
 
-	public final Map b()
-		throws RemoteException
-	{
-		Parcel parcel;
-		Parcel parcel1;
-		parcel = Parcel.obtain();
-		parcel1 = Parcel.obtain();
-		java.util.HashMap hashmap;
-		parcel.writeInterfaceToken("com.amazon.venezia.command.DecisionExpirationContext");
-		a.transact(2, parcel, parcel1, 0);
-		parcel1.readException();
-		hashmap = parcel1.readHashMap(getClass().getClassLoader());
-		parcel1.recycle();
-		parcel.recycle();
-		return hashmap;
-		Exception exception;
-		exception;
-		parcel1.recycle();
-		parcel.recycle();
-		throw exception;
-	}
+    public final Map b() throws RemoteException {
+        Parcel parcel;
+        Parcel parcel1;
+        parcel = Parcel.obtain();
+        parcel1 = Parcel.obtain();
+        java.util.HashMap hashmap;
+        try {
+            parcel.writeInterfaceToken("com.amazon.venezia.command.DecisionExpirationContext");
+            a.transact(2, parcel, parcel1, 0);
+            parcel1.readException();
+            hashmap = parcel1.readHashMap(getClass().getClassLoader());
+        } finally {
+            parcel1.recycle();
+            parcel.recycle();
+        }
+        return hashmap;
+    }
 }
