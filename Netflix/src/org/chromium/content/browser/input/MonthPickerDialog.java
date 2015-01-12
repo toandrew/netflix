@@ -15,7 +15,7 @@ public class MonthPickerDialog extends TwoFieldDatePickerDialog
 	public MonthPickerDialog(Context context, TwoFieldDatePickerDialog.OnValueSetListener onvaluesetlistener, int i, int j, long l, long l1)
 	{
 		super(context, onvaluesetlistener, i, j, l, l1);
-		setTitle(org.chromium.content.R.string.month_picker_dialog_title);
+//		setTitle(org.chromium.content.R.string.month_picker_dialog_title);
 	}
 
 	protected TwoFieldDatePicker createPicker(Context context, long l, long l1)

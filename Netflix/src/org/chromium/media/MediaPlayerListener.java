@@ -76,42 +76,43 @@ class MediaPlayerListener
 
 	public boolean onError(MediaPlayer mediaplayer, int i, int j)
 	{
-		i;
-		JVM INSTR lookupswitch 3: default 36
-	//	               1: 51
-	//	               100: 98
-	//	               200: 104;
-		   goto _L1 _L2 _L3 _L4
-_L1:
-		byte byte0 = 3;
-_L6:
-		nativeOnMediaError(mNativeMediaPlayerListener, byte0);
-		return true;
-_L2:
-		switch (j)
-		{
-		default:
-			byte0 = 0;
-			break;
-
-		case -1007: 
-			byte0 = 1;
-			break;
-
-		case -110: 
-			byte0 = 3;
-			break;
-		}
-		if (false)
-			;
-		continue; /* Loop/switch isn't completed */
-_L3:
-		byte0 = 1;
-		continue; /* Loop/switch isn't completed */
-_L4:
-		byte0 = 2;
-		if (true) goto _L6; else goto _L5
-_L5:
+	    return true;
+//		i;
+//		JVM INSTR lookupswitch 3: default 36
+//	//	               1: 51
+//	//	               100: 98
+//	//	               200: 104;
+//		   goto _L1 _L2 _L3 _L4
+//_L1:
+//		byte byte0 = 3;
+//_L6:
+//		nativeOnMediaError(mNativeMediaPlayerListener, byte0);
+//		return true;
+//_L2:
+//		switch (j)
+//		{
+//		default:
+//			byte0 = 0;
+//			break;
+//
+//		case -1007: 
+//			byte0 = 1;
+//			break;
+//
+//		case -110: 
+//			byte0 = 3;
+//			break;
+//		}
+//		if (false)
+//			;
+//		continue; /* Loop/switch isn't completed */
+//_L3:
+//		byte0 = 1;
+//		continue; /* Loop/switch isn't completed */
+//_L4:
+//		byte0 = 2;
+//		if (true) goto _L6; else goto _L5
+//_L5:
 	}
 
 	public void onPrepared(MediaPlayer mediaplayer)

@@ -27,7 +27,7 @@ public interface IChildProcessService
 			if (iinterface != null && (iinterface instanceof IChildProcessService))
 				return (IChildProcessService)iinterface;
 			else
-				return new Proxy(ibinder);
+				return new org.chromium.content.common.IChildProcessService.Stub.Proxy(ibinder);
 		}
 
 		public IBinder asBinder()
@@ -69,7 +69,7 @@ public interface IChildProcessService
 		}
 	}
 
-	private static class Stub.Proxy
+	static class Proxy
 		implements IChildProcessService
 	{
 
@@ -93,36 +93,32 @@ public interface IChildProcessService
 			parcel = Parcel.obtain();
 			parcel1 = Parcel.obtain();
 			parcel.writeInterfaceToken("org.chromium.content.common.IChildProcessService");
-			if (bundle == null) goto _L2; else goto _L1
-_L1:
+			if (bundle == null) {
+			    parcel.writeInt(0);
+			} else {
 			parcel.writeInt(1);
 			bundle.writeToParcel(parcel, 0);
-_L3:
-			if (ichildprocesscallback == null)
-				break MISSING_BLOCK_LABEL_109;
-			IBinder ibinder = ichildprocesscallback.asBinder();
-_L4:
-			int i;
+			}
+	         int i;
+			try {
+			IBinder ibinder = null;
+			if (ichildprocesscallback != null) 
+			    ibinder = ichildprocesscallback.asBinder();
+
+
 			parcel.writeStrongBinder(ibinder);
 			mRemote.transact(1, parcel, parcel1, 0);
 			parcel1.readException();
-			i = parcel1.readInt();
+	         i = parcel1.readInt();
+			}finally {
+
 			parcel1.recycle();
 			parcel.recycle();
+			}
 			return i;
-_L2:
-			parcel.writeInt(0);
-			  goto _L3
-			Exception exception;
-			exception;
-			parcel1.recycle();
-			parcel.recycle();
-			throw exception;
-			ibinder = null;
-			  goto _L4
 		}
 
-		Stub.Proxy(IBinder ibinder)
+		Proxy(IBinder ibinder)
 		{
 			mRemote = ibinder;
 		}

@@ -104,12 +104,10 @@ label0:
 			IntentFilter intentfilter = new IntentFilter("android.intent.action.HEADSET_PLUG");
 			mReceiver = new BroadcastReceiver() {
 
-				final AudioManagerAndroid this$0;
-
 				public void onReceive(Context context, Intent intent)
 				{
 					if (!"android.intent.action.HEADSET_PLUG".equals(intent.getAction()))
-						break MISSING_BLOCK_LABEL_48;
+						return;
 					AudioManager audiomanager;
 					int i;
 					boolean flag;
@@ -129,12 +127,6 @@ label0:
 						flag = true;
 					audiomanager.setSpeakerphoneOn(flag);
 				}
-
-			
-			{
-				this$0 = AudioManagerAndroid.this;
-				super();
-			}
 			};
 			mContext.registerReceiver(mReceiver, intentfilter);
 			return;
@@ -153,8 +145,9 @@ label0:
 			logDeviceInfo();
 			return;
 		}
-		if (i != 3)
-			break MISSING_BLOCK_LABEL_21;
+		if (i != 3) {
+		    return;
+		}
 		mAudioManager.setSpeakerphoneOn(true);
 	}
 

@@ -37,23 +37,24 @@ class JellyBeanAccessibilityInjector extends AccessibilityInjector
 
 		private boolean getResultAndClear(int i)
 		{
-			Object obj = mResultLock;
-			obj;
-			JVM INSTR monitorenter ;
-			boolean flag;
-			if (!waitForResultTimedLocked(i))
-				break MISSING_BLOCK_LABEL_35;
-			flag = mResult;
-_L1:
-			clearResultLocked();
-			return flag;
-			Exception exception;
-			exception;
-			obj;
-			JVM INSTR monitorexit ;
-			throw exception;
-			flag = false;
-			  goto _L1
+		    return true;
+//			Object obj = mResultLock;
+//			obj;
+//			JVM INSTR monitorenter ;
+//			boolean flag;
+//			if (!waitForResultTimedLocked(i))
+//				break MISSING_BLOCK_LABEL_35;
+//			flag = mResult;
+//_L1:
+//			clearResultLocked();
+//			return flag;
+//			Exception exception;
+//			exception;
+//			obj;
+//			JVM INSTR monitorexit ;
+//			throw exception;
+//			flag = false;
+//			  goto _L1
 		}
 
 		private boolean performAction(ContentViewCore contentviewcore, String s)
@@ -69,51 +70,53 @@ _L1:
 
 		private boolean waitForResultTimedLocked(int i)
 		{
-			long l = SystemClock.uptimeMillis();
-_L2:
-			if (mResultId == (long)i)
-				return true;
-			long l1;
-			if (mResultId > (long)i)
-				break; /* Loop/switch isn't completed */
-			l1 = 5000L - (SystemClock.uptimeMillis() - l);
-			if (l1 <= 0L)
-				break; /* Loop/switch isn't completed */
-			try
-			{
-				mResultLock.wait(l1);
-			}
-			catch (InterruptedException interruptedexception) { }
-			if (true) goto _L2; else goto _L1
-_L1:
-			return false;
+		    return true;
+//			long l = SystemClock.uptimeMillis();
+//_L2:
+//			if (mResultId == (long)i)
+//				return true;
+//			long l1;
+//			if (mResultId > (long)i)
+//				break; /* Loop/switch isn't completed */
+//			l1 = 5000L - (SystemClock.uptimeMillis() - l);
+//			if (l1 <= 0L)
+//				break; /* Loop/switch isn't completed */
+//			try
+//			{
+//				mResultLock.wait(l1);
+//			}
+//			catch (InterruptedException interruptedexception) { }
+//			if (true) goto _L2; else goto _L1
+//_L1:
+//			return false;
 		}
 
 		public void onResult(String s, String s1)
 		{
-			long l;
-			try
-			{
-				l = Long.parseLong(s);
-			}
-			catch (NumberFormatException numberformatexception)
-			{
-				return;
-			}
-			synchronized (mResultLock)
-			{
-				if (l > mResultId)
-				{
-					mResult = Boolean.parseBoolean(s1);
-					mResultId = l;
-				}
-				mResultLock.notifyAll();
-			}
-			return;
-			exception;
-			obj;
-			JVM INSTR monitorexit ;
-			throw exception;
+		    return;
+//			long l;
+//			try
+//			{
+//				l = Long.parseLong(s);
+//			}
+//			catch (NumberFormatException numberformatexception)
+//			{
+//				return;
+//			}
+//			synchronized (mResultLock)
+//			{
+//				if (l > mResultId)
+//				{
+//					mResult = Boolean.parseBoolean(s1);
+//					mResultId = l;
+//				}
+//				mResultLock.notifyAll();
+//			}
+//			return;
+//			exception;
+//			obj;
+//			JVM INSTR monitorexit ;
+//			throw exception;
 		}
 
 
@@ -141,48 +144,49 @@ _L1:
 
 	private boolean sendActionToAndroidVox(int i, Bundle bundle)
 	{
-		if (mCallback == null)
-			return false;
-		String s;
-		int j;
-		if (mAccessibilityJSONObject == null)
-		{
-			mAccessibilityJSONObject = new JSONObject();
-		} else
-		{
-			Iterator iterator = mAccessibilityJSONObject.keys();
-			while (iterator.hasNext()) 
-			{
-				iterator.next();
-				iterator.remove();
-			}
-		}
-		String s1;
-		try
-		{
-			mAccessibilityJSONObject.accumulate("action", Integer.valueOf(i));
-		}
-		catch (JSONException jsonexception)
-		{
-			return false;
-		}
-		if (bundle == null) goto _L2; else goto _L1
-_L1:
-		if (i != 256 && i != 512) goto _L4; else goto _L3
-_L3:
-		j = bundle.getInt("ACTION_ARGUMENT_MOVEMENT_GRANULARITY_INT");
-		mAccessibilityJSONObject.accumulate("granularity", Integer.valueOf(j));
-_L2:
-		s = String.format("cvox.AndroidVox.performAction('%1s')", new Object[] {
-			mAccessibilityJSONObject.toString()
-		});
-		return mCallback.performAction(mContentViewCore, s);
-_L4:
-		if (i != 1024 && i != 2048) goto _L2; else goto _L5
-_L5:
-		s1 = bundle.getString("ACTION_ARGUMENT_HTML_ELEMENT_STRING");
-		mAccessibilityJSONObject.accumulate("element", s1);
-		  goto _L2
+	    return true;
+//		if (mCallback == null)
+//			return false;
+//		String s;
+//		int j;
+//		if (mAccessibilityJSONObject == null)
+//		{
+//			mAccessibilityJSONObject = new JSONObject();
+//		} else
+//		{
+//			Iterator iterator = mAccessibilityJSONObject.keys();
+//			while (iterator.hasNext()) 
+//			{
+//				iterator.next();
+//				iterator.remove();
+//			}
+//		}
+//		String s1;
+//		try
+//		{
+//			mAccessibilityJSONObject.accumulate("action", Integer.valueOf(i));
+//		}
+//		catch (JSONException jsonexception)
+//		{
+//			return false;
+//		}
+//		if (bundle == null) goto _L2; else goto _L1
+//_L1:
+//		if (i != 256 && i != 512) goto _L4; else goto _L3
+//_L3:
+//		j = bundle.getInt("ACTION_ARGUMENT_MOVEMENT_GRANULARITY_INT");
+//		mAccessibilityJSONObject.accumulate("granularity", Integer.valueOf(j));
+//_L2:
+//		s = String.format("cvox.AndroidVox.performAction('%1s')", new Object[] {
+//			mAccessibilityJSONObject.toString()
+//		});
+//		return mCallback.performAction(mContentViewCore, s);
+//_L4:
+//		if (i != 1024 && i != 2048) goto _L2; else goto _L5
+//_L5:
+//		s1 = bundle.getString("ACTION_ARGUMENT_HTML_ELEMENT_STRING");
+//		mAccessibilityJSONObject.accumulate("element", s1);
+//		  goto _L2
 	}
 
 	protected void addAccessibilityApis()

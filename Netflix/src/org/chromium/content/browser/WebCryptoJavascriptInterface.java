@@ -7,6 +7,8 @@ package org.chromium.content.browser;
 import android.app.Activity;
 import android.content.Context;
 import android.util.Log;
+import java.lang.Runnable;
+
 import com.amazon.webcrypto.WebCrypto;
 
 // Referenced classes of package org.chromium.content.browser:
@@ -106,23 +108,15 @@ public class WebCryptoJavascriptInterface extends WebContentsObserverAndroid
 		{
 			final Context context = mContentViewCore.getContext();
 			mWebCrypto = new WebCrypto(context, new com.amazon.webcrypto.WebCrypto.HandleWebcryptoResponseInterface() {
-
-				final WebCryptoJavascriptInterface this$0;
-				final Context val$context;
-
-				public void onHandleResponse(String s)
+				public void onHandleResponse(final String s)
 				{
-					((Activity)context).runOnUiThread(s. new Runnable() {
-
-						final 1 this$1;
-						final String val$jsonResponse;
-
+					((Activity)context).runOnUiThread( new Runnable() {
 						public void run()
 						{
 							try
 							{
 								if (mEnabled)
-									mContentViewCore.evaluateJavaScript((new StringBuilder()).append("if(window.NfWebCrypto_onmessage) { window.NfWebCrypto_onmessage('").append(jsonResponse).append("');} else { window.postMessage('").append(jsonResponse).append("', '*');}").toString(), null);
+									mContentViewCore.evaluateJavaScript((new StringBuilder()).append("if(window.NfWebCrypto_onmessage) { window.NfWebCrypto_onmessage('").append(s).append("');} else { window.postMessage('").append(s).append("', '*');}").toString(), null);
 								return;
 							}
 							catch (Exception exception)
@@ -132,20 +126,8 @@ public class WebCryptoJavascriptInterface extends WebContentsObserverAndroid
 						}
 
 			
-			{
-				this$1 = final_1_1;
-				jsonResponse = String.this;
-				super();
-			}
 					});
 				}
-
-			
-			{
-				this$0 = WebCryptoJavascriptInterface.this;
-				context = context1;
-				super();
-			}
 			});
 			Log.w("WebCryptoJavascriptInterface", "new WebCrypto done");
 			mWCJSInterface = new WCJSInterface(mWebCrypto);

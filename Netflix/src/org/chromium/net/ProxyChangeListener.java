@@ -16,20 +16,12 @@ public class ProxyChangeListener
 
 	private class ProxyReceiver extends BroadcastReceiver
 	{
-
-		final ProxyChangeListener this$0;
-
 		public void onReceive(Context context, Intent intent)
 		{
 			if (intent.getAction().equals("android.intent.action.PROXY_CHANGE"))
 				proxySettingsChanged();
 		}
 
-		private ProxyReceiver()
-		{
-			this$0 = ProxyChangeListener.this;
-			super();
-		}
 
 	}
 
@@ -132,12 +124,12 @@ public class ProxyChangeListener
 
 	static 
 	{
-		boolean flag;
-		if (!org/chromium/net/ProxyChangeListener.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
+//		boolean flag;
+//		if (!org/chromium/net/ProxyChangeListener.desiredAssertionStatus())
+//			flag = true;
+//		else
+//			flag = false;
+		//$assertionsDisabled = false;
 	}
 
 }

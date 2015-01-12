@@ -16,7 +16,7 @@ public class WeekPickerDialog extends TwoFieldDatePickerDialog
 			long l1)
 	{
 		super(context, i, onvaluesetlistener, j, k, l, l1);
-		setTitle(org.chromium.content.R.string.week_picker_dialog_title);
+		//setTitle(org.chromium.content.R.string.week_picker_dialog_title);
 	}
 
 	public WeekPickerDialog(Context context, TwoFieldDatePickerDialog.OnValueSetListener onvaluesetlistener, int i, int j, long l, long l1)

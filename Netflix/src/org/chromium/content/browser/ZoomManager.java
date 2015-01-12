@@ -21,7 +21,6 @@ class ZoomManager
 		private boolean mPermanentlyIgnoreDetectorEvents;
 		private boolean mPinchEventSent;
 		private boolean mTemporarilyIgnoreDetectorEvents;
-		final ZoomManager this$0;
 
 		private boolean ignoreDetectorEvents()
 		{
@@ -84,8 +83,6 @@ class ZoomManager
 
 		private ScaleGestureListener()
 		{
-			this$0 = ZoomManager.this;
-			super();
 			mPermanentlyIgnoreDetectorEvents = false;
 			mTemporarilyIgnoreDetectorEvents = false;
 		}
@@ -115,14 +112,14 @@ class ZoomManager
 	{
 		mMultiTouchListener.setTemporarilyIgnoreDetectorEvents(true);
 		mMultiTouchDetector.onTouchEvent(motionevent);
-_L1:
-		return;
-		Exception exception;
-		exception;
-		Log.e("ContentViewZoom", "ScaleGestureDetector got into a bad state!", exception);
-		if (!$assertionsDisabled)
-			throw new AssertionError();
-		  goto _L1
+//_L1:
+//		return;
+//		Exception exception;
+//		exception;
+//		Log.e("ContentViewZoom", "ScaleGestureDetector got into a bad state!", exception);
+//		if (!$assertionsDisabled)
+//			throw new AssertionError();
+//		  goto _L1
 	}
 
 	boolean processTouchEvent(MotionEvent motionevent)
@@ -163,12 +160,12 @@ _L1:
 
 	static 
 	{
-		boolean flag;
-		if (!org/chromium/content/browser/ZoomManager.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
+//		boolean flag;
+//		if (!org/chromium/content/browser/ZoomManager.desiredAssertionStatus())
+//			flag = true;
+//		else
+//			flag = false;
+		//$assertionsDisabled = false;
 	}
 
 }

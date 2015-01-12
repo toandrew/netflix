@@ -344,49 +344,50 @@ public class BrowserAccessibilityManager
 
 	protected boolean performAction(int i, int j, Bundle bundle)
 	{
-		boolean flag = true;
-		if (mAccessibilityManager.isEnabled() && mNativeObj != 0) goto _L2; else goto _L1
-_L1:
-		flag = false;
-_L9:
-		return flag;
-_L2:
-		j;
-		JVM INSTR lookupswitch 5: default 76
-	//	               1: 132
-	//	               2: 144
-	//	               16: 120
-	//	               64: 78
-	//	               128: 104;
-		   goto _L3 _L4 _L5 _L6 _L7 _L8
-_L3:
-		break; /* Loop/switch isn't completed */
-_L5:
-		break MISSING_BLOCK_LABEL_144;
-_L10:
-		return false;
-_L7:
-		if (mAccessibilityFocusId != i)
-		{
-			mAccessibilityFocusId = i;
-			sendAccessibilityEvent(mAccessibilityFocusId, 32768);
-			return flag;
-		}
-		  goto _L9
-_L8:
-		if (mAccessibilityFocusId == i)
-		{
-			mAccessibilityFocusId = -1;
-			return flag;
-		}
-		  goto _L9
-_L6:
-		nativeClick(mNativeObj, i);
-		  goto _L10
-_L4:
-		nativeFocus(mNativeObj, i);
-		  goto _L10
-		nativeBlur(mNativeObj);
-		  goto _L10
+	    return true;
+//		boolean flag = true;
+//		if (mAccessibilityManager.isEnabled() && mNativeObj != 0) goto _L2; else goto _L1
+//_L1:
+//		flag = false;
+//_L9:
+//		return flag;
+//_L2:
+//		j;
+//		JVM INSTR lookupswitch 5: default 76
+//	//	               1: 132
+//	//	               2: 144
+//	//	               16: 120
+//	//	               64: 78
+//	//	               128: 104;
+//		   goto _L3 _L4 _L5 _L6 _L7 _L8
+//_L3:
+//		break; /* Loop/switch isn't completed */
+//_L5:
+//		break MISSING_BLOCK_LABEL_144;
+//_L10:
+//		return false;
+//_L7:
+//		if (mAccessibilityFocusId != i)
+//		{
+//			mAccessibilityFocusId = i;
+//			sendAccessibilityEvent(mAccessibilityFocusId, 32768);
+//			return flag;
+//		}
+//		  goto _L9
+//_L8:
+//		if (mAccessibilityFocusId == i)
+//		{
+//			mAccessibilityFocusId = -1;
+//			return flag;
+//		}
+//		  goto _L9
+//_L6:
+//		nativeClick(mNativeObj, i);
+//		  goto _L10
+//_L4:
+//		nativeFocus(mNativeObj, i);
+//		  goto _L10
+//		nativeBlur(mNativeObj);
+//		  goto _L10
 	}
 }

@@ -12,7 +12,7 @@ public class LocalizationUtils
 
 	public static final int LEFT_TO_RIGHT = 2;
 	public static final int RIGHT_TO_LEFT = 1;
-	public static final int UNKNOWN_DIRECTION;
+	public static final int UNKNOWN_DIRECTION = 0;
 
 	private LocalizationUtils()
 	{

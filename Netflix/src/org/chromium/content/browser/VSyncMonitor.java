@@ -53,20 +53,11 @@ public class VSyncMonitor
 		{
 			mChoreographer = Choreographer.getInstance();
 			mVSyncFrameCallback = new android.view.Choreographer.FrameCallback() {
-
-				final VSyncMonitor this$0;
-
 				public void doFrame(long l)
 				{
 					TraceEvent.instant("VSync");
 					onVSyncCallback(l);
 				}
-
-			
-			{
-				this$0 = VSyncMonitor.this;
-				super();
-			}
 			};
 			mHandler = null;
 			mVSyncRunnableCallback = null;
@@ -77,20 +68,11 @@ public class VSyncMonitor
 			mVSyncFrameCallback = null;
 			mHandler = new Handler();
 			mVSyncRunnableCallback = new Runnable() {
-
-				final VSyncMonitor this$0;
-
 				public void run()
 				{
 					TraceEvent.instant("VSyncTimer");
 					onVSyncCallback(System.nanoTime());
 				}
-
-			
-			{
-				this$0 = VSyncMonitor.this;
-				super();
-			}
 			};
 			mGoodStartingPointNano = getCurrentNanoTime();
 			mLastPostedNano = 0L;
@@ -190,12 +172,12 @@ public class VSyncMonitor
 
 	static 
 	{
-		boolean flag;
-		if (!org/chromium/content/browser/VSyncMonitor.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
+//		boolean flag;
+//		if (!org/chromium/content/browser/VSyncMonitor.desiredAssertionStatus())
+//			flag = true;
+//		else
+//			flag = false;
+		//$assertionsDisabled = false;
 	}
 
 }

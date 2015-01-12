@@ -45,48 +45,48 @@ public class AdapterInputConnection extends BaseInputConnection
 		mSingleLine = true;
 		editorinfo.imeOptions = 0x12000000;
 		editorinfo.inputType = 161;
-		if (imeadapter.getTextInputType() != ImeAdapter.sTextInputTypeText) goto _L2; else goto _L1
-_L1:
-		editorinfo.imeOptions = 2 | editorinfo.imeOptions;
-_L4:
-		editorinfo.initialSelStart = imeadapter.getInitialSelectionStart();
-		editorinfo.initialSelEnd = imeadapter.getInitialSelectionStart();
-		return;
-_L2:
-		if (imeadapter.getTextInputType() == ImeAdapter.sTextInputTypeTextArea || imeadapter.getTextInputType() == ImeAdapter.sTextInputTypeContentEditable)
-		{
-			editorinfo.inputType = 0x2c000 | editorinfo.inputType;
-			editorinfo.imeOptions = 1 | editorinfo.imeOptions;
-			mSingleLine = false;
-		} else
-		if (imeadapter.getTextInputType() == ImeAdapter.sTextInputTypePassword)
-		{
-			editorinfo.inputType = 225;
-			editorinfo.imeOptions = 2 | editorinfo.imeOptions;
-		} else
-		if (imeadapter.getTextInputType() == ImeAdapter.sTextInputTypeSearch)
-			editorinfo.imeOptions = 3 | editorinfo.imeOptions;
-		else
-		if (imeadapter.getTextInputType() == ImeAdapter.sTextInputTypeUrl)
-			editorinfo.imeOptions = 2 | editorinfo.imeOptions;
-		else
-		if (imeadapter.getTextInputType() == ImeAdapter.sTextInputTypeEmail)
-		{
-			editorinfo.inputType = 209;
-			editorinfo.imeOptions = 2 | editorinfo.imeOptions;
-		} else
-		if (imeadapter.getTextInputType() == ImeAdapter.sTextInputTypeTel)
-		{
-			editorinfo.inputType = 3;
-			editorinfo.imeOptions = 5 | editorinfo.imeOptions;
-		} else
-		if (imeadapter.getTextInputType() == ImeAdapter.sTextInputTypeNumber)
-		{
-			editorinfo.inputType = 2;
-			editorinfo.imeOptions = 5 | editorinfo.imeOptions;
-		}
-		if (true) goto _L4; else goto _L3
-_L3:
+//		if (imeadapter.getTextInputType() != ImeAdapter.sTextInputTypeText) goto _L2; else goto _L1
+//_L1:
+//		editorinfo.imeOptions = 2 | editorinfo.imeOptions;
+//_L4:
+//		editorinfo.initialSelStart = imeadapter.getInitialSelectionStart();
+//		editorinfo.initialSelEnd = imeadapter.getInitialSelectionStart();
+//		return;
+//_L2:
+//		if (imeadapter.getTextInputType() == ImeAdapter.sTextInputTypeTextArea || imeadapter.getTextInputType() == ImeAdapter.sTextInputTypeContentEditable)
+//		{
+//			editorinfo.inputType = 0x2c000 | editorinfo.inputType;
+//			editorinfo.imeOptions = 1 | editorinfo.imeOptions;
+//			mSingleLine = false;
+//		} else
+//		if (imeadapter.getTextInputType() == ImeAdapter.sTextInputTypePassword)
+//		{
+//			editorinfo.inputType = 225;
+//			editorinfo.imeOptions = 2 | editorinfo.imeOptions;
+//		} else
+//		if (imeadapter.getTextInputType() == ImeAdapter.sTextInputTypeSearch)
+//			editorinfo.imeOptions = 3 | editorinfo.imeOptions;
+//		else
+//		if (imeadapter.getTextInputType() == ImeAdapter.sTextInputTypeUrl)
+//			editorinfo.imeOptions = 2 | editorinfo.imeOptions;
+//		else
+//		if (imeadapter.getTextInputType() == ImeAdapter.sTextInputTypeEmail)
+//		{
+//			editorinfo.inputType = 209;
+//			editorinfo.imeOptions = 2 | editorinfo.imeOptions;
+//		} else
+//		if (imeadapter.getTextInputType() == ImeAdapter.sTextInputTypeTel)
+//		{
+//			editorinfo.inputType = 3;
+//			editorinfo.imeOptions = 5 | editorinfo.imeOptions;
+//		} else
+//		if (imeadapter.getTextInputType() == ImeAdapter.sTextInputTypeNumber)
+//		{
+//			editorinfo.inputType = 2;
+//			editorinfo.imeOptions = 5 | editorinfo.imeOptions;
+//		}
+//		if (true) goto _L4; else goto _L3
+//_L3:
 	}
 
 	private InputMethodManagerWrapper getInputMethodManagerWrapper()
@@ -222,37 +222,39 @@ _L3:
 
 	public boolean sendKeyEvent(KeyEvent keyevent)
 	{
-		if (keyevent.getAction() != 1) goto _L2; else goto _L1
-_L1:
-		if (keyevent.getKeyCode() != 67) goto _L4; else goto _L3
-_L3:
-		super.deleteSurroundingText(1, 0);
-_L2:
-		mImeAdapter.translateAndSendNativeEvents(keyevent);
-		return true;
-_L4:
-		if (keyevent.getKeyCode() == 112)
-		{
-			super.deleteSurroundingText(0, 1);
-		} else
-		{
-			int i = keyevent.getUnicodeChar();
-			if (i != 0)
-			{
-				Editable editable = getEditable();
-				int j = Selection.getSelectionStart(editable);
-				int k = Selection.getSelectionEnd(editable);
-				if (j > k)
-				{
-					int l = j;
-					j = k;
-					k = l;
-				}
-				editable.replace(j, k, Character.toString((char)i));
-			}
-		}
-		if (true) goto _L2; else goto _L5
-_L5:
+	    return true;
+	    
+//		if (keyevent.getAction() != 1) goto _L2; else goto _L1
+//_L1:
+//		if (keyevent.getKeyCode() != 67) goto _L4; else goto _L3
+//_L3:
+//		super.deleteSurroundingText(1, 0);
+//_L2:
+//		mImeAdapter.translateAndSendNativeEvents(keyevent);
+//		return true;
+//_L4:
+//		if (keyevent.getKeyCode() == 112)
+//		{
+//			super.deleteSurroundingText(0, 1);
+//		} else
+//		{
+//			int i = keyevent.getUnicodeChar();
+//			if (i != 0)
+//			{
+//				Editable editable = getEditable();
+//				int j = Selection.getSelectionStart(editable);
+//				int k = Selection.getSelectionEnd(editable);
+//				if (j > k)
+//				{
+//					int l = j;
+//					j = k;
+//					k = l;
+//				}
+//				editable.replace(j, k, Character.toString((char)i));
+//			}
+//		}
+//		if (true) goto _L2; else goto _L5
+//_L5:
 	}
 
 	public boolean setComposingRegion(int i, int j)

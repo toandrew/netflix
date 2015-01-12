@@ -21,9 +21,6 @@ class LongPressDetector
 
 	private class LongPressHandler extends Handler
 	{
-
-		final LongPressDetector this$0;
-
 		public void handleMessage(Message message)
 		{
 			switch (message.what)
@@ -39,8 +36,7 @@ class LongPressDetector
 
 		LongPressHandler()
 		{
-			this$0 = LongPressDetector.this;
-			Handler();
+			super();
 		}
 	}
 
@@ -85,57 +81,57 @@ class LongPressDetector
 
 	void cancelLongPressIfNeeded(MotionEvent motionevent)
 	{
-		if (hasPendingMessage() && mCurrentDownEvent != null && motionevent.getDownTime() == mCurrentDownEvent.getDownTime()) goto _L2; else goto _L1
-_L1:
-		return;
-_L2:
-		int j;
-		int k;
-		int i = motionevent.getAction();
-		float f = motionevent.getY();
-		float f1 = motionevent.getX();
-		switch (i & 0xff)
-		{
-		default:
-			return;
-
-		case 1: // '\001'
-		case 3: // '\003'
-			if (mCurrentDownEvent.getDownTime() + (long)TAP_TIMEOUT + (long)LONGPRESS_TIMEOUT > motionevent.getEventTime())
-			{
-				cancelLongPress();
-				return;
-			}
-			break;
-
-		case 2: // '\002'
-			j = (int)(f1 - mCurrentDownEvent.getX());
-			k = (int)(f - mCurrentDownEvent.getY());
-			continue; /* Loop/switch isn't completed */
-		}
-		if (true) goto _L1; else goto _L3
-_L3:
-		if (j * j + k * k <= mTouchSlopSquare) goto _L1; else goto _L4
-_L4:
-		cancelLongPress();
-		return;
+//		if (hasPendingMessage() && mCurrentDownEvent != null && motionevent.getDownTime() == mCurrentDownEvent.getDownTime()) goto _L2; else goto _L1
+//_L1:
+//		return;
+//_L2:
+//		int j;
+//		int k;
+//		int i = motionevent.getAction();
+//		float f = motionevent.getY();
+//		float f1 = motionevent.getX();
+//		switch (i & 0xff)
+//		{
+//		default:
+//			return;
+//
+//		case 1: // '\001'
+//		case 3: // '\003'
+//			if (mCurrentDownEvent.getDownTime() + (long)TAP_TIMEOUT + (long)LONGPRESS_TIMEOUT > motionevent.getEventTime())
+//			{
+//				cancelLongPress();
+//				return;
+//			}
+//			break;
+//
+//		case 2: // '\002'
+//			j = (int)(f1 - mCurrentDownEvent.getX());
+//			k = (int)(f - mCurrentDownEvent.getY());
+//			continue; /* Loop/switch isn't completed */
+//		}
+//		if (true) goto _L1; else goto _L3
+//_L3:
+//		if (j * j + k * k <= mTouchSlopSquare) goto _L1; else goto _L4
+//_L4:
+//		cancelLongPress();
+//		return;
 	}
 
 	void cancelLongPressIfNeeded(Iterator iterator)
 	{
-		if (mCurrentDownEvent != null) goto _L2; else goto _L1
-_L1:
-		return;
-_L2:
-		long l = mCurrentDownEvent.getDownTime();
-_L5:
-		if (!iterator.hasNext()) goto _L1; else goto _L3
-_L3:
-		MotionEvent motionevent = (MotionEvent)iterator.next();
-		if (motionevent.getDownTime() != l) goto _L1; else goto _L4
-_L4:
-		cancelLongPressIfNeeded(motionevent);
-		  goto _L5
+//		if (mCurrentDownEvent != null) goto _L2; else goto _L1
+//_L1:
+//		return;
+//_L2:
+//		long l = mCurrentDownEvent.getDownTime();
+//_L5:
+//		if (!iterator.hasNext()) goto _L1; else goto _L3
+//_L3:
+//		MotionEvent motionevent = (MotionEvent)iterator.next();
+//		if (motionevent.getDownTime() != l) goto _L1; else goto _L4
+//_L4:
+//		cancelLongPressIfNeeded(motionevent);
+//		  goto _L5
 	}
 
 	boolean confirmOfferMoveEventToJavaScript(MotionEvent motionevent)

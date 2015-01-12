@@ -20,7 +20,7 @@ class LocationProvider
 		implements LocationListener, org.chromium.base.ActivityStatus.StateListener
 	{
 
-		static final boolean $assertionsDisabled;
+		//static final boolean $assertionsDisabled;
 		private Context mContext;
 		private boolean mIsGpsEnabled;
 		private boolean mIsRunning;
@@ -127,22 +127,11 @@ class LocationProvider
 				return false;
 			Location location = mLocationManager.getLastKnownLocation("passive");
 			if (location != null)
-				ThreadUtils.runOnUiThread(location. new Runnable() {
-
-					final LocationProviderImpl this$0;
-					final Location val$location;
-
+				ThreadUtils.runOnUiThread( new Runnable() {
 					public void run()
 					{
-						updateNewLocation(location);
+						//updateNewLocation(location);
 					}
-
-			
-			{
-				this$0 = final_locationproviderimpl;
-				location = Location.this;
-				super();
-			}
 				});
 			return true;
 		}
@@ -186,12 +175,12 @@ class LocationProvider
 
 		static 
 		{
-			boolean flag;
-			if (!org/chromium/content/browser/LocationProvider.desiredAssertionStatus())
-				flag = true;
-			else
-				flag = false;
-			$assertionsDisabled = flag;
+//			boolean flag;
+//			if (!org/chromium/content/browser/LocationProvider.desiredAssertionStatus())
+//				flag = true;
+//			else
+//				flag = false;
+//			$assertionsDisabled = flag;
 		}
 
 
@@ -235,20 +224,9 @@ class LocationProvider
 	public boolean start(final boolean gpsEnabled)
 	{
 		ThreadUtils.runOnUiThread(new FutureTask(new Runnable() {
-
-			final LocationProvider this$0;
-			final boolean val$gpsEnabled;
-
 			public void run()
 			{
 				mImpl.start(gpsEnabled);
-			}
-
-			
-			{
-				this$0 = LocationProvider.this;
-				gpsEnabled = flag;
-				super();
 			}
 		}, null));
 		return true;
@@ -258,29 +236,21 @@ class LocationProvider
 	{
 		ThreadUtils.runOnUiThread(new FutureTask(new Runnable() {
 
-			final LocationProvider this$0;
-
 			public void run()
 			{
 				mImpl.stop();
-			}
-
-			
-			{
-				this$0 = LocationProvider.this;
-				super();
 			}
 		}, null));
 	}
 
 	static 
 	{
-		boolean flag;
-		if (!org/chromium/content/browser/LocationProvider.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
+//		boolean flag;
+//		if (!org/chromium/content/browser/LocationProvider.desiredAssertionStatus())
+//			flag = true;
+//		else
+//			flag = false;
+		//$assertionsDisabled = false;
 	}
 
 }

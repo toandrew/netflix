@@ -147,18 +147,11 @@ public class NetworkChangeNotifier
 			{
 				mAutoDetector = new NetworkChangeNotifierAutoDetect(new NetworkChangeNotifierAutoDetect.Observer() {
 
-					final NetworkChangeNotifier this$0;
-
 					public void onConnectionTypeChanged(int i)
 					{
 						updateCurrentConnectionType(i);
 					}
 
-			
-			{
-				this$0 = NetworkChangeNotifier.this;
-				super();
-			}
 				}, mContext);
 				mCurrentConnectionType = mAutoDetector.getCurrentConnectionType();
 			}
@@ -199,12 +192,12 @@ public class NetworkChangeNotifier
 
 	static 
 	{
-		boolean flag;
-		if (!org/chromium/net/NetworkChangeNotifier.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
+//		boolean flag;
+//		if (!org/chromium/net/NetworkChangeNotifier.desiredAssertionStatus())
+//			flag = true;
+//		else
+//			flag = false;
+		//$assertionsDisabled = false;
 	}
 
 }

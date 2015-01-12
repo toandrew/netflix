@@ -96,68 +96,69 @@ label0:
 
 	public static boolean haveOnlyLoopbackAddresses()
 	{
-		Enumeration enumeration;
-		try
-		{
-			enumeration = NetworkInterface.getNetworkInterfaces();
-		}
-		catch (Exception exception)
-		{
-			Log.w("AndroidNetworkLibrary", (new StringBuilder()).append("could not get network interfaces: ").append(exception).toString());
-			return false;
-		}
-		if (enumeration == null)
-			return false;
-		break MISSING_BLOCK_LABEL_40;
-		SocketException socketexception;
-		socketexception;
-_L2:
-		NetworkInterface networkinterface;
-		if (!enumeration.hasMoreElements())
-			break; /* Loop/switch isn't completed */
-		networkinterface = (NetworkInterface)enumeration.nextElement();
-		boolean flag;
-		if (!networkinterface.isUp())
-			continue; /* Loop/switch isn't completed */
-		flag = networkinterface.isLoopback();
-		if (!flag)
-			return false;
-		if (true) goto _L2; else goto _L1
-_L1:
+//		Enumeration enumeration;
+//		try
+//		{
+//			enumeration = NetworkInterface.getNetworkInterfaces();
+//		}
+//		catch (Exception exception)
+//		{
+//			Log.w("AndroidNetworkLibrary", (new StringBuilder()).append("could not get network interfaces: ").append(exception).toString());
+//			return false;
+//		}
+//		if (enumeration == null)
+//			return false;
+//		break MISSING_BLOCK_LABEL_40;
+//		SocketException socketexception;
+//		socketexception;
+//_L2:
+//		NetworkInterface networkinterface;
+//		if (!enumeration.hasMoreElements())
+//			break; /* Loop/switch isn't completed */
+//		networkinterface = (NetworkInterface)enumeration.nextElement();
+//		boolean flag;
+//		if (!networkinterface.isUp())
+//			continue; /* Loop/switch isn't completed */
+//		flag = networkinterface.isLoopback();
+//		if (!flag)
+//			return false;
+//		if (true) goto _L2; else goto _L1
+//_L1:
 		return true;
 	}
 
 	public static boolean storeCertificate(Context context, int i, byte abyte0[])
 	{
-		Intent intent;
-		try
-		{
-			intent = KeyChain.createInstallIntent();
-			intent.addFlags(0x10000000);
-		}
-		catch (ActivityNotFoundException activitynotfoundexception)
-		{
-			Log.w("AndroidNetworkLibrary", (new StringBuilder()).append("could not store crypto file: ").append(activitynotfoundexception).toString());
-			return false;
-		}
-		i;
-		JVM INSTR tableswitch 1 3: default 40
-	//	               1 67
-	//	               2 67
-	//	               3 84;
-		   goto _L1 _L2 _L2 _L3
-_L3:
-		break MISSING_BLOCK_LABEL_84;
-_L1:
-		Log.w("AndroidNetworkLibrary", (new StringBuilder()).append("invalid certificate type: ").append(i).toString());
-		return false;
-_L2:
-		intent.putExtra("CERT", abyte0);
-_L4:
-		context.startActivity(intent);
-		return true;
-		intent.putExtra("PKCS12", abyte0);
-		  goto _L4
+	    return true;
+//		Intent intent;
+//		try
+//		{
+//			intent = KeyChain.createInstallIntent();
+//			intent.addFlags(0x10000000);
+//		}
+//		catch (ActivityNotFoundException activitynotfoundexception)
+//		{
+//			Log.w("AndroidNetworkLibrary", (new StringBuilder()).append("could not store crypto file: ").append(activitynotfoundexception).toString());
+//			return false;
+//		}
+//		i;
+//		JVM INSTR tableswitch 1 3: default 40
+//	//	               1 67
+//	//	               2 67
+//	//	               3 84;
+//		   goto _L1 _L2 _L2 _L3
+//_L3:
+//		break MISSING_BLOCK_LABEL_84;
+//_L1:
+//		Log.w("AndroidNetworkLibrary", (new StringBuilder()).append("invalid certificate type: ").append(i).toString());
+//		return false;
+//_L2:
+//		intent.putExtra("CERT", abyte0);
+//_L4:
+//		context.startActivity(intent);
+//		return true;
+//		intent.putExtra("PKCS12", abyte0);
+//		  goto _L4
 	}
 
 	public static boolean storeKeyPair(Context context, byte abyte0[], byte abyte1[])

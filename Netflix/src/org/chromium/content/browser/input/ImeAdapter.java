@@ -33,7 +33,6 @@ public class ImeAdapter
 	{
 
 		private final int mNativeImeAdapter;
-		final ImeAdapter this$0;
 
 		public void run()
 		{
@@ -43,8 +42,6 @@ public class ImeAdapter
 
 		DelayedDismissInput(int i)
 		{
-			this$0 = ImeAdapter.this;
-			super();
 			mNativeImeAdapter = i;
 		}
 	}
@@ -273,30 +270,30 @@ public class ImeAdapter
 
 	public void attachAndShowIfNeeded(int i, int j, int k, int l, boolean flag)
 	{
-		mHandler.removeCallbacks(mDismissInput);
-		if (mTextInputType != sTextInputTypeNone || flag) goto _L2; else goto _L1
-_L1:
-		return;
-_L2:
-		if (isFor(i, j))
-			continue; /* Loop/switch isn't completed */
-		if (j == sTextInputTypeNone)
-		{
-			mDismissInput = new DelayedDismissInput(i);
-			mHandler.postDelayed(mDismissInput, 150L);
-			return;
-		}
-		mTextInputType;
-		attach(i, j, k, l);
-		mInputMethodManagerWrapper.restartInput(mViewEmbedder.getAttachedView());
-		if (!flag) goto _L1; else goto _L3
-_L3:
-		showKeyboard();
-		return;
-		if (!hasInputType() || !flag) goto _L1; else goto _L4
-_L4:
-		showKeyboard();
-		return;
+//		mHandler.removeCallbacks(mDismissInput);
+//		if (mTextInputType != sTextInputTypeNone || flag) goto _L2; else goto _L1
+//_L1:
+//		return;
+//_L2:
+//		if (isFor(i, j))
+//			continue; /* Loop/switch isn't completed */
+//		if (j == sTextInputTypeNone)
+//		{
+//			mDismissInput = new DelayedDismissInput(i);
+//			mHandler.postDelayed(mDismissInput, 150L);
+//			return;
+//		}
+//		mTextInputType;
+//		attach(i, j, k, l);
+//		mInputMethodManagerWrapper.restartInput(mViewEmbedder.getAttachedView());
+//		if (!flag) goto _L1; else goto _L3
+//_L3:
+//		showKeyboard();
+//		return;
+//		if (!hasInputType() || !flag) goto _L1; else goto _L4
+//_L4:
+//		showKeyboard();
+//		return;
 	}
 
 	void batchStateChanged(boolean flag)

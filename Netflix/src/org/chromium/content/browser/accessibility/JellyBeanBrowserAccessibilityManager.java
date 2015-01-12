@@ -23,30 +23,23 @@ public class JellyBeanBrowserAccessibilityManager extends BrowserAccessibilityMa
 		super(i, contentviewcore);
 		mAccessibilityNodeProvider = new AccessibilityNodeProvider() {
 
-			final JellyBeanBrowserAccessibilityManager this$0;
-			final BrowserAccessibilityManager val$delegate;
-
-			public AccessibilityNodeInfo createAccessibilityNodeInfo(int j)
-			{
-				return delegate.createAccessibilityNodeInfo(j);
-			}
-
-			public List findAccessibilityNodeInfosByText(String s, int j)
-			{
-				return delegate.findAccessibilityNodeInfosByText(s, j);
-			}
-
-			public boolean performAction(int j, int k, Bundle bundle)
-			{
-				return delegate.performAction(j, k, bundle);
-			}
-
-			
-			{
-				this$0 = JellyBeanBrowserAccessibilityManager.this;
-				delegate = browseraccessibilitymanager;
-				super();
-			}
+//			final JellyBeanBrowserAccessibilityManager this$0;
+//			final BrowserAccessibilityManager val$delegate;
+//
+//			public AccessibilityNodeInfo createAccessibilityNodeInfo(int j)
+//			{
+//				return delegate.createAccessibilityNodeInfo(j);
+//			}
+//
+//			public List findAccessibilityNodeInfosByText(String s, int j)
+//			{
+//				return delegate.findAccessibilityNodeInfosByText(s, j);
+//			}
+//
+//			public boolean performAction(int j, int k, Bundle bundle)
+//			{
+//				return delegate.performAction(j, k, bundle);
+//			}
 		};
 	}
 

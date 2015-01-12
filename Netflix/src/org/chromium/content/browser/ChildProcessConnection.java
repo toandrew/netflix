@@ -23,8 +23,7 @@ public class ChildProcessConnection
 		private final int mBindFlags;
 		private boolean mBound;
 		private final boolean mProtectsFromOom;
-		final ChildProcessConnection this$0;
-
+	
 		boolean bind(String as[])
 		{
 			if (!mBound)
@@ -61,13 +60,13 @@ label0:
 			if (mConnectionParams != null)
 				doConnectionSetup();
 			TraceEvent.end();
-			obj;
-			JVM INSTR monitorexit ;
-			return;
-			exception;
-			obj;
-			JVM INSTR monitorexit ;
-			throw exception;
+//			obj;
+//			JVM INSTR monitorexit ;
+//			return;
+//			exception;
+//			obj;
+//			JVM INSTR monitorexit ;
+//			throw exception;
 		}
 
 		public void onServiceDisconnected(ComponentName componentname)
@@ -104,8 +103,6 @@ label0:
 
 		public ChildServiceConnection(int i, boolean flag)
 		{
-			this$0 = ChildProcessConnection.this;
-			super();
 			mBound = false;
 			mBindFlags = i;
 			mProtectsFromOom = flag;
@@ -201,88 +198,88 @@ label0:
 
 	private void doConnectionSetup()
 	{
-		TraceEvent.begin();
-		if (!$assertionsDisabled && (!mServiceConnectComplete || mConnectionParams == null))
-			throw new AssertionError();
-		if (mService == null) goto _L2; else goto _L1
-_L1:
-		Bundle bundle = new Bundle();
-		bundle.putStringArray("com.google.android.apps.chrome.extra.command_line", mConnectionParams.mCommandLine);
-		FileDescriptorInfo afiledescriptorinfo[] = mConnectionParams.mFilesToBeMapped;
-		ParcelFileDescriptor aparcelfiledescriptor[] = new ParcelFileDescriptor[afiledescriptorinfo.length];
-		int i = 0;
-		while (i < afiledescriptorinfo.length) 
-		{
-			if (afiledescriptorinfo[i].mFd == -1)
-			{
-				Log.e("ChildProcessConnection", (new StringBuilder()).append("Invalid FD (id=").append(afiledescriptorinfo[i].mId).append(") for process connection, ").append("aborting connection.").toString());
-				return;
-			}
-			String s = (new StringBuilder()).append("com.google.android.apps.chrome.extra.extraFile_").append(i).append("_id").toString();
-			String s1 = (new StringBuilder()).append("com.google.android.apps.chrome.extra.extraFile_").append(i).append("_fd").toString();
-			if (afiledescriptorinfo[i].mAutoClose)
-				aparcelfiledescriptor[i] = ParcelFileDescriptor.adoptFd(afiledescriptorinfo[i].mFd);
-			else
-				try
-				{
-					aparcelfiledescriptor[i] = ParcelFileDescriptor.fromFd(afiledescriptorinfo[i].mFd);
-				}
-				catch (IOException ioexception1)
-				{
-					Log.e("ChildProcessConnection", "Invalid FD provided for process connection, aborting connection.", ioexception1);
-					return;
-				}
-			bundle.putParcelable(s1, aparcelfiledescriptor[i]);
-			bundle.putInt(s, afiledescriptorinfo[i].mId);
-			i++;
-		}
-		bundle.putInt("com.google.android.apps.chrome.extra.cpu_count", CpuFeatures.getCount());
-		bundle.putLong("com.google.android.apps.chrome.extra.cpu_features", CpuFeatures.getMask());
-		int i1;
-		int j1;
-		ParcelFileDescriptor parcelfiledescriptor;
-		try
-		{
-			mPID = mService.setupConnection(bundle, mConnectionParams.mCallback);
-		}
-		catch (RemoteException remoteexception)
-		{
-			Log.e("ChildProcessConnection", "Failed to setup connection.", remoteexception);
-		}
-		i1 = aparcelfiledescriptor.length;
-		j1 = 0;
-_L3:
-		if (j1 >= i1)
-			break; /* Loop/switch isn't completed */
-		parcelfiledescriptor = aparcelfiledescriptor[j1];
-		if (parcelfiledescriptor == null)
-			break MISSING_BLOCK_LABEL_342;
-		parcelfiledescriptor.close();
-		j1++;
-		if (true) goto _L3; else goto _L2
-		IOException ioexception;
-		ioexception;
-		Log.w("ChildProcessConnection", "Failed to close FD.", ioexception);
-_L2:
-		mConnectionParams = null;
-		if (mConnectionCallbacks != null)
-		{
-			int j;
-			int k;
-			int l;
-			if (mInitialBinding.isBound())
-				j = 1;
-			else
-				j = 0;
-			if (mStrongBinding.isBound())
-				k = 1;
-			else
-				k = 0;
-			l = j + k;
-			mConnectionCallbacks.onConnected(getPid(), l);
-		}
-		TraceEvent.end();
-		return;
+//		TraceEvent.begin();
+//		if (!$assertionsDisabled && (!mServiceConnectComplete || mConnectionParams == null))
+//			throw new AssertionError();
+//		if (mService == null) goto _L2; else goto _L1
+//_L1:
+//		Bundle bundle = new Bundle();
+//		bundle.putStringArray("com.google.android.apps.chrome.extra.command_line", mConnectionParams.mCommandLine);
+//		FileDescriptorInfo afiledescriptorinfo[] = mConnectionParams.mFilesToBeMapped;
+//		ParcelFileDescriptor aparcelfiledescriptor[] = new ParcelFileDescriptor[afiledescriptorinfo.length];
+//		int i = 0;
+//		while (i < afiledescriptorinfo.length) 
+//		{
+//			if (afiledescriptorinfo[i].mFd == -1)
+//			{
+//				Log.e("ChildProcessConnection", (new StringBuilder()).append("Invalid FD (id=").append(afiledescriptorinfo[i].mId).append(") for process connection, ").append("aborting connection.").toString());
+//				return;
+//			}
+//			String s = (new StringBuilder()).append("com.google.android.apps.chrome.extra.extraFile_").append(i).append("_id").toString();
+//			String s1 = (new StringBuilder()).append("com.google.android.apps.chrome.extra.extraFile_").append(i).append("_fd").toString();
+//			if (afiledescriptorinfo[i].mAutoClose)
+//				aparcelfiledescriptor[i] = ParcelFileDescriptor.adoptFd(afiledescriptorinfo[i].mFd);
+//			else
+//				try
+//				{
+//					aparcelfiledescriptor[i] = ParcelFileDescriptor.fromFd(afiledescriptorinfo[i].mFd);
+//				}
+//				catch (IOException ioexception1)
+//				{
+//					Log.e("ChildProcessConnection", "Invalid FD provided for process connection, aborting connection.", ioexception1);
+//					return;
+//				}
+//			bundle.putParcelable(s1, aparcelfiledescriptor[i]);
+//			bundle.putInt(s, afiledescriptorinfo[i].mId);
+//			i++;
+//		}
+//		bundle.putInt("com.google.android.apps.chrome.extra.cpu_count", CpuFeatures.getCount());
+//		bundle.putLong("com.google.android.apps.chrome.extra.cpu_features", CpuFeatures.getMask());
+//		int i1;
+//		int j1;
+//		ParcelFileDescriptor parcelfiledescriptor;
+//		try
+//		{
+//			mPID = mService.setupConnection(bundle, mConnectionParams.mCallback);
+//		}
+//		catch (RemoteException remoteexception)
+//		{
+//			Log.e("ChildProcessConnection", "Failed to setup connection.", remoteexception);
+//		}
+//		i1 = aparcelfiledescriptor.length;
+//		j1 = 0;
+//_L3:
+//		if (j1 >= i1)
+//			break; /* Loop/switch isn't completed */
+//		parcelfiledescriptor = aparcelfiledescriptor[j1];
+//		if (parcelfiledescriptor == null)
+//			break MISSING_BLOCK_LABEL_342;
+//		parcelfiledescriptor.close();
+//		j1++;
+//		if (true) goto _L3; else goto _L2
+//		IOException ioexception;
+//		ioexception;
+//		Log.w("ChildProcessConnection", "Failed to close FD.", ioexception);
+//_L2:
+//		mConnectionParams = null;
+//		if (mConnectionCallbacks != null)
+//		{
+//			int j;
+//			int k;
+//			int l;
+//			if (mInitialBinding.isBound())
+//				j = 1;
+//			else
+//				j = 0;
+//			if (mStrongBinding.isBound())
+//				k = 1;
+//			else
+//				k = 0;
+//			l = j + k;
+//			mConnectionCallbacks.onConnected(getPid(), l);
+//		}
+//		TraceEvent.end();
+//		return;
 	}
 
 	private void onBindFailed()
@@ -294,37 +291,37 @@ _L2:
 
 	void attachAsActive()
 	{
-label0:
-		{
-			synchronized (mUiThreadLock)
-			{
-				if (mService != null)
-					break label0;
-				Log.w("ChildProcessConnection", (new StringBuilder()).append("The connection is not bound for ").append(mPID).toString());
-			}
-			return;
-		}
-		if (mAttachAsActiveCount == 0)
-			mStrongBinding.bind(null);
-		mAttachAsActiveCount = 1 + mAttachAsActiveCount;
-		obj;
-		JVM INSTR monitorexit ;
-		return;
-		exception;
-		obj;
-		JVM INSTR monitorexit ;
-		throw exception;
+//label0:
+//		{
+//			synchronized (mUiThreadLock)
+//			{
+//				if (mService != null)
+//					break label0;
+//				Log.w("ChildProcessConnection", (new StringBuilder()).append("The connection is not bound for ").append(mPID).toString());
+//			}
+//			return;
+//		}
+//		if (mAttachAsActiveCount == 0)
+//			mStrongBinding.bind(null);
+//		mAttachAsActiveCount = 1 + mAttachAsActiveCount;
+//		obj;
+//		JVM INSTR monitorexit ;
+//		return;
+//		exception;
+//		obj;
+//		JVM INSTR monitorexit ;
+//		throw exception;
 	}
 
 	void detachAsActive()
 	{
-		Runnable runnable = new Runnable() ;
-		long l;
-		if (SysUtils.isLowEndDevice())
-			l = 0L;
-		else
-			l = 5000L;
-		ThreadUtils.postOnUiThreadDelayed(runnable, l);
+//		Runnable runnable = new Runnable() ;
+//		long l;
+//		if (SysUtils.isLowEndDevice())
+//			l = 0L;
+//		else
+//			l = 5000L;
+//		ThreadUtils.postOnUiThreadDelayed(runnable, l);
 	}
 
 	int getPid()
@@ -335,10 +332,6 @@ label0:
 			i = mPID;
 		}
 		return i;
-		exception;
-		obj;
-		JVM INSTR monitorexit ;
-		throw exception;
 	}
 
 	IChildProcessService getService()
@@ -349,10 +342,6 @@ label0:
 			ichildprocessservice = mService;
 		}
 		return ichildprocessservice;
-		exception;
-		obj;
-		JVM INSTR monitorexit ;
-		throw exception;
 	}
 
 	int getServiceNumber()
@@ -367,95 +356,95 @@ label0:
 
 	void removeInitialBinding()
 	{
-label0:
-		{
-			synchronized (mUiThreadLock)
-			{
-				if (mInitialBinding.isBound())
-					break label0;
-			}
-			return;
-		}
-		obj;
-		JVM INSTR monitorexit ;
-		ThreadUtils.postOnUiThreadDelayed(new Runnable() {
-
-			final ChildProcessConnection this$0;
-
-			public void run()
-			{
-				synchronized (mUiThreadLock)
-				{
-					mInitialBinding.unbind();
-				}
-				return;
-				exception1;
-				obj1;
-				JVM INSTR monitorexit ;
-				throw exception1;
-			}
-
-			
-			{
-				this$0 = ChildProcessConnection.this;
-				super();
-			}
-		}, 1000L);
-		return;
-		exception;
-		obj;
-		JVM INSTR monitorexit ;
-		throw exception;
+//label0:
+//		{
+//			synchronized (mUiThreadLock)
+//			{
+//				if (mInitialBinding.isBound())
+//					break label0;
+//			}
+//			return;
+//		}
+//		obj;
+//		JVM INSTR monitorexit ;
+//		ThreadUtils.postOnUiThreadDelayed(new Runnable() {
+//
+//			final ChildProcessConnection this$0;
+//
+//			public void run()
+//			{
+//				synchronized (mUiThreadLock)
+//				{
+//					mInitialBinding.unbind();
+//				}
+//				return;
+//				exception1;
+//				obj1;
+//				JVM INSTR monitorexit ;
+//				throw exception1;
+//			}
+//
+//			
+//			{
+//				this$0 = ChildProcessConnection.this;
+//				super();
+//			}
+//		}, 1000L);
+//		return;
+//		exception;
+//		obj;
+//		JVM INSTR monitorexit ;
+//		throw exception;
 	}
 
 	void setupConnection(String as[], FileDescriptorInfo afiledescriptorinfo[], IChildProcessCallback ichildprocesscallback, ConnectionCallbacks connectioncallbacks)
 	{
-		Object obj = mUiThreadLock;
-		obj;
-		JVM INSTR monitorenter ;
-		TraceEvent.begin();
-		if (!$assertionsDisabled && mConnectionParams != null)
-			throw new AssertionError();
-		break MISSING_BLOCK_LABEL_41;
-		Exception exception;
-		exception;
-		obj;
-		JVM INSTR monitorexit ;
-		throw exception;
-		mConnectionCallbacks = connectioncallbacks;
-		mConnectionParams = new ConnectionParams(as, afiledescriptorinfo, ichildprocesscallback);
-		if (mServiceConnectComplete)
-			doConnectionSetup();
-		TraceEvent.end();
-		obj;
-		JVM INSTR monitorexit ;
+//		Object obj = mUiThreadLock;
+//		obj;
+//		JVM INSTR monitorenter ;
+//		TraceEvent.begin();
+//		if (!$assertionsDisabled && mConnectionParams != null)
+//			throw new AssertionError();
+//		break MISSING_BLOCK_LABEL_41;
+//		Exception exception;
+//		exception;
+//		obj;
+//		JVM INSTR monitorexit ;
+//		throw exception;
+//		mConnectionCallbacks = connectioncallbacks;
+//		mConnectionParams = new ConnectionParams(as, afiledescriptorinfo, ichildprocesscallback);
+//		if (mServiceConnectComplete)
+//			doConnectionSetup();
+//		TraceEvent.end();
+//		obj;
+//		JVM INSTR monitorexit ;
 	}
 
 	void start(String as[])
 	{
-		Object obj = mUiThreadLock;
-		obj;
-		JVM INSTR monitorenter ;
-		TraceEvent.begin();
-		if (!$assertionsDisabled && ThreadUtils.runningOnUiThread())
-			throw new AssertionError();
-		break MISSING_BLOCK_LABEL_35;
-		Exception exception;
-		exception;
-		obj;
-		JVM INSTR monitorexit ;
-		throw exception;
-		if (mInitialBinding.bind(as))
-			break MISSING_BLOCK_LABEL_56;
-		onBindFailed();
-_L2:
-		TraceEvent.end();
-		obj;
-		JVM INSTR monitorexit ;
-		return;
-		mWaivedBinding.bind(null);
-		if (true) goto _L2; else goto _L1
-_L1:
+//		Object obj = mUiThreadLock;
+//		obj;
+//		JVM INSTR monitorenter ;
+//		TraceEvent.begin();
+//		if (!$assertionsDisabled && ThreadUtils.runningOnUiThread())
+//			throw new AssertionError();
+//		break MISSING_BLOCK_LABEL_35;
+//		Exception exception;
+//		exception;
+//		obj;
+//		JVM INSTR monitorexit ;
+//		throw exception;
+//		if (mInitialBinding.bind(as))
+//			break MISSING_BLOCK_LABEL_56;
+//		onBindFailed();
+//_L2:
+//		TraceEvent.end();
+//		obj;
+//		JVM INSTR monitorexit ;
+//		return;
+//		mWaivedBinding.bind(null);
+//		if (true) goto _L2; else goto _L1
+//_L1:
 	}
 
 	void stop()
@@ -475,21 +464,17 @@ _L1:
 			mServiceConnectComplete = false;
 		}
 		return;
-		exception;
-		obj;
-		JVM INSTR monitorexit ;
-		throw exception;
 	}
 
-	static 
-	{
-		boolean flag;
-		if (!org/chromium/content/browser/ChildProcessConnection.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
-	}
+//	static 
+//	{
+//		boolean flag;
+//		if (!org/chromium/content/browser/ChildProcessConnection.desiredAssertionStatus())
+//			flag = true;
+//		else
+//			flag = false;
+//		$assertionsDisabled = flag;
+//	}
 
 
 

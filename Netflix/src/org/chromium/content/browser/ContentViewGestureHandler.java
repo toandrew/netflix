@@ -49,7 +49,6 @@ class ContentViewGestureHandler
 		private Handler mHandler;
 		private int mPendingAckState;
 		private TouchPoint mTouchPoints[];
-		final ContentViewGestureHandler this$0;
 
 		public boolean confirmTouchEvent()
 		{
@@ -141,21 +140,20 @@ label1:
 				return;
 			}
 		}
-
-		static 
-		{
-			boolean flag;
-			if (!org/chromium/content/browser/ContentViewGestureHandler.desiredAssertionStatus())
-				flag = true;
-			else
-				flag = false;
-			$assertionsDisabled = flag;
-		}
+//
+//		static 
+//		{
+////			boolean flag;
+////			if (!org/chromium/content/browser/ContentViewGestureHandler.desiredAssertionStatus())
+////				flag = true;
+////			else
+////				flag = false;
+//			$assertionsDisabled = false;
+//		}
 
 		private TouchEventTimeoutHandler()
 		{
-			this$0 = ContentViewGestureHandler.this;
-			super();
+		    super();
 			mHandler = new Handler();
 		}
 
@@ -235,8 +233,9 @@ label1:
 
 	ContentViewGestureHandler(Context context, MotionEventDelegate motioneventdelegate, ZoomManager zoommanager, int i)
 	{
+	    super();
+	    
 		boolean flag = true;
-		super();
 		mHasTouchHandlers = false;
 		mNoTouchHandlerForGesture = false;
 		mJavaScriptIsConsumingGesture = false;
@@ -253,7 +252,7 @@ label1:
 		mMotionEventDelegate = motioneventdelegate;
 		mZoomManager = zoommanager;
 		mSnapScrollController = new SnapScrollController(context, mZoomManager);
-		if (i != flag)
+		if (i != 1)
 			flag = false;
 		mInputEventsDeliveredAtVSync = flag;
 		mPxToDp = 1.0F / context.getResources().getDisplayMetrics().density;
@@ -302,9 +301,6 @@ label1:
 		TraceEvent.begin();
 		org.chromium.content.browser.third_party.GestureDetector.SimpleOnGestureListener simpleongesturelistener = new org.chromium.content.browser.third_party.GestureDetector.SimpleOnGestureListener() {
 
-			final ContentViewGestureHandler this$0;
-			final int val$scaledTouchSlop;
-
 			private boolean isDistanceBetweenDownAndUpTooLong(float f, float f1)
 			{
 				double d = mLastRawX - f;
@@ -314,60 +310,62 @@ label1:
 
 			public boolean onDoubleTapEvent(MotionEvent motionevent)
 			{
-				motionevent.getActionMasked();
-				JVM INSTR tableswitch 0 3: default 36
-			//			               0 50
-			//			               1 380
-			//			               2 94
-			//			               3 413;
-				   goto _L1 _L2 _L3 _L4 _L5
-_L1:
-				mDoubleTapY = motionevent.getY();
-				return true;
-_L2:
-				sendShowPressCancelIfNecessary(motionevent);
-				mDoubleTapDragZoomAnchorX = motionevent.getX();
-				mDoubleTapDragZoomAnchorY = motionevent.getY();
-				mDoubleTapDragMode = 1;
-				continue; /* Loop/switch isn't completed */
-_L4:
-				if (mDoubleTapDragMode == 1)
-				{
-					float f1 = mDoubleTapDragZoomAnchorX - motionevent.getX();
-					float f2 = mDoubleTapDragZoomAnchorY - motionevent.getY();
-					if (f1 * f1 + f2 * f2 > (float)mScaledTouchSlopSquare)
-					{
-						sendGesture(6, motionevent.getEventTime(), (int)motionevent.getX(), (int)motionevent.getY(), null);
-						pinchBegin(motionevent.getEventTime(), Math.round(mDoubleTapDragZoomAnchorX), Math.round(mDoubleTapDragZoomAnchorY));
-						mDoubleTapDragMode = 2;
-					}
-				} else
-				if (mDoubleTapDragMode == 2)
-				{
-					mExtraParamBundle.clear();
-					sendGesture(7, motionevent.getEventTime(), (int)motionevent.getX(), (int)motionevent.getY(), mExtraParamBundle);
-					float f = mDoubleTapY - motionevent.getY();
-					ContentViewGestureHandler contentviewgesturehandler = ContentViewGestureHandler.this;
-					long l = motionevent.getEventTime();
-					int i = Math.round(mDoubleTapDragZoomAnchorX);
-					int j = Math.round(mDoubleTapDragZoomAnchorY);
-					double d;
-					if (f < 0.0F)
-						d = 0.99500000476837158D;
-					else
-						d = 1.0049999952316284D;
-					contentviewgesturehandler.pinchBy(l, i, j, (float)Math.pow(d, Math.abs(f * mPxToDp)));
-				}
-				continue; /* Loop/switch isn't completed */
-_L3:
-				if (mDoubleTapDragMode != 2)
-					sendMotionEventAsGesture(1, motionevent, null);
-				endDoubleTapDragMode(motionevent);
-				continue; /* Loop/switch isn't completed */
-_L5:
-				endDoubleTapDragMode(motionevent);
-				if (true) goto _L1; else goto _L6
-_L6:
+			    return true;
+			    
+//				motionevent.getActionMasked();
+//				JVM INSTR tableswitch 0 3: default 36
+//			//			               0 50
+//			//			               1 380
+//			//			               2 94
+//			//			               3 413;
+//				   goto _L1 _L2 _L3 _L4 _L5
+//_L1:
+//				mDoubleTapY = motionevent.getY();
+//				return true;
+//_L2:
+//				sendShowPressCancelIfNecessary(motionevent);
+//				mDoubleTapDragZoomAnchorX = motionevent.getX();
+//				mDoubleTapDragZoomAnchorY = motionevent.getY();
+//				mDoubleTapDragMode = 1;
+//				continue; /* Loop/switch isn't completed */
+//_L4:
+//				if (mDoubleTapDragMode == 1)
+//				{
+//					float f1 = mDoubleTapDragZoomAnchorX - motionevent.getX();
+//					float f2 = mDoubleTapDragZoomAnchorY - motionevent.getY();
+//					if (f1 * f1 + f2 * f2 > (float)mScaledTouchSlopSquare)
+//					{
+//						sendGesture(6, motionevent.getEventTime(), (int)motionevent.getX(), (int)motionevent.getY(), null);
+//						pinchBegin(motionevent.getEventTime(), Math.round(mDoubleTapDragZoomAnchorX), Math.round(mDoubleTapDragZoomAnchorY));
+//						mDoubleTapDragMode = 2;
+//					}
+//				} else
+//				if (mDoubleTapDragMode == 2)
+//				{
+//					mExtraParamBundle.clear();
+//					sendGesture(7, motionevent.getEventTime(), (int)motionevent.getX(), (int)motionevent.getY(), mExtraParamBundle);
+//					float f = mDoubleTapY - motionevent.getY();
+//					ContentViewGestureHandler contentviewgesturehandler = ContentViewGestureHandler.this;
+//					long l = motionevent.getEventTime();
+//					int i = Math.round(mDoubleTapDragZoomAnchorX);
+//					int j = Math.round(mDoubleTapDragZoomAnchorY);
+//					double d;
+//					if (f < 0.0F)
+//						d = 0.99500000476837158D;
+//					else
+//						d = 1.0049999952316284D;
+//					contentviewgesturehandler.pinchBy(l, i, j, (float)Math.pow(d, Math.abs(f * mPxToDp)));
+//				}
+//				continue; /* Loop/switch isn't completed */
+//_L3:
+//				if (mDoubleTapDragMode != 2)
+//					sendMotionEventAsGesture(1, motionevent, null);
+//				endDoubleTapDragMode(motionevent);
+//				continue; /* Loop/switch isn't completed */
+//_L5:
+//				endDoubleTapDragMode(motionevent);
+//				if (true) goto _L1; else goto _L6
+//_L6:
 			}
 
 			public boolean onDown(MotionEvent motionevent)
@@ -508,23 +506,12 @@ _L6:
 				}
 				return triggerLongTapIfNeeded(motionevent);
 			}
-
-			
-			{
-				this$0 = ContentViewGestureHandler.this;
-				scaledTouchSlop = i;
-				super();
-			}
 		};
 		mListener = simpleongesturelistener;
 		mGestureDetector = new GestureDetector(context, simpleongesturelistener);
 		mGestureDetector.setIsLongpressEnabled(false);
 		TraceEvent.end();
 		return;
-		Exception exception;
-		exception;
-		TraceEvent.end();
-		throw exception;
 	}
 
 	private MotionEvent obtainActionCancelMotionEvent()
@@ -534,54 +521,56 @@ _L6:
 
 	private boolean offerTouchEventToJavaScript(MotionEvent motionevent)
 	{
-		boolean flag;
-		flag = true;
-		mLongPressDetector.onOfferTouchEventToJavaScript(motionevent);
-		if (mHasTouchHandlers && !mNoTouchHandlerForGesture) goto _L2; else goto _L1
-_L1:
-		flag = false;
-_L4:
-		return flag;
-_L2:
-		if (motionevent.getActionMasked() != 2)
-			break; /* Loop/switch isn't completed */
-		if (!mLongPressDetector.confirmOfferMoveEventToJavaScript(motionevent))
-			continue; /* Loop/switch isn't completed */
-		MotionEvent motionevent3 = (MotionEvent)mPendingMotionEvents.peekLast();
-		if (motionevent3 != null && motionevent3 != mPendingMotionEvents.peekFirst() && motionevent3.getActionMasked() == 2 && motionevent3.getPointerCount() == motionevent.getPointerCount())
-		{
-			TraceEvent.instant("offerTouchEventToJavaScript:EventCoalesced", (new StringBuilder()).append("QueueSize = ").append(mPendingMotionEvents.size()).toString());
-			android.view.MotionEvent.PointerCoords apointercoords[] = new android.view.MotionEvent.PointerCoords[motionevent.getPointerCount()];
-			for (int j = 0; j < apointercoords.length; j++)
-			{
-				apointercoords[j] = new android.view.MotionEvent.PointerCoords();
-				motionevent.getPointerCoords(j, apointercoords[j]);
-			}
-
-			motionevent3.addBatch(motionevent.getEventTime(), apointercoords, motionevent.getMetaState());
-			return flag;
-		}
-		break; /* Loop/switch isn't completed */
-		if (true) goto _L4; else goto _L3
-_L3:
-		if (mPendingMotionEvents.isEmpty())
-		{
-			MotionEvent motionevent2 = MotionEvent.obtain(motionevent);
-			mPendingMotionEvents.add(motionevent2);
-			int i = sendPendingEventToNative();
-			if (i == 2)
-				mPendingMotionEvents.remove(motionevent2);
-			if (i == 2)
-				return false;
-		} else
-		{
-			TraceEvent.instant("offerTouchEventToJavaScript:EventQueued", (new StringBuilder()).append("QueueSize = ").append(mPendingMotionEvents.size()).toString());
-			MotionEvent motionevent1 = MotionEvent.obtain(motionevent);
-			mPendingMotionEvents.add(motionevent1);
-			return flag;
-		}
-		if (true) goto _L4; else goto _L5
-_L5:
+	    return true;
+	    
+//		boolean flag;
+//		flag = true;
+//		mLongPressDetector.onOfferTouchEventToJavaScript(motionevent);
+//		if (mHasTouchHandlers && !mNoTouchHandlerForGesture) goto _L2; else goto _L1
+//_L1:
+//		flag = false;
+//_L4:
+//		return flag;
+//_L2:
+//		if (motionevent.getActionMasked() != 2)
+//			break; /* Loop/switch isn't completed */
+//		if (!mLongPressDetector.confirmOfferMoveEventToJavaScript(motionevent))
+//			continue; /* Loop/switch isn't completed */
+//		MotionEvent motionevent3 = (MotionEvent)mPendingMotionEvents.peekLast();
+//		if (motionevent3 != null && motionevent3 != mPendingMotionEvents.peekFirst() && motionevent3.getActionMasked() == 2 && motionevent3.getPointerCount() == motionevent.getPointerCount())
+//		{
+//			TraceEvent.instant("offerTouchEventToJavaScript:EventCoalesced", (new StringBuilder()).append("QueueSize = ").append(mPendingMotionEvents.size()).toString());
+//			android.view.MotionEvent.PointerCoords apointercoords[] = new android.view.MotionEvent.PointerCoords[motionevent.getPointerCount()];
+//			for (int j = 0; j < apointercoords.length; j++)
+//			{
+//				apointercoords[j] = new android.view.MotionEvent.PointerCoords();
+//				motionevent.getPointerCoords(j, apointercoords[j]);
+//			}
+//
+//			motionevent3.addBatch(motionevent.getEventTime(), apointercoords, motionevent.getMetaState());
+//			return flag;
+//		}
+//		break; /* Loop/switch isn't completed */
+//		if (true) goto _L4; else goto _L3
+//_L3:
+//		if (mPendingMotionEvents.isEmpty())
+//		{
+//			MotionEvent motionevent2 = MotionEvent.obtain(motionevent);
+//			mPendingMotionEvents.add(motionevent2);
+//			int i = sendPendingEventToNative();
+//			if (i == 2)
+//				mPendingMotionEvents.remove(motionevent2);
+//			if (i == 2)
+//				return false;
+//		} else
+//		{
+//			TraceEvent.instant("offerTouchEventToJavaScript:EventQueued", (new StringBuilder()).append("QueueSize = ").append(mPendingMotionEvents.size()).toString());
+//			MotionEvent motionevent1 = MotionEvent.obtain(motionevent);
+//			mPendingMotionEvents.add(motionevent1);
+//			return flag;
+//		}
+//		if (true) goto _L4; else goto _L5
+//_L5:
 	}
 
 	private boolean processTouchEvent(MotionEvent motionevent)
@@ -635,44 +624,46 @@ _L5:
 
 	private int sendPendingEventToNative()
 	{
-		MotionEvent motionevent = (MotionEvent)mPendingMotionEvents.peekFirst();
-		if (motionevent != null) goto _L2; else goto _L1
-_L1:
-		if (!$assertionsDisabled)
-			throw new AssertionError("Cannot send from an empty pending event queue");
-		  goto _L3
-_L2:
-		if (!mTouchEventTimeoutHandler.hasTimeoutEvent()) goto _L4; else goto _L3
-_L3:
-		return 2;
-_L4:
-		TouchPoint atouchpoint[];
-		int i;
-		atouchpoint = new TouchPoint[motionevent.getPointerCount()];
-		i = TouchPoint.createTouchPoints(motionevent, atouchpoint);
-		if (i == -1) goto _L3; else goto _L5
-_L5:
-		if (mTouchScrolling || mPinchInProgress)
-			continue; /* Loop/switch isn't completed */
-		mTouchCancelEventSent = false;
-		if (!mMotionEventDelegate.sendTouchEvent(motionevent.getEventTime(), i, atouchpoint)) goto _L3; else goto _L6
-_L6:
-		if (!mJavaScriptIsConsumingGesture && motionevent == mPendingMotionEvents.peekFirst() && motionevent.getAction() != 1 && motionevent.getAction() != 3)
-			mTouchEventTimeoutHandler.start(motionevent.getEventTime(), atouchpoint);
-		return 0;
-		if (mTouchCancelEventSent) goto _L3; else goto _L7
-_L7:
-		mTouchCancelEventSent = true;
-		MotionEvent motionevent1 = mLastCancelledEvent;
-		mLastCancelledEvent = motionevent;
-		if (mMotionEventDelegate.sendTouchEvent(motionevent.getEventTime(), TouchPoint.TOUCH_EVENT_TYPE_CANCEL, atouchpoint))
-		{
-			return 1;
-		} else
-		{
-			mLastCancelledEvent = motionevent1;
-			return 2;
-		}
+	    return 0;
+	    
+//		MotionEvent motionevent = (MotionEvent)mPendingMotionEvents.peekFirst();
+//		if (motionevent != null) goto _L2; else goto _L1
+//_L1:
+//		if (!$assertionsDisabled)
+//			throw new AssertionError("Cannot send from an empty pending event queue");
+//		  goto _L3
+//_L2:
+//		if (!mTouchEventTimeoutHandler.hasTimeoutEvent()) goto _L4; else goto _L3
+//_L3:
+//		return 2;
+//_L4:
+//		TouchPoint atouchpoint[];
+//		int i;
+//		atouchpoint = new TouchPoint[motionevent.getPointerCount()];
+//		i = TouchPoint.createTouchPoints(motionevent, atouchpoint);
+//		if (i == -1) goto _L3; else goto _L5
+//_L5:
+//		if (mTouchScrolling || mPinchInProgress)
+//			continue; /* Loop/switch isn't completed */
+//		mTouchCancelEventSent = false;
+//		if (!mMotionEventDelegate.sendTouchEvent(motionevent.getEventTime(), i, atouchpoint)) goto _L3; else goto _L6
+//_L6:
+//		if (!mJavaScriptIsConsumingGesture && motionevent == mPendingMotionEvents.peekFirst() && motionevent.getAction() != 1 && motionevent.getAction() != 3)
+//			mTouchEventTimeoutHandler.start(motionevent.getEventTime(), atouchpoint);
+//		return 0;
+//		if (mTouchCancelEventSent) goto _L3; else goto _L7
+//_L7:
+//		mTouchCancelEventSent = true;
+//		MotionEvent motionevent1 = mLastCancelledEvent;
+//		mLastCancelledEvent = motionevent;
+//		if (mMotionEventDelegate.sendTouchEvent(motionevent.getEventTime(), TouchPoint.TOUCH_EVENT_TYPE_CANCEL, atouchpoint))
+//		{
+//			return 1;
+//		} else
+//		{
+//			mLastCancelledEvent = motionevent1;
+//			return 2;
+//		}
 	}
 
 	private void setClickXAndY(int i, int j)
@@ -706,53 +697,53 @@ _L7:
 
 	void confirmTouchEvent(int i)
 	{
-		MotionEvent motionevent;
-		if (mTouchEventTimeoutHandler.confirmTouchEvent())
-			return;
-		if (mPendingMotionEvents.isEmpty())
-		{
-			Log.w("ContentViewGestureHandler", "confirmTouchEvent with Empty pending list!");
-			return;
-		}
-		TraceEvent.begin("confirmTouchEvent");
-		motionevent = (MotionEvent)mPendingMotionEvents.removeFirst();
-		if (motionevent == mLastCancelledEvent)
-		{
-			i = 3;
-			TraceEvent.instant("confirmTouchEvent:CanceledEvent");
-		}
-		i;
-		JVM INSTR tableswitch 0 3: default 100
-	//	               0 128
-	//	               1 142
-	//	               2 162
-	//	               3 182;
-		   goto _L1 _L2 _L3 _L4 _L5
-_L1:
-		mLongPressDetector.cancelLongPressIfNeeded(mPendingMotionEvents.iterator());
-		recycleEvent(motionevent);
-		TraceEvent.end("confirmTouchEvent");
-		return;
-_L2:
-		if (!$assertionsDisabled)
-			throw new AssertionError();
-		continue; /* Loop/switch isn't completed */
-_L3:
-		mJavaScriptIsConsumingGesture = true;
-		mZoomManager.passTouchEventThrough(motionevent);
-		trySendPendingEventsToNative();
-		continue; /* Loop/switch isn't completed */
-_L4:
-		if (!mJavaScriptIsConsumingGesture)
-			processTouchEvent(motionevent);
-		trySendPendingEventsToNative();
-		continue; /* Loop/switch isn't completed */
-_L5:
-		mNoTouchHandlerForGesture = true;
-		processTouchEvent(motionevent);
-		drainAllPendingEventsUntilNextDown();
-		if (true) goto _L1; else goto _L6
-_L6:
+//		MotionEvent motionevent;
+//		if (mTouchEventTimeoutHandler.confirmTouchEvent())
+//			return;
+//		if (mPendingMotionEvents.isEmpty())
+//		{
+//			Log.w("ContentViewGestureHandler", "confirmTouchEvent with Empty pending list!");
+//			return;
+//		}
+//		TraceEvent.begin("confirmTouchEvent");
+//		motionevent = (MotionEvent)mPendingMotionEvents.removeFirst();
+//		if (motionevent == mLastCancelledEvent)
+//		{
+//			i = 3;
+//			TraceEvent.instant("confirmTouchEvent:CanceledEvent");
+//		}
+//		i;
+//		JVM INSTR tableswitch 0 3: default 100
+//	//	               0 128
+//	//	               1 142
+//	//	               2 162
+//	//	               3 182;
+//		   goto _L1 _L2 _L3 _L4 _L5
+//_L1:
+//		mLongPressDetector.cancelLongPressIfNeeded(mPendingMotionEvents.iterator());
+//		recycleEvent(motionevent);
+//		TraceEvent.end("confirmTouchEvent");
+//		return;
+//_L2:
+//		if (!$assertionsDisabled)
+//			throw new AssertionError();
+//		continue; /* Loop/switch isn't completed */
+//_L3:
+//		mJavaScriptIsConsumingGesture = true;
+//		mZoomManager.passTouchEventThrough(motionevent);
+//		trySendPendingEventsToNative();
+//		continue; /* Loop/switch isn't completed */
+//_L4:
+//		if (!mJavaScriptIsConsumingGesture)
+//			processTouchEvent(motionevent);
+//		trySendPendingEventsToNative();
+//		continue; /* Loop/switch isn't completed */
+//_L5:
+//		mNoTouchHandlerForGesture = true;
+//		processTouchEvent(motionevent);
+//		drainAllPendingEventsUntilNextDown();
+//		if (true) goto _L1; else goto _L6
+//_L6:
 	}
 
 	void endDoubleTapDragMode(MotionEvent motionevent)
@@ -852,34 +843,35 @@ _L6:
 
 	boolean onTouchEvent(MotionEvent motionevent)
 	{
-		TraceEvent.begin("onTouchEvent");
-		mLongPressDetector.cancelLongPressIfNeeded(motionevent);
-		mSnapScrollController.setSnapScrollingMode(motionevent);
-		if (motionevent.getActionMasked() != 0) goto _L2; else goto _L1
-_L1:
-		mNoTouchHandlerForGesture = false;
-		mJavaScriptIsConsumingGesture = false;
-		endFlingIfNecessary(motionevent.getEventTime());
-_L4:
-		boolean flag = offerTouchEventToJavaScript(motionevent);
-		if (flag)
-		{
-			TraceEvent.end("onTouchEvent");
-			return true;
-		}
-		break MISSING_BLOCK_LABEL_90;
-_L2:
-		if (motionevent.getActionMasked() != 5) goto _L4; else goto _L3
-_L3:
-		endDoubleTapDragMode(null);
-		  goto _L4
-		Exception exception;
-		exception;
-		TraceEvent.end("onTouchEvent");
-		throw exception;
-		boolean flag1 = processTouchEvent(motionevent);
-		TraceEvent.end("onTouchEvent");
-		return flag1;
+	    return true;
+//		TraceEvent.begin("onTouchEvent");
+//		mLongPressDetector.cancelLongPressIfNeeded(motionevent);
+//		mSnapScrollController.setSnapScrollingMode(motionevent);
+//		if (motionevent.getActionMasked() != 0) goto _L2; else goto _L1
+//_L1:
+//		mNoTouchHandlerForGesture = false;
+//		mJavaScriptIsConsumingGesture = false;
+//		endFlingIfNecessary(motionevent.getEventTime());
+//_L4:
+//		boolean flag = offerTouchEventToJavaScript(motionevent);
+//		if (flag)
+//		{
+//			TraceEvent.end("onTouchEvent");
+//			return true;
+//		}
+//		break MISSING_BLOCK_LABEL_90;
+//_L2:
+//		if (motionevent.getActionMasked() != 5) goto _L4; else goto _L3
+//_L3:
+//		endDoubleTapDragMode(null);
+//		  goto _L4
+//		Exception exception;
+//		exception;
+//		TraceEvent.end("onTouchEvent");
+//		throw exception;
+//		boolean flag1 = processTouchEvent(motionevent);
+//		TraceEvent.end("onTouchEvent");
+//		return flag1;
 	}
 
 	MotionEvent peekFirstInPendingMotionEventsForTesting()
@@ -963,12 +955,12 @@ _L3:
 
 	static 
 	{
-		boolean flag;
-		if (!org/chromium/content/browser/ContentViewGestureHandler.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
+//		boolean flag;
+//		if (!org/chromium/content/browser/ContentViewGestureHandler.desiredAssertionStatus())
+//			flag = true;
+//		else
+//			flag = false;
+//		$assertionsDisabled = false;
 	}
 
 

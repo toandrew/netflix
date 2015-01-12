@@ -29,8 +29,7 @@ public abstract class InsertionHandleController
 		private View mPasteViews[];
 		private int mPositionX;
 		private int mPositionY;
-		final InsertionHandleController this$0;
-
+		
 		private void updateContent(boolean flag)
 		{
 			int i = viewIndex(flag);
@@ -126,8 +125,7 @@ public abstract class InsertionHandleController
 
 		public PastePopupMenu()
 		{
-			this$0 = InsertionHandleController.this;
-			super();
+		    super();
 			mContainer = new PopupWindow(mContext, null, 0x10102c8);
 			mContainer.setSplitTouchEnabled(true);
 			mContainer.setClippingEnabled(false);

@@ -251,44 +251,45 @@ public class HandleView extends View
 
 	public boolean onTouchEvent(MotionEvent motionevent)
 	{
-		motionevent.getActionMasked();
-		JVM INSTR tableswitch 0 3: default 36
-	//	               0 38
-	//	               1 148
-	//	               2 133
-	//	               3 210;
-		   goto _L1 _L2 _L3 _L4 _L5
-_L1:
-		return false;
-_L2:
-		mDownPositionX = motionevent.getRawX();
-		mDownPositionY = motionevent.getRawY();
-		mTouchToWindowOffsetX = mDownPositionX - (float)mPositionX;
-		mTouchToWindowOffsetY = mDownPositionY - (float)mPositionY;
-		int ai[] = mTempCoords;
-		mParent.getLocationInWindow(ai);
-		mLastParentX = ai[0];
-		mLastParentY = ai[1];
-		mIsDragging = true;
-		mController.beforeStartUpdatingPosition(this);
-		mTouchTimer = SystemClock.uptimeMillis();
-_L7:
-		return true;
-_L4:
-		updatePosition(motionevent.getRawX(), motionevent.getRawY());
-		continue; /* Loop/switch isn't completed */
-_L3:
-		if (mIsInsertionHandle && SystemClock.uptimeMillis() - mTouchTimer < (long)ViewConfiguration.getTapTimeout())
-			if (mPastePopupWindow != null && mPastePopupWindow.isShowing())
-				mPastePopupWindow.hide();
-			else
-				showPastePopupWindow();
-		mIsDragging = false;
-		continue; /* Loop/switch isn't completed */
-_L5:
-		mIsDragging = false;
-		if (true) goto _L7; else goto _L6
-_L6:
+	    return true;
+//		motionevent.getActionMasked();
+//		JVM INSTR tableswitch 0 3: default 36
+//	//	               0 38
+//	//	               1 148
+//	//	               2 133
+//	//	               3 210;
+//		   goto _L1 _L2 _L3 _L4 _L5
+//_L1:
+//		return false;
+//_L2:
+//		mDownPositionX = motionevent.getRawX();
+//		mDownPositionY = motionevent.getRawY();
+//		mTouchToWindowOffsetX = mDownPositionX - (float)mPositionX;
+//		mTouchToWindowOffsetY = mDownPositionY - (float)mPositionY;
+//		int ai[] = mTempCoords;
+//		mParent.getLocationInWindow(ai);
+//		mLastParentX = ai[0];
+//		mLastParentY = ai[1];
+//		mIsDragging = true;
+//		mController.beforeStartUpdatingPosition(this);
+//		mTouchTimer = SystemClock.uptimeMillis();
+//_L7:
+//		return true;
+//_L4:
+//		updatePosition(motionevent.getRawX(), motionevent.getRawY());
+//		continue; /* Loop/switch isn't completed */
+//_L3:
+//		if (mIsInsertionHandle && SystemClock.uptimeMillis() - mTouchTimer < (long)ViewConfiguration.getTapTimeout())
+//			if (mPastePopupWindow != null && mPastePopupWindow.isShowing())
+//				mPastePopupWindow.hide();
+//			else
+//				showPastePopupWindow();
+//		mIsDragging = false;
+//		continue; /* Loop/switch isn't completed */
+//_L5:
+//		mIsDragging = false;
+//		if (true) goto _L7; else goto _L6
+//_L6:
 	}
 
 	void positionAt(int i, int j)
@@ -298,35 +299,35 @@ _L6:
 
 	void setOrientation(int i)
 	{
-		i;
-		JVM INSTR tableswitch 0 2: default 28
-	//	               0 90
-	//	               1 28
-	//	               2 144;
-		   goto _L1 _L2 _L1 _L3
-_L1:
-		if (mSelectHandleCenter == null)
-			mSelectHandleCenter = getContext().getResources().getDrawable(mTextSelectHandleRes);
-		mDrawable = mSelectHandleCenter;
-		mHotspotX = (float)mDrawable.getIntrinsicWidth() / 2.0F;
-		mIsInsertionHandle = true;
-_L5:
-		mHotspotY = 0.0F;
-		invalidate();
-		return;
-_L2:
-		if (mSelectHandleLeft == null)
-			mSelectHandleLeft = getContext().getResources().getDrawable(mTextSelectHandleLeftRes);
-		mDrawable = mSelectHandleLeft;
-		mHotspotX = (float)(3 * mDrawable.getIntrinsicWidth()) / 4F;
-		continue; /* Loop/switch isn't completed */
-_L3:
-		if (mSelectHandleRight == null)
-			mSelectHandleRight = getContext().getResources().getDrawable(mTextSelectHandleRightRes);
-		mDrawable = mSelectHandleRight;
-		mHotspotX = (float)mDrawable.getIntrinsicWidth() / 4F;
-		if (true) goto _L5; else goto _L4
-_L4:
+//		i;
+//		JVM INSTR tableswitch 0 2: default 28
+//	//	               0 90
+//	//	               1 28
+//	//	               2 144;
+//		   goto _L1 _L2 _L1 _L3
+//_L1:
+//		if (mSelectHandleCenter == null)
+//			mSelectHandleCenter = getContext().getResources().getDrawable(mTextSelectHandleRes);
+//		mDrawable = mSelectHandleCenter;
+//		mHotspotX = (float)mDrawable.getIntrinsicWidth() / 2.0F;
+//		mIsInsertionHandle = true;
+//_L5:
+//		mHotspotY = 0.0F;
+//		invalidate();
+//		return;
+//_L2:
+//		if (mSelectHandleLeft == null)
+//			mSelectHandleLeft = getContext().getResources().getDrawable(mTextSelectHandleLeftRes);
+//		mDrawable = mSelectHandleLeft;
+//		mHotspotX = (float)(3 * mDrawable.getIntrinsicWidth()) / 4F;
+//		continue; /* Loop/switch isn't completed */
+//_L3:
+//		if (mSelectHandleRight == null)
+//			mSelectHandleRight = getContext().getResources().getDrawable(mTextSelectHandleRightRes);
+//		mDrawable = mSelectHandleRight;
+//		mHotspotX = (float)mDrawable.getIntrinsicWidth() / 4F;
+//		if (true) goto _L5; else goto _L4
+//_L4:
 	}
 
 	void show()
@@ -358,7 +359,7 @@ _L4:
 			if (mPastePopupWindow == null)
 			{
 				insertionhandlecontroller.getClass();
-				mPastePopupWindow = new InsertionHandleController.PastePopupMenu(insertionhandlecontroller);
+				//mPastePopupWindow = new InsertionHandleController.PastePopupMenu(insertionhandlecontroller);
 			}
 			mPastePopupWindow.show();
 		}

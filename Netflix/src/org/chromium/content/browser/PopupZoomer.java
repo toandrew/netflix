@@ -107,9 +107,6 @@ class PopupZoomer extends View
 		setFocusable(true);
 		setFocusableInTouchMode(true);
 		mGestureDetector = new GestureDetector(context, new android.view.GestureDetector.SimpleOnGestureListener() {
-
-			final PopupZoomer this$0;
-
 			private boolean handleTapOrPress(MotionEvent motionevent, boolean flag)
 			{
 				if (!mAnimating)
@@ -161,12 +158,6 @@ class PopupZoomer extends View
 			{
 				return handleTapOrPress(motionevent, false);
 			}
-
-			
-			{
-				this$0 = PopupZoomer.this;
-				super();
-			}
 		});
 	}
 
@@ -202,7 +193,7 @@ class PopupZoomer extends View
 		if (sOverlayCornerRadius == 0.0F)
 			try
 			{
-				sOverlayCornerRadius = context.getResources().getDimension(org.chromium.content.R.dimen.link_preview_overlay_radius);
+				sOverlayCornerRadius = 0; //context.getResources().getDimension(org.chromium.content.R.dimen.link_preview_overlay_radius);
 			}
 			catch (android.content.res.Resources.NotFoundException notfoundexception)
 			{
@@ -218,7 +209,7 @@ class PopupZoomer extends View
 		{
 			try
 			{
-				sOverlayDrawable = context.getResources().getDrawable(org.chromium.content.R.drawable.ondemand_overlay);
+				sOverlayDrawable = null;//context.getResources().getDrawable(org.chromium.content.R.drawable.ondemand_overlay);
 			}
 			catch (android.content.res.Resources.NotFoundException notfoundexception)
 			{
@@ -338,25 +329,25 @@ class PopupZoomer extends View
 
 	private void startAnimation(boolean flag)
 	{
-		mAnimating = true;
-		mShowing = flag;
-		mTimeLeft = 0L;
-		if (!flag) goto _L2; else goto _L1
-_L1:
-		setVisibility(0);
-		mNeedsToInitDimensions = true;
-		if (mOnVisibilityChangedListener != null)
-			mOnVisibilityChangedListener.onPopupZoomerShown(this);
-_L4:
-		mAnimationStartTime = SystemClock.uptimeMillis();
-		invalidate();
-		return;
-_L2:
-		mTimeLeft = (300L + mAnimationStartTime) - SystemClock.uptimeMillis();
-		if (mTimeLeft < 0L)
-			mTimeLeft = 0L;
-		if (true) goto _L4; else goto _L3
-_L3:
+//		mAnimating = true;
+//		mShowing = flag;
+//		mTimeLeft = 0L;
+//		if (!flag) goto _L2; else goto _L1
+//_L1:
+//		setVisibility(0);
+//		mNeedsToInitDimensions = true;
+//		if (mOnVisibilityChangedListener != null)
+//			mOnVisibilityChangedListener.onPopupZoomerShown(this);
+//_L4:
+//		mAnimationStartTime = SystemClock.uptimeMillis();
+//		invalidate();
+//		return;
+//_L2:
+//		mTimeLeft = (300L + mAnimationStartTime) - SystemClock.uptimeMillis();
+//		if (mTimeLeft < 0L)
+//			mTimeLeft = 0L;
+//		if (true) goto _L4; else goto _L3
+//_L3:
 	}
 
 	protected boolean acceptZeroSizeView()

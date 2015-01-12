@@ -18,7 +18,7 @@ public class WeekPicker extends TwoFieldDatePicker
 	public WeekPicker(Context context, long l, long l1)
 	{
 		super(context, l, l1);
-		getPositionInYearSpinner().setContentDescription(getResources().getString(org.chromium.content.R.string.accessibility_date_picker_week));
+		//getPositionInYearSpinner().setContentDescription(getResources().getString(org.chromium.content.R.string.accessibility_date_picker_week));
 		Calendar calendar = Calendar.getInstance();
 		calendar.setFirstDayOfWeek(2);
 		calendar.setMinimalDaysInFirstWeek(4);

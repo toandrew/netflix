@@ -27,43 +27,43 @@ public class CleanupReference extends WeakReference
 
 		public void handleMessage(Message message)
 		{
-			CleanupReference cleanupreference;
-			TraceEvent.begin();
-			cleanupreference = (CleanupReference)message.obj;
-			message.what;
-			JVM INSTR tableswitch 1 2: default 36
-		//		               1 101
-		//		               2 114;
-			   goto _L1 _L2 _L3
-_L1:
-			Log.e("CleanupReference", (new StringBuilder()).append("Bad message=").append(message.what).toString());
-_L6:
-			Object obj = CleanupReference.sCleanupMonitor;
-			obj;
-			JVM INSTR monitorenter ;
-_L4:
-			CleanupReference cleanupreference1 = (CleanupReference)CleanupReference.sGcQueue.poll();
-			if (cleanupreference1 == null)
-				break; /* Loop/switch isn't completed */
-			cleanupreference1.runCleanupTaskInternal();
-			  goto _L4
-			Exception exception;
-			exception;
-			obj;
-			JVM INSTR monitorexit ;
-			throw exception;
-_L2:
-			CleanupReference.sRefs.add(cleanupreference);
-			continue; /* Loop/switch isn't completed */
-_L3:
-			cleanupreference.runCleanupTaskInternal();
-			if (true) goto _L6; else goto _L5
-_L5:
-			CleanupReference.sCleanupMonitor.notifyAll();
-			obj;
-			JVM INSTR monitorexit ;
-			TraceEvent.end();
-			return;
+//			CleanupReference cleanupreference;
+//			TraceEvent.begin();
+//			cleanupreference = (CleanupReference)message.obj;
+//			message.what;
+//			JVM INSTR tableswitch 1 2: default 36
+//		//		               1 101
+//		//		               2 114;
+//			   goto _L1 _L2 _L3
+//_L1:
+//			Log.e("CleanupReference", (new StringBuilder()).append("Bad message=").append(message.what).toString());
+//_L6:
+//			Object obj = CleanupReference.sCleanupMonitor;
+//			obj;
+//			JVM INSTR monitorenter ;
+//_L4:
+//			CleanupReference cleanupreference1 = (CleanupReference)CleanupReference.sGcQueue.poll();
+//			if (cleanupreference1 == null)
+//				break; /* Loop/switch isn't completed */
+//			cleanupreference1.runCleanupTaskInternal();
+//			  goto _L4
+//			Exception exception;
+//			exception;
+//			obj;
+//			JVM INSTR monitorexit ;
+//			throw exception;
+//_L2:
+//			CleanupReference.sRefs.add(cleanupreference);
+//			continue; /* Loop/switch isn't completed */
+//_L3:
+//			cleanupreference.runCleanupTaskInternal();
+//			if (true) goto _L6; else goto _L5
+//_L5:
+//			CleanupReference.sCleanupMonitor.notifyAll();
+//			obj;
+//			JVM INSTR monitorexit ;
+//			TraceEvent.end();
+//			return;
 		}
 
 	};
@@ -115,27 +115,27 @@ _L5:
 
 			public void run()
 			{
-_L2:
-				CleanupReference cleanupreference = (CleanupReference)CleanupReference.sGcQueue.remove();
-				synchronized (CleanupReference.sCleanupMonitor)
-				{
-					Message.obtain(CleanupReference.sHandler, 2, cleanupreference).sendToTarget();
-					CleanupReference.sCleanupMonitor.wait(500L);
-				}
-				continue; /* Loop/switch isn't completed */
-				exception1;
-				obj;
-				JVM INSTR monitorexit ;
-				try
-				{
-					throw exception1;
-				}
-				catch (Exception exception)
-				{
-					Log.e("CleanupReference", "Queue remove exception:", exception);
-				}
-				if (true) goto _L2; else goto _L1
-_L1:
+//_L2:
+//				CleanupReference cleanupreference = (CleanupReference)CleanupReference.sGcQueue.remove();
+//				synchronized (CleanupReference.sCleanupMonitor)
+//				{
+//					Message.obtain(CleanupReference.sHandler, 2, cleanupreference).sendToTarget();
+//					CleanupReference.sCleanupMonitor.wait(500L);
+//				}
+//				continue; /* Loop/switch isn't completed */
+//				exception1;
+//				obj;
+//				JVM INSTR monitorexit ;
+//				try
+//				{
+//					throw exception1;
+//				}
+//				catch (Exception exception)
+//				{
+//					Log.e("CleanupReference", "Queue remove exception:", exception);
+//				}
+//				if (true) goto _L2; else goto _L1
+//_L1:
 			}
 
 		};

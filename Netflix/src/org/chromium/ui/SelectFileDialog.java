@@ -97,67 +97,67 @@ class SelectFileDialog
 
 	private void selectFile(String as[], boolean flag, WindowAndroid windowandroid)
 	{
-		Intent intent;
-		Intent intent1;
-		Intent intent2;
-		Intent intent3;
-		mFileTypes = new ArrayList(Arrays.asList(as));
-		mCapture = flag;
-		intent = new Intent("android.intent.action.CHOOSER");
-		intent1 = new Intent("android.media.action.IMAGE_CAPTURE");
-		mCameraOutputUri = Uri.fromFile(getFileForImageCapture());
-		intent1.putExtra("output", mCameraOutputUri);
-		intent2 = new Intent("android.media.action.VIDEO_CAPTURE");
-		intent3 = new Intent("android.provider.MediaStore.RECORD_SOUND");
-		if (!captureCamera()) goto _L2; else goto _L1
-_L1:
-		if (!windowandroid.showIntent(intent1, this, R.string.low_memory_error)) goto _L4; else goto _L3
-_L3:
-		return;
-_L2:
-		if (!captureCamcorder()) goto _L6; else goto _L5
-_L5:
-		if (windowandroid.showIntent(intent2, this, R.string.low_memory_error)) goto _L7; else goto _L4
-_L4:
-		Intent intent4 = new Intent("android.intent.action.GET_CONTENT");
-		intent4.addCategory("android.intent.category.OPENABLE");
-		ArrayList arraylist = new ArrayList();
-		if (!noSpecificType())
-			if (shouldShowImageTypes())
-			{
-				arraylist.add(intent1);
-				intent4.setType("image/*");
-			} else
-			if (shouldShowVideoTypes())
-			{
-				arraylist.add(intent2);
-				intent4.setType("video/*");
-			} else
-			if (shouldShowAudioTypes())
-			{
-				arraylist.add(intent3);
-				intent4.setType("audio/*");
-			}
-		if (arraylist.isEmpty())
-		{
-			intent4.setType("*/*");
-			arraylist.add(intent1);
-			arraylist.add(intent2);
-			arraylist.add(intent3);
-		}
-		intent.putExtra("android.intent.extra.INITIAL_INTENTS", (android.os.Parcelable[])arraylist.toArray(new Intent[0]));
-		intent.putExtra("android.intent.extra.INTENT", intent4);
-		if (!windowandroid.showIntent(intent, this, R.string.low_memory_error))
-		{
-			onFileNotSelected();
-			return;
-		}
-_L7:
-		if (true) goto _L3; else goto _L6
-_L6:
-		if (captureMicrophone() && windowandroid.showIntent(intent3, this, R.string.low_memory_error))
-			return;
-		  goto _L4
+//		Intent intent;
+//		Intent intent1;
+//		Intent intent2;
+//		Intent intent3;
+//		mFileTypes = new ArrayList(Arrays.asList(as));
+//		mCapture = flag;
+//		intent = new Intent("android.intent.action.CHOOSER");
+//		intent1 = new Intent("android.media.action.IMAGE_CAPTURE");
+//		mCameraOutputUri = Uri.fromFile(getFileForImageCapture());
+//		intent1.putExtra("output", mCameraOutputUri);
+//		intent2 = new Intent("android.media.action.VIDEO_CAPTURE");
+//		intent3 = new Intent("android.provider.MediaStore.RECORD_SOUND");
+//		if (!captureCamera()) goto _L2; else goto _L1
+//_L1:
+//		if (!windowandroid.showIntent(intent1, this, R.string.low_memory_error)) goto _L4; else goto _L3
+//_L3:
+//		return;
+//_L2:
+//		if (!captureCamcorder()) goto _L6; else goto _L5
+//_L5:
+//		if (windowandroid.showIntent(intent2, this, R.string.low_memory_error)) goto _L7; else goto _L4
+//_L4:
+//		Intent intent4 = new Intent("android.intent.action.GET_CONTENT");
+//		intent4.addCategory("android.intent.category.OPENABLE");
+//		ArrayList arraylist = new ArrayList();
+//		if (!noSpecificType())
+//			if (shouldShowImageTypes())
+//			{
+//				arraylist.add(intent1);
+//				intent4.setType("image/*");
+//			} else
+//			if (shouldShowVideoTypes())
+//			{
+//				arraylist.add(intent2);
+//				intent4.setType("video/*");
+//			} else
+//			if (shouldShowAudioTypes())
+//			{
+//				arraylist.add(intent3);
+//				intent4.setType("audio/*");
+//			}
+//		if (arraylist.isEmpty())
+//		{
+//			intent4.setType("*/*");
+//			arraylist.add(intent1);
+//			arraylist.add(intent2);
+//			arraylist.add(intent3);
+//		}
+//		intent.putExtra("android.intent.extra.INITIAL_INTENTS", (android.os.Parcelable[])arraylist.toArray(new Intent[0]));
+//		intent.putExtra("android.intent.extra.INTENT", intent4);
+//		if (!windowandroid.showIntent(intent, this, R.string.low_memory_error))
+//		{
+//			onFileNotSelected();
+//			return;
+//		}
+//_L7:
+//		if (true) goto _L3; else goto _L6
+//_L6:
+//		if (captureMicrophone() && windowandroid.showIntent(intent3, this, R.string.low_memory_error))
+//			return;
+//		  goto _L4
 	}
 
 	private boolean shouldShowAudioTypes()
@@ -185,50 +185,50 @@ _L6:
 
 	public void onIntentCompleted(WindowAndroid windowandroid, int i, ContentResolver contentresolver, Intent intent)
 	{
-		if (i == -1) goto _L2; else goto _L1
-_L1:
-		onFileNotSelected();
-_L4:
-		return;
-_L2:
-		boolean flag;
-		if (intent != null)
-			break; /* Loop/switch isn't completed */
-		nativeOnFileSelected(mNativeSelectFileDialog, mCameraOutputUri.getPath());
-		flag = true;
-		windowandroid.sendBroadcast(new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE", mCameraOutputUri));
-_L5:
-		if (!flag)
-		{
-			onFileNotSelected();
-			windowandroid.showError(R.string.opening_file_error);
-			return;
-		}
-		if (true) goto _L4; else goto _L3
-_L3:
-		Cursor cursor = contentresolver.query(intent.getData(), new String[] {
-			"_data"
-		}, null, null, null);
-		flag = false;
-		if (cursor != null)
-		{
-			int j = cursor.getCount();
-			flag = false;
-			if (j == 1)
-			{
-				cursor.moveToFirst();
-				String s = cursor.getString(0);
-				flag = false;
-				if (s != null)
-				{
-					nativeOnFileSelected(mNativeSelectFileDialog, s);
-					flag = true;
-				}
-			}
-			cursor.close();
-		}
-		  goto _L5
-		if (true) goto _L4; else goto _L6
-_L6:
+//		if (i == -1) goto _L2; else goto _L1
+//_L1:
+//		onFileNotSelected();
+//_L4:
+//		return;
+//_L2:
+//		boolean flag;
+//		if (intent != null)
+//			break; /* Loop/switch isn't completed */
+//		nativeOnFileSelected(mNativeSelectFileDialog, mCameraOutputUri.getPath());
+//		flag = true;
+//		windowandroid.sendBroadcast(new Intent("android.intent.action.MEDIA_SCANNER_SCAN_FILE", mCameraOutputUri));
+//_L5:
+//		if (!flag)
+//		{
+//			onFileNotSelected();
+//			windowandroid.showError(R.string.opening_file_error);
+//			return;
+//		}
+//		if (true) goto _L4; else goto _L3
+//_L3:
+//		Cursor cursor = contentresolver.query(intent.getData(), new String[] {
+//			"_data"
+//		}, null, null, null);
+//		flag = false;
+//		if (cursor != null)
+//		{
+//			int j = cursor.getCount();
+//			flag = false;
+//			if (j == 1)
+//			{
+//				cursor.moveToFirst();
+//				String s = cursor.getString(0);
+//				flag = false;
+//				if (s != null)
+//				{
+//					nativeOnFileSelected(mNativeSelectFileDialog, s);
+//					flag = true;
+//				}
+//			}
+//			cursor.close();
+//		}
+//		  goto _L5
+//		if (true) goto _L4; else goto _L6
+//_L6:
 	}
 }

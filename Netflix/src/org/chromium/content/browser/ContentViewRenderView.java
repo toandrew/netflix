@@ -83,8 +83,7 @@ public class ContentViewRenderView extends FrameLayout
 			mSurfaceView = createSurfaceView(getContext());
 			mSurfaceCallback = new android.view.SurfaceHolder.Callback() {
 
-				static final boolean $assertionsDisabled;
-				final ContentViewRenderView this$0;
+				static final boolean $assertionsDisabled = false;
 
 				public void surfaceChanged(SurfaceHolder surfaceholder, int i, int j, int k)
 				{
@@ -120,21 +119,16 @@ public class ContentViewRenderView extends FrameLayout
 					}
 				}
 
-				static 
-				{
-					boolean flag;
-					if (!org/chromium/content/browser/ContentViewRenderView.desiredAssertionStatus())
-						flag = true;
-					else
-						flag = false;
-					$assertionsDisabled = flag;
-				}
+//				static 
+//				{
+////					boolean flag;
+////					if (!org/chromium/content/browser/ContentViewRenderView.desiredAssertionStatus())
+////						flag = true;
+////					else
+////						flag = false;
+//					$assertionsDisabled = false;
+//				}
 
-			
-			{
-				this$0 = ContentViewRenderView.this;
-				super();
-			}
 			};
 			mSurfaceView.getHolder().addCallback(mSurfaceCallback);
 			mSurfaceView.getHolder().setFormat(-3);
@@ -196,12 +190,12 @@ public class ContentViewRenderView extends FrameLayout
 
 	static 
 	{
-		boolean flag;
-		if (!org/chromium/content/browser/ContentViewRenderView.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
+//		boolean flag;
+//		if (!org/chromium/content/browser/ContentViewRenderView.desiredAssertionStatus())
+//			flag = true;
+//		else
+//			flag = false;
+		$assertionsDisabled = false;
 	}
 
 

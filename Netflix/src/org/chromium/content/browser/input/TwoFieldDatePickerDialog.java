@@ -31,7 +31,7 @@ public abstract class TwoFieldDatePickerDialog extends AlertDialog
 	{
 		super(context, i);
 		mCallBack = onvaluesetlistener;
-		setButton(-1, context.getText(org.chromium.content.R.string.date_picker_dialog_set), this);
+		//setButton(-1, context.getText(org.chromium.content.R.string.date_picker_dialog_set), this);
 		setButton(-2, context.getText(0x1040000), (android.content.DialogInterface.OnClickListener)null);
 		setIcon(0);
 		mPicker = createPicker(context, l, l1);

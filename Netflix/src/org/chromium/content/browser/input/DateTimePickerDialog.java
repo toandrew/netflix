@@ -45,15 +45,15 @@ class DateTimePickerDialog extends AlertDialog
 		mMinTimeMillis = l1;
 		mMaxTimeMillis = l2;
 		mCallBack = ondatetimesetlistener;
-		setButton(-1, context.getText(org.chromium.content.R.string.date_picker_dialog_set), this);
+		//setButton(-1, context.getText(org.chromium.content.R.string.date_picker_dialog_set), this);
 		setButton(-2, context.getText(0x1040000), (android.content.DialogInterface.OnClickListener)null);
 		setIcon(0);
-		setTitle(context.getText(org.chromium.content.R.string.date_time_picker_dialog_title));
-		View view = ((LayoutInflater)context.getSystemService("layout_inflater")).inflate(org.chromium.content.R.layout.date_time_picker_dialog, null);
+		//setTitle(context.getText(org.chromium.content.R.string.date_time_picker_dialog_title));
+		View view = null;//((LayoutInflater)context.getSystemService("layout_inflater")).inflate(org.chromium.content.R.layout.date_time_picker_dialog, null);
 		setView(view);
-		mDatePicker = (DatePicker)view.findViewById(org.chromium.content.R.id.date_picker);
+		mDatePicker = null;//(DatePicker)view.findViewById(org.chromium.content.R.id.date_picker);
 		DateDialogNormalizer.normalize(mDatePicker, this, i, j, k, l, i1, l1, l2);
-		mTimePicker = (TimePicker)view.findViewById(org.chromium.content.R.id.time_picker);
+		mTimePicker = null;//(TimePicker)view.findViewById(org.chromium.content.R.id.time_picker);
 		mTimePicker.setIs24HourView(Boolean.valueOf(flag));
 		mTimePicker.setCurrentHour(Integer.valueOf(l));
 		mTimePicker.setCurrentMinute(Integer.valueOf(i1));
@@ -90,21 +90,21 @@ class DateTimePickerDialog extends AlertDialog
 
 	public void onTimeChanged(TimePicker timepicker, int i, int j)
 	{
-		Time time;
-		time = new Time();
-		time.set(0, mTimePicker.getCurrentMinute().intValue(), mTimePicker.getCurrentHour().intValue(), mDatePicker.getDayOfMonth(), mDatePicker.getMonth(), mDatePicker.getYear());
-		if (time.toMillis(true) >= mMinTimeMillis) goto _L2; else goto _L1
-_L1:
-		time.set(mMinTimeMillis);
-_L4:
-		mTimePicker.setCurrentHour(Integer.valueOf(time.hour));
-		mTimePicker.setCurrentMinute(Integer.valueOf(time.minute));
-		return;
-_L2:
-		if (time.toMillis(true) > mMaxTimeMillis)
-			time.set(mMaxTimeMillis);
-		if (true) goto _L4; else goto _L3
-_L3:
+//		Time time;
+//		time = new Time();
+//		time.set(0, mTimePicker.getCurrentMinute().intValue(), mTimePicker.getCurrentHour().intValue(), mDatePicker.getDayOfMonth(), mDatePicker.getMonth(), mDatePicker.getYear());
+//		if (time.toMillis(true) >= mMinTimeMillis) goto _L2; else goto _L1
+//_L1:
+//		time.set(mMinTimeMillis);
+//_L4:
+//		mTimePicker.setCurrentHour(Integer.valueOf(time.hour));
+//		mTimePicker.setCurrentMinute(Integer.valueOf(time.minute));
+//		return;
+//_L2:
+//		if (time.toMillis(true) > mMaxTimeMillis)
+//			time.set(mMaxTimeMillis);
+//		if (true) goto _L4; else goto _L3
+//_L3:
 	}
 
 	public void updateDateTime(int i, int j, int k, int l, int i1)

@@ -51,7 +51,8 @@ public class TraceEvent
 
 		public static final LooperMonitor getInstance()
 		{
-			return Holder.sInstance;
+		    return null;
+			//return Holder.sInstance;
 		}
 
 		private final void syncIdleMonitoring()
@@ -112,12 +113,12 @@ public class TraceEvent
 
 		static 
 		{
-			boolean flag;
-			if (!org/chromium/content/common/TraceEvent.desiredAssertionStatus())
-				flag = true;
-			else
-				flag = false;
-			$assertionsDisabled = flag;
+//			boolean flag;
+//			if (!org/chromium/content/common/TraceEvent.desiredAssertionStatus())
+//				flag = true;
+//			else
+//				flag = false;
+//			$assertionsDisabled = false;
 		}
 
 		private LooperMonitor()
@@ -132,17 +133,17 @@ public class TraceEvent
 
 	}
 
-	private static final class LooperMonitor.Holder
-	{
-
-		private static final LooperMonitor sInstance = new LooperMonitor();
-
-
-
-		private LooperMonitor.Holder()
-		{
-		}
-	}
+//	private static final class LooperMonitor.Holder
+//	{
+//
+//		private static final LooperMonitor sInstance = new LooperMonitor();
+//
+//
+//
+//		private LooperMonitor.Holder()
+//		{
+//		}
+//	};
 
 
 	private static final String PROPERTY_TRACE_TAG_ENABLEFLAGS = "debug.atrace.tags.enableflags";
@@ -249,69 +250,69 @@ public class TraceEvent
 
 	public static void setEnabled(boolean flag)
 	{
-		org/chromium/content/common/TraceEvent;
-		JVM INSTR monitorenter ;
-		boolean flag1 = sEnabled;
-		if (flag1 != flag) goto _L2; else goto _L1
-_L1:
-		org/chromium/content/common/TraceEvent;
-		JVM INSTR monitorexit ;
-		return;
-_L2:
-		Looper looper;
-		sEnabled = flag;
-		looper = Looper.getMainLooper();
-		if (!flag)
-			break; /* Loop/switch isn't completed */
-		LooperMonitor loopermonitor = LooperMonitor.getInstance();
-_L4:
-		looper.setMessageLogging(loopermonitor);
-		if (true) goto _L1; else goto _L3
-		Exception exception;
-		exception;
-		throw exception;
-_L3:
-		loopermonitor = null;
-		  goto _L4
+//		org/chromium/content/common/TraceEvent;
+//		JVM INSTR monitorenter ;
+//		boolean flag1 = sEnabled;
+//		if (flag1 != flag) goto _L2; else goto _L1
+//_L1:
+//		org/chromium/content/common/TraceEvent;
+//		JVM INSTR monitorexit ;
+//		return;
+//_L2:
+//		Looper looper;
+//		sEnabled = flag;
+//		looper = Looper.getMainLooper();
+//		if (!flag)
+//			break; /* Loop/switch isn't completed */
+//		LooperMonitor loopermonitor = LooperMonitor.getInstance();
+//_L4:
+//		looper.setMessageLogging(loopermonitor);
+//		if (true) goto _L1; else goto _L3
+//		Exception exception;
+//		exception;
+//		throw exception;
+//_L3:
+//		loopermonitor = null;
+//		  goto _L4
 	}
 
 	public static void setEnabledToMatchNative()
 	{
-		boolean flag = nativeTraceEnabled();
-		if (sSystemPropertiesGetLongMethod == null) goto _L2; else goto _L1
-_L1:
-		Method method;
-		Object aobj[];
-		method = sSystemPropertiesGetLongMethod;
-		aobj = new Object[2];
-		aobj[0] = "debug.atrace.tags.enableflags";
-		aobj[1] = Integer.valueOf(0);
-		if ((((Long)method.invoke(null, aobj)).longValue() & sTraceTagView) == 0L) goto _L4; else goto _L3
-_L3:
-		nativeStartATrace();
-		flag = true;
-_L2:
-		setEnabled(flag);
-		return;
-_L4:
-		try
-		{
-			nativeStopATrace();
-		}
-		catch (IllegalArgumentException illegalargumentexception)
-		{
-			Log.e("TraceEvent", "setEnabledToMatchNative", illegalargumentexception);
-		}
-		catch (IllegalAccessException illegalaccessexception)
-		{
-			Log.e("TraceEvent", "setEnabledToMatchNative", illegalaccessexception);
-		}
-		catch (InvocationTargetException invocationtargetexception)
-		{
-			Log.e("TraceEvent", "setEnabledToMatchNative", invocationtargetexception);
-		}
-		if (true) goto _L2; else goto _L5
-_L5:
+//		boolean flag = nativeTraceEnabled();
+//		if (sSystemPropertiesGetLongMethod == null) goto _L2; else goto _L1
+//_L1:
+//		Method method;
+//		Object aobj[];
+//		method = sSystemPropertiesGetLongMethod;
+//		aobj = new Object[2];
+//		aobj[0] = "debug.atrace.tags.enableflags";
+//		aobj[1] = Integer.valueOf(0);
+//		if ((((Long)method.invoke(null, aobj)).longValue() & sTraceTagView) == 0L) goto _L4; else goto _L3
+//_L3:
+//		nativeStartATrace();
+//		flag = true;
+//_L2:
+//		setEnabled(flag);
+//		return;
+//_L4:
+//		try
+//		{
+//			nativeStopATrace();
+//		}
+//		catch (IllegalArgumentException illegalargumentexception)
+//		{
+//			Log.e("TraceEvent", "setEnabledToMatchNative", illegalargumentexception);
+//		}
+//		catch (IllegalAccessException illegalaccessexception)
+//		{
+//			Log.e("TraceEvent", "setEnabledToMatchNative", illegalaccessexception);
+//		}
+//		catch (InvocationTargetException invocationtargetexception)
+//		{
+//			Log.e("TraceEvent", "setEnabledToMatchNative", invocationtargetexception);
+//		}
+//		if (true) goto _L2; else goto _L5
+//_L5:
 	}
 
 	public static void startAsync(long l)
@@ -334,52 +335,52 @@ _L5:
 
 	static 
 	{
-		sEnabled = false;
-		if (android.os.Build.VERSION.SDK_INT < 16)
-			break MISSING_BLOCK_LABEL_111;
-		sTraceTagView = Class.forName("android.os.Trace").getField("TRACE_TAG_WEBVIEW").getLong(null);
-		Class class1 = Class.forName("android.os.SystemProperties");
-		Class aclass[] = new Class[2];
-		aclass[0] = java/lang/String;
-		aclass[1] = Long.TYPE;
-		sSystemPropertiesGetLongMethod = class1.getDeclaredMethod("getLong", aclass);
-		Method method = class1.getDeclaredMethod("addChangeCallback", new Class[] {
-			java/lang/Runnable
-		});
-		Object aobj[] = new Object[1];
-		aobj[0] = new Runnable() {
-
-			public void run()
-			{
-				TraceEvent.setEnabledToMatchNative();
-			}
-
-		};
-		method.invoke(null, aobj);
-		return;
-		ClassNotFoundException classnotfoundexception;
-		classnotfoundexception;
-		Log.e("TraceEvent", "init", classnotfoundexception);
-		break MISSING_BLOCK_LABEL_185;
-		NoSuchMethodException nosuchmethodexception;
-		nosuchmethodexception;
-		Log.e("TraceEvent", "init", nosuchmethodexception);
-		break MISSING_BLOCK_LABEL_185;
-		IllegalArgumentException illegalargumentexception;
-		illegalargumentexception;
-		Log.e("TraceEvent", "init", illegalargumentexception);
-		break MISSING_BLOCK_LABEL_185;
-		IllegalAccessException illegalaccessexception;
-		illegalaccessexception;
-		Log.e("TraceEvent", "init", illegalaccessexception);
-		break MISSING_BLOCK_LABEL_185;
-		InvocationTargetException invocationtargetexception;
-		invocationtargetexception;
-		Log.e("TraceEvent", "init", invocationtargetexception);
-		break MISSING_BLOCK_LABEL_185;
-		NoSuchFieldException nosuchfieldexception;
-		nosuchfieldexception;
-		Log.e("TraceEvent", "init", nosuchfieldexception);
+//		sEnabled = false;
+//		if (android.os.Build.VERSION.SDK_INT < 16)
+//			break MISSING_BLOCK_LABEL_111;
+//		sTraceTagView = Class.forName("android.os.Trace").getField("TRACE_TAG_WEBVIEW").getLong(null);
+//		Class class1 = Class.forName("android.os.SystemProperties");
+//		Class aclass[] = new Class[2];
+//		aclass[0] = java/lang/String;
+//		aclass[1] = Long.TYPE;
+//		sSystemPropertiesGetLongMethod = class1.getDeclaredMethod("getLong", aclass);
+//		Method method = class1.getDeclaredMethod("addChangeCallback", new Class[] {
+//			java/lang/Runnable
+//		});
+//		Object aobj[] = new Object[1];
+//		aobj[0] = new Runnable() {
+//
+//			public void run()
+//			{
+//				TraceEvent.setEnabledToMatchNative();
+//			}
+//
+//		};
+//		method.invoke(null, aobj);
+//		return;
+//		ClassNotFoundException classnotfoundexception;
+//		classnotfoundexception;
+//		Log.e("TraceEvent", "init", classnotfoundexception);
+//		break MISSING_BLOCK_LABEL_185;
+//		NoSuchMethodException nosuchmethodexception;
+//		nosuchmethodexception;
+//		Log.e("TraceEvent", "init", nosuchmethodexception);
+//		break MISSING_BLOCK_LABEL_185;
+//		IllegalArgumentException illegalargumentexception;
+//		illegalargumentexception;
+//		Log.e("TraceEvent", "init", illegalargumentexception);
+//		break MISSING_BLOCK_LABEL_185;
+//		IllegalAccessException illegalaccessexception;
+//		illegalaccessexception;
+//		Log.e("TraceEvent", "init", illegalaccessexception);
+//		break MISSING_BLOCK_LABEL_185;
+//		InvocationTargetException invocationtargetexception;
+//		invocationtargetexception;
+//		Log.e("TraceEvent", "init", invocationtargetexception);
+//		break MISSING_BLOCK_LABEL_185;
+//		NoSuchFieldException nosuchfieldexception;
+//		nosuchfieldexception;
+//		Log.e("TraceEvent", "init", nosuchfieldexception);
 	}
 
 }

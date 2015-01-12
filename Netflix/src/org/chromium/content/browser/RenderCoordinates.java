@@ -12,7 +12,6 @@ public class RenderCoordinates
 
 		private float mXAbsoluteCss;
 		private float mYAbsoluteCss;
-		final RenderCoordinates this$0;
 
 		public float getXAbsoluteCss()
 		{
@@ -62,8 +61,6 @@ public class RenderCoordinates
 
 		private NormalizedPoint()
 		{
-			this$0 = RenderCoordinates.this;
-			super();
 		}
 
 	}

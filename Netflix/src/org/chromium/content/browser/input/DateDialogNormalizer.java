@@ -17,26 +17,26 @@ class DateDialogNormalizer
 
 	static void normalize(DatePicker datepicker, android.widget.DatePicker.OnDateChangedListener ondatechangedlistener, int i, int j, int k, int l, int i1, long l1, long l2)
 	{
-		Calendar calendar;
-		calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
-		calendar.clear();
-		calendar.set(i, j, k, l, i1, 0);
-		if (calendar.getTimeInMillis() >= l1) goto _L2; else goto _L1
-_L1:
-		calendar.clear();
-		calendar.setTimeInMillis(l1);
-_L4:
-		datepicker.init(calendar.get(1), calendar.get(2), calendar.get(5), ondatechangedlistener);
-		setLimits(datepicker, l1, l2);
-		return;
-_L2:
-		if (calendar.getTimeInMillis() > l2)
-		{
-			calendar.clear();
-			calendar.setTimeInMillis(l2);
-		}
-		if (true) goto _L4; else goto _L3
-_L3:
+//		Calendar calendar;
+//		calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT"));
+//		calendar.clear();
+//		calendar.set(i, j, k, l, i1, 0);
+//		if (calendar.getTimeInMillis() >= l1) goto _L2; else goto _L1
+//_L1:
+//		calendar.clear();
+//		calendar.setTimeInMillis(l1);
+//_L4:
+//		datepicker.init(calendar.get(1), calendar.get(2), calendar.get(5), ondatechangedlistener);
+//		setLimits(datepicker, l1, l2);
+//		return;
+//_L2:
+//		if (calendar.getTimeInMillis() > l2)
+//		{
+//			calendar.clear();
+//			calendar.setTimeInMillis(l2);
+//		}
+//		if (true) goto _L4; else goto _L3
+//_L3:
 	}
 
 	private static void setLimits(DatePicker datepicker, long l, long l1)

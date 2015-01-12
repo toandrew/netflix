@@ -21,8 +21,6 @@ class DateTimeChooserAndroid
 		mNativeDateTimeChooserAndroid = i;
 		mInputDialogContainer = new InputDialogContainer(context, new InputDialogContainer.InputActionDelegate() {
 
-			final DateTimeChooserAndroid this$0;
-
 			public void cancelDateTimeDialog()
 			{
 				nativeCancelDialog(mNativeDateTimeChooserAndroid);
@@ -32,12 +30,6 @@ class DateTimeChooserAndroid
 					int i2)
 			{
 				nativeReplaceDateTime(mNativeDateTimeChooserAndroid, j, k, l, i1, j1, k1, l1, i2);
-			}
-
-			
-			{
-				this$0 = DateTimeChooserAndroid.this;
-				super();
 			}
 		});
 	}

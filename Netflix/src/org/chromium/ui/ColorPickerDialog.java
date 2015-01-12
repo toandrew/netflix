@@ -34,84 +34,59 @@ public class ColorPickerDialog extends AlertDialog
 		mInitialColor = i;
 		mCurrentColor = mInitialColor;
 		LayoutInflater layoutinflater = (LayoutInflater)context.getSystemService("layout_inflater");
-		View view = layoutinflater.inflate(R.layout.color_picker_dialog_title, null);
+		View view = null;//layoutinflater.inflate(R.layout.color_picker_dialog_title, null);
 		setCustomTitle(view);
-		mCurrentColorView = view.findViewById(R.id.selected_color_view);
-		((TextView)view.findViewById(R.id.title)).setText(R.string.color_picker_dialog_title);
-		setButton(-1, context.getString(R.string.color_picker_button_set), new android.content.DialogInterface.OnClickListener() {
-
-			final ColorPickerDialog this$0;
-
-			public void onClick(DialogInterface dialoginterface, int j)
-			{
-				tryNotifyColorSet(mCurrentColor);
-			}
-
-			
-			{
-				this$0 = ColorPickerDialog.this;
-				super();
-			}
-		});
-		setButton(-2, context.getString(R.string.color_picker_button_cancel), new android.content.DialogInterface.OnClickListener() {
-
-			final ColorPickerDialog this$0;
-
-			public void onClick(DialogInterface dialoginterface, int j)
-			{
-				tryNotifyColorSet(mInitialColor);
-			}
-
-			
-			{
-				this$0 = ColorPickerDialog.this;
-				super();
-			}
-		});
+		mCurrentColorView = null;//view.findViewById(R.id.selected_color_view);
+//		((TextView)view.findViewById(R.id.title)).setText(R.string.color_picker_dialog_title);
+//		setButton(-1, context.getString(R.string.color_picker_button_set), new android.content.DialogInterface.OnClickListener() {
+//
+//
+//			public void onClick(DialogInterface dialoginterface, int j)
+//			{
+//				tryNotifyColorSet(mCurrentColor);
+//			}
+//
+//		});
+//		setButton(-2, context.getString(R.string.color_picker_button_cancel), new android.content.DialogInterface.OnClickListener() {
+//
+//			public void onClick(DialogInterface dialoginterface, int j)
+//			{
+//				tryNotifyColorSet(mInitialColor);
+//			}
+//
+//		});
 		setOnCancelListener(new android.content.DialogInterface.OnCancelListener() {
-
-			final ColorPickerDialog this$0;
 
 			public void onCancel(DialogInterface dialoginterface)
 			{
 				tryNotifyColorSet(mInitialColor);
 			}
 
-			
-			{
-				this$0 = ColorPickerDialog.this;
-				super();
-			}
 		});
-		View view1 = layoutinflater.inflate(R.layout.color_picker_dialog_content, null);
+		View view1 = null;//layoutinflater.inflate(R.layout.color_picker_dialog_content, null);
 		setView(view1);
-		mMoreButton = (Button)view1.findViewById(R.id.more_colors_button);
+		mMoreButton = null;//(Button)view1.findViewById(R.id.more_colors_button);
 		mMoreButton.setOnClickListener(new android.view.View.OnClickListener() {
 
-			final ColorPickerDialog this$0;
 
 			public void onClick(View view2)
 			{
 				showAdvancedView();
 			}
 
-			
-			{
-				this$0 = ColorPickerDialog.this;
-				super();
-			}
+
 		});
-		mAdvancedColorPicker = (ColorPickerAdvanced)view1.findViewById(R.id.color_picker_advanced);
+		mAdvancedColorPicker = null;//(ColorPickerAdvanced)view1.findViewById(R.id.color_picker_advanced);
 		mAdvancedColorPicker.setVisibility(8);
-		mSimpleColorPicker = (ColorPickerSimple)view1.findViewById(R.id.color_picker_simple);
+		mSimpleColorPicker = null;//(ColorPickerSimple)view1.findViewById(R.id.color_picker_simple);
 		mSimpleColorPicker.init(this);
 		updateCurrentColor(mInitialColor);
 	}
 
 	private void showAdvancedView()
 	{
-		findViewById(R.id.more_colors_button_border).setVisibility(8);
-		findViewById(R.id.color_picker_simple_border).setVisibility(8);
+		//findViewById(R.id.more_colors_button_border).setVisibility(8);
+		//findViewById(R.id.color_picker_simple_border).setVisibility(8);
 		mAdvancedColorPicker.setVisibility(0);
 		mAdvancedColorPicker.setListener(this);
 		mAdvancedColorPicker.setColor(mCurrentColor);

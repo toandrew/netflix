@@ -82,80 +82,80 @@ class SnapScrollController
 
 	void setSnapScrollingMode(MotionEvent motionevent)
 	{
-		motionevent.getAction();
-		JVM INSTR tableswitch 0 3: default 36
-	//	               0 45
-	//	               1 152
-	//	               2 69
-	//	               3 152;
-		   goto _L1 _L2 _L3 _L4 _L3
-_L1:
-		Log.i("SnapScrollController", "setSnapScrollingMode case-default no-op");
-_L6:
-		return;
-_L2:
-		mSnapScrollMode = 0;
-		mFirstTouchX = (int)motionevent.getX();
-		mFirstTouchY = (int)motionevent.getY();
-		return;
-_L4:
-		if (mZoomManager.isScaleGestureDetectionInProgress() || mSnapScrollMode != 0) goto _L6; else goto _L5
-_L5:
-		int i;
-		int j;
-		i = (int)Math.abs(motionevent.getX() - (float)mFirstTouchX);
-		j = (int)Math.abs(motionevent.getY() - (float)mFirstTouchY);
-		if (i > 16 && j < 16)
-		{
-			mSnapScrollMode = 1;
-			return;
-		}
-		if (i >= 16 || j <= 16) goto _L6; else goto _L7
-_L7:
-		mSnapScrollMode = 2;
-		return;
-_L3:
-		mFirstTouchX = -1;
-		mFirstTouchY = -1;
-		mDistanceX = 0.0F;
-		mDistanceY = 0.0F;
+//		motionevent.getAction();
+//		JVM INSTR tableswitch 0 3: default 36
+//	//	               0 45
+//	//	               1 152
+//	//	               2 69
+//	//	               3 152;
+//		   goto _L1 _L2 _L3 _L4 _L3
+//_L1:
+//		Log.i("SnapScrollController", "setSnapScrollingMode case-default no-op");
+//_L6:
+//		return;
+//_L2:
+//		mSnapScrollMode = 0;
+//		mFirstTouchX = (int)motionevent.getX();
+//		mFirstTouchY = (int)motionevent.getY();
+//		return;
+//_L4:
+//		if (mZoomManager.isScaleGestureDetectionInProgress() || mSnapScrollMode != 0) goto _L6; else goto _L5
+//_L5:
+//		int i;
+//		int j;
+//		i = (int)Math.abs(motionevent.getX() - (float)mFirstTouchX);
+//		j = (int)Math.abs(motionevent.getY() - (float)mFirstTouchY);
+//		if (i > 16 && j < 16)
+//		{
+//			mSnapScrollMode = 1;
+//			return;
+//		}
+//		if (i >= 16 || j <= 16) goto _L6; else goto _L7
+//_L7:
+//		mSnapScrollMode = 2;
+//		return;
+//_L3:
+//		mFirstTouchX = -1;
+//		mFirstTouchY = -1;
+//		mDistanceX = 0.0F;
+//		mDistanceY = 0.0F;
 		return;
 	}
 
 	void updateSnapScrollMode(float f, float f1)
 	{
-		if (mSnapScrollMode != 1 && mSnapScrollMode != 2) goto _L2; else goto _L1
-_L1:
-		mDistanceX = mDistanceX + Math.abs(f);
-		mDistanceY = mDistanceY + Math.abs(f1);
-		if (mSnapScrollMode != 1) goto _L4; else goto _L3
-_L3:
-		if (mDistanceY <= mChannelDistance) goto _L6; else goto _L5
-_L5:
-		mSnapScrollMode = 0;
-_L2:
-		return;
-_L6:
-		if (mDistanceX > mChannelDistance)
-		{
-			mDistanceX = 0.0F;
-			mDistanceY = 0.0F;
-			return;
-		}
-		continue; /* Loop/switch isn't completed */
-_L4:
-		if (mDistanceX > mChannelDistance)
-		{
-			mSnapScrollMode = 0;
-			return;
-		}
-		if (mDistanceY > mChannelDistance)
-		{
-			mDistanceX = 0.0F;
-			mDistanceY = 0.0F;
-			return;
-		}
-		if (true) goto _L2; else goto _L7
-_L7:
+//		if (mSnapScrollMode != 1 && mSnapScrollMode != 2) goto _L2; else goto _L1
+//_L1:
+//		mDistanceX = mDistanceX + Math.abs(f);
+//		mDistanceY = mDistanceY + Math.abs(f1);
+//		if (mSnapScrollMode != 1) goto _L4; else goto _L3
+//_L3:
+//		if (mDistanceY <= mChannelDistance) goto _L6; else goto _L5
+//_L5:
+//		mSnapScrollMode = 0;
+//_L2:
+//		return;
+//_L6:
+//		if (mDistanceX > mChannelDistance)
+//		{
+//			mDistanceX = 0.0F;
+//			mDistanceY = 0.0F;
+//			return;
+//		}
+//		continue; /* Loop/switch isn't completed */
+//_L4:
+//		if (mDistanceX > mChannelDistance)
+//		{
+//			mSnapScrollMode = 0;
+//			return;
+//		}
+//		if (mDistanceY > mChannelDistance)
+//		{
+//			mDistanceX = 0.0F;
+//			mDistanceY = 0.0F;
+//			return;
+//		}
+//		if (true) goto _L2; else goto _L7
+//_L7:
 	}
 }

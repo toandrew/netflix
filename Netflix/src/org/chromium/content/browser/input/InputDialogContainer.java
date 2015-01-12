@@ -25,7 +25,6 @@ public class InputDialogContainer
 	{
 
 		private final int mDialogType;
-		final InputDialogContainer this$0;
 
 		public void onDateSet(DatePicker datepicker, int i, int j, int k)
 		{
@@ -35,8 +34,6 @@ public class InputDialogContainer
 
 		DateListener(int i)
 		{
-			this$0 = InputDialogContainer.this;
-			super();
 			mDialogType = i;
 		}
 	}
@@ -47,7 +44,6 @@ public class InputDialogContainer
 
 		private final int mDialogType;
 		private final boolean mLocal;
-		final InputDialogContainer this$0;
 
 		public void onDateTimeSet(DatePicker datepicker, TimePicker timepicker, int i, int j, int k, int l, int i1)
 		{
@@ -66,8 +62,7 @@ public class InputDialogContainer
 
 		public DateTimeListener(int i)
 		{
-			this$0 = InputDialogContainer.this;
-			super();
+
 			boolean flag;
 			if (i == InputDialogContainer.sTextInputTypeDateTimeLocal)
 				flag = true;
@@ -92,7 +87,6 @@ public class InputDialogContainer
 	{
 
 		private final int mDialogType;
-		final InputDialogContainer this$0;
 
 		public void onValueSet(int i, int j)
 		{
@@ -111,8 +105,7 @@ label0:
 
 		MonthOrWeekListener(int i)
 		{
-			this$0 = InputDialogContainer.this;
-			super();
+
 			mDialogType = i;
 		}
 	}
@@ -122,7 +115,6 @@ label0:
 	{
 
 		private final int mDialogType;
-		final InputDialogContainer this$0;
 
 		public void onTimeSet(TimePicker timepicker, int i, int j)
 		{
@@ -132,8 +124,7 @@ label0:
 
 		TimeListener(int i)
 		{
-			this$0 = InputDialogContainer.this;
-			super();
+
 			mDialogType = i;
 		}
 	}
@@ -219,84 +210,68 @@ label0:
 	void showDialog(final int dialogType, int i, int j, int k, int l, int i1, int j1, 
 			int k1, double d, double d1)
 	{
-		long l1;
-		long l2;
-		Time time;
-		if (isDialogShowing())
-			mDialog.dismiss();
-		l1 = (long)d;
-		l2 = (long)d1;
-		time = normalizeTime(i, j, k, l, i1, j1);
-		if (dialogType != sTextInputTypeDate) goto _L2; else goto _L1
-_L1:
-		DatePickerDialog datepickerdialog = new DatePickerDialog(mContext, new DateListener(dialogType), time.year, time.month, time.monthDay);
-		DateDialogNormalizer.normalize(datepickerdialog.getDatePicker(), datepickerdialog, time.year, time.month, time.monthDay, 0, 0, l1, l2);
-		datepickerdialog.setTitle(mContext.getText(org.chromium.content.R.string.date_picker_dialog_title));
-		mDialog = datepickerdialog;
-_L4:
-		mDialog.setButton(-1, mContext.getText(org.chromium.content.R.string.date_picker_dialog_set), (android.content.DialogInterface.OnClickListener)mDialog);
-		mDialog.setButton(-2, mContext.getText(0x1040000), new android.content.DialogInterface.OnClickListener() {
-
-			final InputDialogContainer this$0;
-
-			public void onClick(DialogInterface dialoginterface, int i2)
-			{
-				mDialogAlreadyDismissed = true;
-				mInputActionDelegate.cancelDateTimeDialog();
-			}
-
-			
-			{
-				this$0 = InputDialogContainer.this;
-				super();
-			}
-		});
-		mDialog.setButton(-3, mContext.getText(org.chromium.content.R.string.date_picker_dialog_clear), new android.content.DialogInterface.OnClickListener() {
-
-			final InputDialogContainer this$0;
-			final int val$dialogType;
-
-			public void onClick(DialogInterface dialoginterface, int i2)
-			{
-				mDialogAlreadyDismissed = true;
-				mInputActionDelegate.replaceDateTime(dialogType, 0, 0, 0, 0, 0, 0, 0);
-			}
-
-			
-			{
-				this$0 = InputDialogContainer.this;
-				dialogType = i;
-				super();
-			}
-		});
+//		long l1;
+//		long l2;
+//		Time time;
+//		if (isDialogShowing())
+//			mDialog.dismiss();
+//		l1 = (long)d;
+//		l2 = (long)d1;
+//		time = normalizeTime(i, j, k, l, i1, j1);
+//		if (dialogType != sTextInputTypeDate) goto _L2; else goto _L1
+//_L1:
+//		DatePickerDialog datepickerdialog = new DatePickerDialog(mContext, new DateListener(dialogType), time.year, time.month, time.monthDay);
+//		DateDialogNormalizer.normalize(datepickerdialog.getDatePicker(), datepickerdialog, time.year, time.month, time.monthDay, 0, 0, l1, l2);
+//		datepickerdialog.setTitle(mContext.getText(org.chromium.content.R.string.date_picker_dialog_title));
+//		mDialog = datepickerdialog;
+//_L4:
+//		mDialog.setButton(-1, mContext.getText(org.chromium.content.R.string.date_picker_dialog_set), (android.content.DialogInterface.OnClickListener)mDialog);
+//		mDialog.setButton(-2, mContext.getText(0x1040000), new android.content.DialogInterface.OnClickListener() {
+//
+//			public void onClick(DialogInterface dialoginterface, int i2)
+//			{
+//				mDialogAlreadyDismissed = true;
+//				mInputActionDelegate.cancelDateTimeDialog();
+//			}
+//
+//		});
+//		mDialog.setButton(-3, mContext.getText(org.chromium.content.R.string.date_picker_dialog_clear), new android.content.DialogInterface.OnClickListener() {
+//
+//			public void onClick(DialogInterface dialoginterface, int i2)
+//			{
+//				mDialogAlreadyDismissed = true;
+//				mInputActionDelegate.replaceDateTime(dialogType, 0, 0, 0, 0, 0, 0, 0);
+//			}
+//
+//		});
 		mDialogAlreadyDismissed = false;
 		mDialog.show();
 		return;
-_L2:
-		if (dialogType == sTextInputTypeTime)
-			mDialog = TimeDialog.create(mContext, new TimeListener(dialogType), time.hour, time.minute, DateFormat.is24HourFormat(mContext), l1, l2);
-		else
-		if (dialogType == sTextInputTypeDateTime || dialogType == sTextInputTypeDateTimeLocal)
-		{
-			Context context = mContext;
-			DateTimeListener datetimelistener = new DateTimeListener(dialogType);
-			mDialog = new DateTimePickerDialog(context, datetimelistener, time.year, time.month, time.monthDay, time.hour, time.minute, DateFormat.is24HourFormat(mContext), l1, l2);
-		} else
-		if (dialogType == sTextInputTypeMonth)
-			mDialog = new MonthPickerDialog(mContext, new MonthOrWeekListener(dialogType), time.year, time.month, l1, l2);
-		else
-		if (dialogType == sTextInputTypeWeek)
-		{
-			if (k1 == 0)
-			{
-				Calendar calendar = Calendar.getInstance();
-				i = WeekPicker.getISOWeekYearForDate(calendar);
-				k1 = WeekPicker.getWeekForDate(calendar);
-			}
-			mDialog = new WeekPickerDialog(mContext, new MonthOrWeekListener(dialogType), i, k1, l1, l2);
-		}
-		if (true) goto _L4; else goto _L3
-_L3:
+//_L2:
+//		if (dialogType == sTextInputTypeTime)
+//			mDialog = TimeDialog.create(mContext, new TimeListener(dialogType), time.hour, time.minute, DateFormat.is24HourFormat(mContext), l1, l2);
+//		else
+//		if (dialogType == sTextInputTypeDateTime || dialogType == sTextInputTypeDateTimeLocal)
+//		{
+//			Context context = mContext;
+//			DateTimeListener datetimelistener = new DateTimeListener(dialogType);
+//			mDialog = new DateTimePickerDialog(context, datetimelistener, time.year, time.month, time.monthDay, time.hour, time.minute, DateFormat.is24HourFormat(mContext), l1, l2);
+//		} else
+//		if (dialogType == sTextInputTypeMonth)
+//			mDialog = new MonthPickerDialog(mContext, new MonthOrWeekListener(dialogType), time.year, time.month, l1, l2);
+//		else
+//		if (dialogType == sTextInputTypeWeek)
+//		{
+//			if (k1 == 0)
+//			{
+//				Calendar calendar = Calendar.getInstance();
+//				i = WeekPicker.getISOWeekYearForDate(calendar);
+//				k1 = WeekPicker.getWeekForDate(calendar);
+//			}
+//			mDialog = new WeekPickerDialog(mContext, new MonthOrWeekListener(dialogType), i, k1, l1, l2);
+//		}
+//		if (true) goto _L4; else goto _L3
+//_L3:
 	}
 
 

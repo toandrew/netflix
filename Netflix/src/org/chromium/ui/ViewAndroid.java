@@ -74,11 +74,11 @@ public class ViewAndroid
 
 	static 
 	{
-		boolean flag;
-		if (!org/chromium/ui/ViewAndroid.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
+//		boolean flag;
+//		if (!org/chromium/ui/ViewAndroid.desiredAssertionStatus())
+//			flag = true;
+//		else
+//			flag = false;
+		$assertionsDisabled = false;
 	}
 }

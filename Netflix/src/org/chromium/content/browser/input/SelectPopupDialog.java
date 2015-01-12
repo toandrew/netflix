@@ -19,10 +19,9 @@ public class SelectPopupDialog
 
 		static final int POPUP_ITEM_TYPE_DISABLED = 1;
 		static final int POPUP_ITEM_TYPE_ENABLED = 2;
-		static final int POPUP_ITEM_TYPE_GROUP;
+		static final int POPUP_ITEM_TYPE_GROUP = 0;
 		private boolean mAreAllItemsEnabled;
 		private int mItemEnabled[];
-		final SelectPopupDialog this$0;
 
 		public boolean areAllItemsEnabled()
 		{
@@ -51,36 +50,37 @@ public class SelectPopupDialog
 
 		public SelectPopupArrayAdapter(String as[], int ai[], boolean flag)
 		{
-			this$0 = SelectPopupDialog.this;
-			android.content.Context context = mContentViewCore.getContext();
-			int i;
-			int ai1[];
-			int j;
-			int k;
-			if (flag)
-				i = 0x1090013;
-			else
-				i = 0x1090012;
-			super(context, i, as);
-			mItemEnabled = ai;
-			mAreAllItemsEnabled = true;
-			ai1 = mItemEnabled;
-			j = ai1.length;
-			k = 0;
-			do
-			{
-label0:
-				{
-					if (k < j)
-					{
-						if (ai1[k] == 2)
-							break label0;
-						mAreAllItemsEnabled = false;
-					}
-					return;
-				}
-				k++;
-			} while (true);
+		    super(mContentViewCore.getContext(), 0x1090013);
+//			this$0 = SelectPopupDialog.this;
+//			android.content.Context context = mContentViewCore.getContext();
+//			int i;
+//			int ai1[];
+//			int j;
+//			int k;
+//			if (flag)
+//				i = 0x1090013;
+//			else
+//				i = 0x1090012;
+//			super(context, i, as);
+//			mItemEnabled = ai;
+//			mAreAllItemsEnabled = true;
+//			ai1 = mItemEnabled;
+//			j = ai1.length;
+//			k = 0;
+//			do
+//			{
+//label0:
+//				{
+//					if (k < j)
+//					{
+//						if (ai1[k] == 2)
+//							break label0;
+//						mAreAllItemsEnabled = false;
+//					}
+//					return;
+//				}
+//				k++;
+//			} while (true);
 		}
 	}
 
@@ -99,35 +99,20 @@ label0:
 		{
 			builder.setPositiveButton(0x104000a, new android.content.DialogInterface.OnClickListener() {
 
-				final SelectPopupDialog this$0;
-				final ListView val$listView;
-
 				public void onClick(DialogInterface dialoginterface, int j)
 				{
 					mContentViewCore.selectPopupMenuItems(getSelectedIndices(listView));
 				}
 
-			
-			{
-				this$0 = SelectPopupDialog.this;
-				listView = listview;
-				super();
-			}
 			});
 			builder.setNegativeButton(0x1040000, new android.content.DialogInterface.OnClickListener() {
 
-				final SelectPopupDialog this$0;
-
+	
 				public void onClick(DialogInterface dialoginterface, int j)
 				{
 					mContentViewCore.selectPopupMenuItems(null);
 				}
 
-			
-			{
-				this$0 = SelectPopupDialog.this;
-				super();
-			}
 			});
 		}
 		mListBoxPopup = builder.create();
@@ -144,9 +129,6 @@ label0:
 			listView.setChoiceMode(1);
 			listView.setOnItemClickListener(new android.widget.AdapterView.OnItemClickListener() {
 
-				final SelectPopupDialog this$0;
-				final ListView val$listView;
-
 				public void onItemClick(AdapterView adapterview, View view, int j, long l)
 				{
 					mContentViewCore.selectPopupMenuItems(getSelectedIndices(listView));
@@ -154,11 +136,6 @@ label0:
 				}
 
 			
-			{
-				this$0 = SelectPopupDialog.this;
-				listView = listview;
-				super();
-			}
 			});
 			if (ai1.length > 0)
 			{
@@ -167,35 +144,18 @@ label0:
 			}
 		}
 		mListBoxPopup.setOnCancelListener(new android.content.DialogInterface.OnCancelListener() {
-
-			final SelectPopupDialog this$0;
-
 			public void onCancel(DialogInterface dialoginterface)
 			{
 				mContentViewCore.selectPopupMenuItems(null);
 			}
-
-			
-			{
-				this$0 = SelectPopupDialog.this;
-				super();
-			}
 		});
 		mListBoxPopup.setOnDismissListener(new android.content.DialogInterface.OnDismissListener() {
-
-			final SelectPopupDialog this$0;
-
 			public void onDismiss(DialogInterface dialoginterface)
 			{
 				mListBoxPopup = null;
 				SelectPopupDialog.sShownDialog = null;
 			}
 
-			
-			{
-				this$0 = SelectPopupDialog.this;
-				super();
-			}
 		});
 	}
 

@@ -24,14 +24,14 @@ public class ColorPickerAdvancedComponent
 
 	ColorPickerAdvancedComponent(View view, int i, int j, android.widget.SeekBar.OnSeekBarChangeListener onseekbarchangelistener)
 	{
-		mGradientView = view.findViewById(R.id.gradient);
-		mText = (TextView)view.findViewById(R.id.text);
+		mGradientView = null;//view.findViewById(R.id.gradient);
+		mText = null;//(TextView)view.findViewById(R.id.text);
 		mText.setText(i);
 		mGradientDrawable = new GradientDrawable(android.graphics.drawable.GradientDrawable.Orientation.LEFT_RIGHT, null);
-		mSeekBar = (SeekBar)view.findViewById(R.id.seek_bar);
+		mSeekBar = null;//(SeekBar)view.findViewById(R.id.seek_bar);
 		mSeekBar.setOnSeekBarChangeListener(onseekbarchangelistener);
 		mSeekBar.setMax(j);
-		int k = view.getContext().getResources().getDrawable(R.drawable.color_picker_advanced_select_handle).getIntrinsicWidth();
+		int k = 0;//view.getContext().getResources().getDrawable(R.drawable.color_picker_advanced_select_handle).getIntrinsicWidth();
 		mSeekBar.setThumbOffset(k / 2);
 	}
 

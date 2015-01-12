@@ -104,12 +104,12 @@ public abstract class CommandLine
 
 		static 
 		{
-			boolean flag;
-			if (!org/chromium/content/common/CommandLine.desiredAssertionStatus())
-				flag = true;
-			else
-				flag = false;
-			$assertionsDisabled = flag;
+//			boolean flag;
+//			if (!org/chromium/content/common/CommandLine.desiredAssertionStatus())
+//				flag = true;
+//			else
+//				flag = false;
+			$assertionsDisabled = false;
 		}
 
 
@@ -265,101 +265,102 @@ public abstract class CommandLine
 
 	private static char[] readUtf8FileFully(String s, int i)
 	{
-		InputStreamReader inputstreamreader;
-		File file;
-		int j;
-		inputstreamreader = null;
-		file = new File(s);
-		long l = file.length();
-		if (l == 0L)
-			return null;
-		if (l > (long)i)
-		{
-			Log.w("CommandLine", (new StringBuilder()).append("File ").append(s).append(" length ").append(l).append(" exceeds limit ").append(i).toString());
-			return null;
-		}
-		j = (int)l;
-		char ac[];
-		InputStreamReader inputstreamreader2;
-		ac = new char[j];
-		inputstreamreader2 = new InputStreamReader(new FileInputStream(file), "UTF-8");
-		int k;
-		k = inputstreamreader2.read(ac);
-		if (!$assertionsDisabled && inputstreamreader2.ready())
-			throw new AssertionError();
-		  goto _L1
-		FileNotFoundException filenotfoundexception1;
-		filenotfoundexception1;
-		InputStreamReader inputstreamreader1 = inputstreamreader2;
-_L7:
-		IOException ioexception5;
-		char ac1[];
-		if (inputstreamreader1 != null)
-			try
-			{
-				inputstreamreader1.close();
-			}
-			catch (IOException ioexception)
-			{
-				Log.e("CommandLine", "Unable to close file reader.", ioexception);
-			}
-		return null;
-_L1:
-		if (k >= ac.length)
-			break MISSING_BLOCK_LABEL_181;
-		ac1 = Arrays.copyOfRange(ac, 0, k);
-		ac = ac1;
-		if (inputstreamreader2 != null)
-			try
-			{
-				inputstreamreader2.close();
-			}
-			// Misplaced declaration of an exception variable
-			catch (IOException ioexception5)
-			{
-				Log.e("CommandLine", "Unable to close file reader.", ioexception5);
-			}
-		return ac;
-		IOException ioexception2;
-		ioexception2;
-_L5:
-		if (inputstreamreader != null)
-			try
-			{
-				inputstreamreader.close();
-			}
-			catch (IOException ioexception3)
-			{
-				Log.e("CommandLine", "Unable to close file reader.", ioexception3);
-			}
-		return null;
-		Exception exception;
-		exception;
-_L3:
-		if (inputstreamreader != null)
-			try
-			{
-				inputstreamreader.close();
-			}
-			catch (IOException ioexception1)
-			{
-				Log.e("CommandLine", "Unable to close file reader.", ioexception1);
-			}
-		throw exception;
-		exception;
-		inputstreamreader = inputstreamreader2;
-		if (true) goto _L3; else goto _L2
-_L2:
-		IOException ioexception4;
-		ioexception4;
-		inputstreamreader = inputstreamreader2;
-		if (true) goto _L5; else goto _L4
-_L4:
-		FileNotFoundException filenotfoundexception;
-		filenotfoundexception;
-		inputstreamreader1 = null;
-		if (true) goto _L7; else goto _L6
-_L6:
+	    return null;
+//		InputStreamReader inputstreamreader;
+//		File file;
+//		int j;
+//		inputstreamreader = null;
+//		file = new File(s);
+//		long l = file.length();
+//		if (l == 0L)
+//			return null;
+//		if (l > (long)i)
+//		{
+//			Log.w("CommandLine", (new StringBuilder()).append("File ").append(s).append(" length ").append(l).append(" exceeds limit ").append(i).toString());
+//			return null;
+//		}
+//		j = (int)l;
+//		char ac[];
+//		InputStreamReader inputstreamreader2;
+//		ac = new char[j];
+//		inputstreamreader2 = new InputStreamReader(new FileInputStream(file), "UTF-8");
+//		int k;
+//		k = inputstreamreader2.read(ac);
+//		if (!$assertionsDisabled && inputstreamreader2.ready())
+//			throw new AssertionError();
+//		  goto _L1
+//		FileNotFoundException filenotfoundexception1;
+//		filenotfoundexception1;
+//		InputStreamReader inputstreamreader1 = inputstreamreader2;
+//_L7:
+//		IOException ioexception5;
+//		char ac1[];
+//		if (inputstreamreader1 != null)
+//			try
+//			{
+//				inputstreamreader1.close();
+//			}
+//			catch (IOException ioexception)
+//			{
+//				Log.e("CommandLine", "Unable to close file reader.", ioexception);
+//			}
+//		return null;
+//_L1:
+//		if (k >= ac.length)
+//			break MISSING_BLOCK_LABEL_181;
+//		ac1 = Arrays.copyOfRange(ac, 0, k);
+//		ac = ac1;
+//		if (inputstreamreader2 != null)
+//			try
+//			{
+//				inputstreamreader2.close();
+//			}
+//			// Misplaced declaration of an exception variable
+//			catch (IOException ioexception5)
+//			{
+//				Log.e("CommandLine", "Unable to close file reader.", ioexception5);
+//			}
+//		return ac;
+//		IOException ioexception2;
+//		ioexception2;
+//_L5:
+//		if (inputstreamreader != null)
+//			try
+//			{
+//				inputstreamreader.close();
+//			}
+//			catch (IOException ioexception3)
+//			{
+//				Log.e("CommandLine", "Unable to close file reader.", ioexception3);
+//			}
+//		return null;
+//		Exception exception;
+//		exception;
+//_L3:
+//		if (inputstreamreader != null)
+//			try
+//			{
+//				inputstreamreader.close();
+//			}
+//			catch (IOException ioexception1)
+//			{
+//				Log.e("CommandLine", "Unable to close file reader.", ioexception1);
+//			}
+//		throw exception;
+//		exception;
+//		inputstreamreader = inputstreamreader2;
+//		if (true) goto _L3; else goto _L2
+//_L2:
+//		IOException ioexception4;
+//		ioexception4;
+//		inputstreamreader = inputstreamreader2;
+//		if (true) goto _L5; else goto _L4
+//_L4:
+//		FileNotFoundException filenotfoundexception;
+//		filenotfoundexception;
+//		inputstreamreader1 = null;
+//		if (true) goto _L7; else goto _L6
+//_L6:
 	}
 
 	public static void reset()
@@ -444,12 +445,12 @@ _L6:
 
 	static 
 	{
-		boolean flag;
-		if (!org/chromium/content/common/CommandLine.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
+//		boolean flag;
+//		if (!org/chromium/content/common/CommandLine.desiredAssertionStatus())
+//			flag = true;
+//		else
+//			flag = false;
+		//$assertionsDisabled = false;
 	}
 
 

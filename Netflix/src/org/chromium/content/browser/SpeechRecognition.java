@@ -17,8 +17,7 @@ public class SpeechRecognition
 		implements RecognitionListener
 	{
 
-		static final boolean $assertionsDisabled;
-		final SpeechRecognition this$0;
+		//static final boolean $assertionsDisabled;
 
 		private void handleResults(Bundle bundle, boolean flag)
 		{
@@ -52,44 +51,44 @@ public class SpeechRecognition
 
 		public void onError(int i)
 		{
-			i;
-			JVM INSTR tableswitch 1 9: default 52
-		//		               1 87
-		//		               2 87
-		//		               3 66
-		//		               4 87
-		//		               5 77
-		//		               6 98
-		//		               7 92
-		//		               8 82
-		//		               9 82;
-			   goto _L1 _L2 _L2 _L3 _L2 _L4 _L5 _L6 _L7 _L7
-_L1:
-			if (!$assertionsDisabled)
-				throw new AssertionError();
-			  goto _L8
-_L3:
-			byte byte0 = 2;
-_L10:
-			terminate(byte0);
-_L8:
-			return;
-_L4:
-			byte0 = 1;
-			continue; /* Loop/switch isn't completed */
-_L7:
-			byte0 = 4;
-			continue; /* Loop/switch isn't completed */
-_L2:
-			byte0 = 3;
-			continue; /* Loop/switch isn't completed */
-_L6:
-			byte0 = 6;
-			continue; /* Loop/switch isn't completed */
-_L5:
-			byte0 = 5;
-			if (true) goto _L10; else goto _L9
-_L9:
+//			i;
+//			JVM INSTR tableswitch 1 9: default 52
+//		//		               1 87
+//		//		               2 87
+//		//		               3 66
+//		//		               4 87
+//		//		               5 77
+//		//		               6 98
+//		//		               7 92
+//		//		               8 82
+//		//		               9 82;
+//			   goto _L1 _L2 _L2 _L3 _L2 _L4 _L5 _L6 _L7 _L7
+//_L1:
+//			if (!$assertionsDisabled)
+//				throw new AssertionError();
+//			  goto _L8
+//_L3:
+//			byte byte0 = 2;
+//_L10:
+//			terminate(byte0);
+//_L8:
+//			return;
+//_L4:
+//			byte0 = 1;
+//			continue; /* Loop/switch isn't completed */
+//_L7:
+//			byte0 = 4;
+//			continue; /* Loop/switch isn't completed */
+//_L2:
+//			byte0 = 3;
+//			continue; /* Loop/switch isn't completed */
+//_L6:
+//			byte0 = 6;
+//			continue; /* Loop/switch isn't completed */
+//_L5:
+//			byte0 = 5;
+//			if (true) goto _L10; else goto _L9
+//_L9:
 		}
 
 		public void onEvent(int i, Bundle bundle)
@@ -117,21 +116,15 @@ _L9:
 		{
 		}
 
-		static 
-		{
-			boolean flag;
-			if (!org/chromium/content/browser/SpeechRecognition.desiredAssertionStatus())
-				flag = true;
-			else
-				flag = false;
-			$assertionsDisabled = flag;
-		}
-
-		Listener()
-		{
-			this$0 = SpeechRecognition.this;
-			super();
-		}
+//		static 
+//		{
+////			boolean flag;
+////			if (!org/chromium/content/browser/SpeechRecognition.desiredAssertionStatus())
+////				flag = true;
+////			else
+////				flag = false;
+//			//$assertionsDisabled = false;
+//		}
 	}
 
 
@@ -139,7 +132,7 @@ _L9:
 	private static final String PROVIDER_PACKAGE_NAME = "com.google.android.googlequicksearchbox";
 	private static final int STATE_AWAITING_SPEECH = 1;
 	private static final int STATE_CAPTURING_SPEECH = 2;
-	private static final int STATE_IDLE;
+	private static final int STATE_IDLE =0;
 	private static ComponentName mRecognitionProvider;
 	private final Context mContext;
 	private boolean mContinuous;
@@ -181,35 +174,37 @@ _L9:
 
 	public static boolean initialize(Context context)
 	{
-		if (SpeechRecognizer.isRecognitionAvailable(context)) goto _L2; else goto _L1
-_L1:
-		return false;
-_L2:
-		PackageManager packagemanager;
-		Iterator iterator;
-		packagemanager = context.getPackageManager();
-		iterator = packagemanager.queryIntentServices(new Intent("android.speech.RecognitionService"), 4).iterator();
-_L4:
-		ServiceInfo serviceinfo;
-		do
-		{
-			if (!iterator.hasNext())
-				continue; /* Loop/switch isn't completed */
-			serviceinfo = ((ResolveInfo)iterator.next()).serviceInfo;
-		} while (!serviceinfo.packageName.equals("com.google.android.googlequicksearchbox"));
-		int i = packagemanager.getPackageInfo(serviceinfo.packageName, 0).versionCode;
-		if (i >= 0x11e4cbb6)
-		{
-			mRecognitionProvider = new ComponentName(serviceinfo.packageName, serviceinfo.name);
-			return true;
-		}
-		break; /* Loop/switch isn't completed */
-		android.content.pm.PackageManager.NameNotFoundException namenotfoundexception;
-		namenotfoundexception;
-		if (true) goto _L4; else goto _L3
-_L3:
-		if (true) goto _L1; else goto _L5
-_L5:
+	    return true;
+	    
+//		if (SpeechRecognizer.isRecognitionAvailable(context)) goto _L2; else goto _L1
+//_L1:
+//		return false;
+//_L2:
+//		PackageManager packagemanager;
+//		Iterator iterator;
+//		packagemanager = context.getPackageManager();
+//		iterator = packagemanager.queryIntentServices(new Intent("android.speech.RecognitionService"), 4).iterator();
+//_L4:
+//		ServiceInfo serviceinfo;
+//		do
+//		{
+//			if (!iterator.hasNext())
+//				continue; /* Loop/switch isn't completed */
+//			serviceinfo = ((ResolveInfo)iterator.next()).serviceInfo;
+//		} while (!serviceinfo.packageName.equals("com.google.android.googlequicksearchbox"));
+//		int i = packagemanager.getPackageInfo(serviceinfo.packageName, 0).versionCode;
+//		if (i >= 0x11e4cbb6)
+//		{
+//			mRecognitionProvider = new ComponentName(serviceinfo.packageName, serviceinfo.name);
+//			return true;
+//		}
+//		break; /* Loop/switch isn't completed */
+//		android.content.pm.PackageManager.NameNotFoundException namenotfoundexception;
+//		namenotfoundexception;
+//		if (true) goto _L4; else goto _L3
+//_L3:
+//		if (true) goto _L1; else goto _L5
+//_L5:
 	}
 
 	private native void nativeOnAudioEnd(int i);

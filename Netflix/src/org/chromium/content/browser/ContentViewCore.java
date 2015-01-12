@@ -22,9 +22,11 @@ import android.view.accessibility.*;
 import android.view.inputmethod.*;
 import android.widget.AbsoluteLayout;
 import android.widget.FrameLayout;
+
 import java.io.File;
 import java.lang.reflect.Field;
 import java.util.*;
+
 import org.chromium.base.WeakContext;
 import org.chromium.content.browser.accessibility.AccessibilityInjector;
 import org.chromium.content.browser.accessibility.BrowserAccessibilityManager;
@@ -227,8 +229,6 @@ public class ContentViewCore
 	{
 		return new ImeAdapter(new InputMethodManagerWrapper(context), new org.chromium.content.browser.input.ImeAdapter.ImeAdapterDelegate() {
 
-			final ContentViewCore this$0;
-
 			public View getAttachedView()
 			{
 				return mContainerView;
@@ -237,9 +237,6 @@ public class ContentViewCore
 			public ResultReceiver getNewShowKeyboardReceiver()
 			{
 				return new ResultReceiver(new Handler()) {
-
-					final 3 this$1;
-
 					public void onReceiveResult(int i, Bundle bundle)
 					{
 						ContentViewClient contentviewclient = getContentViewClient();
@@ -264,12 +261,6 @@ public class ContentViewCore
 							return;
 						}
 					}
-
-			
-			{
-				this$1 = 3.this;
-				super(handler);
-			}
 				};
 			}
 
@@ -291,12 +282,6 @@ public class ContentViewCore
 			public void onSetFieldValue()
 			{
 				scrollFocusedEditableNodeIntoView();
-			}
-
-			
-			{
-				this$0 = ContentViewCore.this;
-				super();
 			}
 		});
 	}
@@ -323,7 +308,6 @@ public class ContentViewCore
 			mInsertionHandleController = new InsertionHandleController(getContainerView()) {
 
 				private static final int AVERAGE_LINE_HEIGHT = 14;
-				final ContentViewCore this$0;
 
 				public int getLineHeight()
 				{
@@ -348,10 +332,6 @@ public class ContentViewCore
 				}
 
 			
-			{
-				this$0 = ContentViewCore.this;
-				super(view);
-			}
 			};
 			mInsertionHandleController.hideAndDisallowAutomaticShowing();
 		}
@@ -364,8 +344,7 @@ public class ContentViewCore
 		{
 			mSelectionHandleController = new SelectionHandleController(getContainerView()) {
 
-				final ContentViewCore this$0;
-
+			
 				public void selectBetweenCoordinates(int i, int j, int k, int l)
 				{
 					if (mNativeContentViewCore != 0 && (i != k || j != l))
@@ -379,10 +358,6 @@ public class ContentViewCore
 				}
 
 			
-			{
-				this$0 = ContentViewCore.this;
-				super(view);
-			}
 			};
 			mSelectionHandleController.hideAndDisallowAutomaticShowing();
 		}
@@ -391,59 +366,60 @@ public class ContentViewCore
 
 	private void handleTapOrPress(long l, float f, float f1, int i, boolean flag)
 	{
-		if (!mContainerView.isFocused())
-			mContainerView.requestFocus();
-		if (!mPopupZoomer.isShowing())
-			mPopupZoomer.setLastTouch(f, f1);
-		if (i != 1) goto _L2; else goto _L1
-_L1:
-		getInsertionHandleController().allowAutomaticShowing();
-		getSelectionHandleController().allowAutomaticShowing();
-		if (mNativeContentViewCore != 0)
-			nativeLongPress(mNativeContentViewCore, l, f, f1, false);
-_L4:
-		return;
-_L2:
-		if (i != 2)
-			break; /* Loop/switch isn't completed */
-		getInsertionHandleController().allowAutomaticShowing();
-		getSelectionHandleController().allowAutomaticShowing();
-		if (mNativeContentViewCore != 0)
-		{
-			nativeLongTap(mNativeContentViewCore, l, f, f1, false);
-			return;
-		}
-		if (true) goto _L4; else goto _L3
-_L3:
-		if (!flag && mNativeContentViewCore != 0)
-			nativeShowPressState(mNativeContentViewCore, l, f, f1);
-		if (mSelectionEditable)
-			getInsertionHandleController().allowAutomaticShowing();
-		if (mNativeContentViewCore != 0)
-		{
-			nativeSingleTap(mNativeContentViewCore, l, f, f1, false);
-			return;
-		}
-		if (true) goto _L4; else goto _L5
-_L5:
+//		if (!mContainerView.isFocused())
+//			mContainerView.requestFocus();
+//		if (!mPopupZoomer.isShowing())
+//			mPopupZoomer.setLastTouch(f, f1);
+//		if (i != 1) goto _L2; else goto _L1
+//_L1:
+//		getInsertionHandleController().allowAutomaticShowing();
+//		getSelectionHandleController().allowAutomaticShowing();
+//		if (mNativeContentViewCore != 0)
+//			nativeLongPress(mNativeContentViewCore, l, f, f1, false);
+//_L4:
+//		return;
+//_L2:
+//		if (i != 2)
+//			break; /* Loop/switch isn't completed */
+//		getInsertionHandleController().allowAutomaticShowing();
+//		getSelectionHandleController().allowAutomaticShowing();
+//		if (mNativeContentViewCore != 0)
+//		{
+//			nativeLongTap(mNativeContentViewCore, l, f, f1, false);
+//			return;
+//		}
+//		if (true) goto _L4; else goto _L3
+//_L3:
+//		if (!flag && mNativeContentViewCore != 0)
+//			nativeShowPressState(mNativeContentViewCore, l, f, f1);
+//		if (mSelectionEditable)
+//			getInsertionHandleController().allowAutomaticShowing();
+//		if (mNativeContentViewCore != 0)
+//		{
+//			nativeSingleTap(mNativeContentViewCore, l, f, f1, false);
+//			return;
+//		}
+//		if (true) goto _L4; else goto _L5
+//_L5:
 	}
 
 	public static boolean hasHardwareAcceleration(Activity activity)
 	{
-		Window window = activity.getWindow();
-		if (window == null || (0x1000000 & window.getAttributes().flags) == 0) goto _L2; else goto _L1
-_L1:
-		int i;
-		return true;
-_L2:
-		if (((i = activity.getPackageManager().getActivityInfo(activity.getComponentName(), 0).flags) & 0x200) != 0) goto _L1; else goto _L3
-_L3:
-		return false;
-		android.content.pm.PackageManager.NameNotFoundException namenotfoundexception;
-		namenotfoundexception;
-		Log.e("Chrome", "getActivityInfo(self) should not fail");
-		if (true) goto _L3; else goto _L4
-_L4:
+	    return false;
+//		Window window = activity.getWindow();
+//		if (window == null || (0x1000000 & window.getAttributes().flags) == 0) goto _L2; else goto _L1
+//_L1:
+//		int i;
+//		return true;
+//_L2:
+//		if (((i = activity.getPackageManager().getActivityInfo(activity.getComponentName(), 0).flags) & 0x200) != 0) goto _L1; else goto _L3
+//_L3:
+//		return false;
+//		android.content.pm.PackageManager.NameNotFoundException namenotfoundexception;
+//		namenotfoundexception;
+//		Log.e("Chrome", "getActivityInfo(self) should not fail");
+//		if (true) goto _L3; else goto _L4
+//_L4:
 	}
 
 	private static boolean hasHardwareAcceleration(Context context)
@@ -479,92 +455,65 @@ _L4:
 		mPopupZoomer = new PopupZoomer(context);
 		mPopupZoomer.setOnVisibilityChangedListener(new PopupZoomer.OnVisibilityChangedListener() {
 
-			final ContentViewCore this$0;
-
 			public void onPopupZoomerHidden(PopupZoomer popupzoomer)
 			{
-				mContainerView.post(popupzoomer. new Runnable() {
-
-					static final boolean $assertionsDisabled;
-					final 6 this$1;
-					final PopupZoomer val$zoomer;
+				mContainerView.post(new Runnable() {
 
 					public void run()
 					{
-						if (mContainerView.indexOfChild(zoomer) != -1)
-						{
-							mContainerView.removeView(zoomer);
-							mContainerView.invalidate();
-						} else
-						if (!$assertionsDisabled)
-							throw new AssertionError("PopupZoomer should never be hidden without being shown");
+//						if (mContainerView.indexOfChild(popupzoomer) != -1)
+//						{
+//							mContainerView.removeView(popupzoomer);
+//							mContainerView.invalidate();
+//						} else
+//						if (!$assertionsDisabled)
+//							throw new AssertionError("PopupZoomer should never be hidden without being shown");
 					}
 
-					static 
-					{
-						boolean flag;
-						if (!org/chromium/content/browser/ContentViewCore.desiredAssertionStatus())
-							flag = true;
-						else
-							flag = false;
-						$assertionsDisabled = flag;
-					}
+//					static 
+//					{
+//						boolean flag;
+//						if (!org/chromium/content/browser/ContentViewCore.desiredAssertionStatus())
+//							flag = true;
+//						else
+//							flag = false;
+//						$assertionsDisabled = flag;
+//					}
 
-			
-			{
-				this$1 = final_6_1;
-				zoomer = PopupZoomer.this;
-				super();
-			}
 				});
 			}
 
 			public void onPopupZoomerShown(PopupZoomer popupzoomer)
 			{
-				mContainerView.post(popupzoomer. new Runnable() {
+				mContainerView.post(new Runnable() {
 
-					static final boolean $assertionsDisabled;
-					final 6 this$1;
-					final PopupZoomer val$zoomer;
-
+			
 					public void run()
 					{
-						if (mContainerView.indexOfChild(zoomer) == -1)
-							mContainerView.addView(zoomer);
-						else
-						if (!$assertionsDisabled)
-							throw new AssertionError("PopupZoomer should never be shown without being hidden");
+//						if (mContainerView.indexOfChild(zoomer) == -1)
+//							mContainerView.addView(zoomer);
+//						else
+//						if (!$assertionsDisabled)
+//							throw new AssertionError("PopupZoomer should never be shown without being hidden");
 					}
 
-					static 
-					{
-						boolean flag;
-						if (!org/chromium/content/browser/ContentViewCore.desiredAssertionStatus())
-							flag = true;
-						else
-							flag = false;
-						$assertionsDisabled = flag;
-					}
+//					static 
+//					{
+//						boolean flag;
+//						if (!org/chromium/content/browser/ContentViewCore.desiredAssertionStatus())
+//							flag = true;
+//						else
+//							flag = false;
+//						$assertionsDisabled = flag;
+//					}
 
 			
-			{
-				this$1 = final_6_1;
-				zoomer = PopupZoomer.this;
-				super();
-			}
 				});
-			}
-
-			
-			{
-				this$0 = ContentViewCore.this;
-				super();
 			}
 		});
 		PopupZoomer.OnTapListener ontaplistener = new PopupZoomer.OnTapListener() {
 
-			final ContentViewCore this$0;
-
+			
 			public boolean onLongPress(View view, MotionEvent motionevent)
 			{
 				if (mNativeContentViewCore != 0)
@@ -580,11 +529,7 @@ _L4:
 				return true;
 			}
 
-			
-			{
-				this$0 = ContentViewCore.this;
-				super();
-			}
+
 		};
 		mPopupZoomer.setOnTapListener(ontaplistener);
 	}
@@ -601,8 +546,6 @@ _L4:
 		mContentViewGestureHandler = new ContentViewGestureHandler(mContext, this, mZoomManager, i);
 		mZoomControlsDelegate = new ZoomControlsDelegate() {
 
-			final ContentViewCore this$0;
-
 			public void dismissZoomPicker()
 			{
 			}
@@ -615,11 +558,7 @@ _L4:
 			{
 			}
 
-			
-			{
-				this$0 = ContentViewCore.this;
-				super();
-			}
+		
 		};
 		mRenderCoordinates.reset();
 		initPopupZoomer(mContext);
@@ -842,56 +781,56 @@ _L4:
 
 	private void onSelectionBoundsChanged(Rect rect, int i, Rect rect1, int j, boolean flag)
 	{
-		int k;
-		int l;
-		k = rect.left;
-		l = rect.bottom;
-		int i1 = rect1.left;
-		int j1 = rect1.bottom;
-		if (k != i1 || l != j1 || mSelectionHandleController != null && mSelectionHandleController.isDragging())
-		{
-			if (mInsertionHandleController != null)
-				mInsertionHandleController.hide();
-			if (flag)
-			{
-				mStartHandlePoint.setLocalDip(k, l);
-				mEndHandlePoint.setLocalDip(i1, j1);
-			} else
-			{
-				mStartHandlePoint.setLocalDip(i1, j1);
-				mEndHandlePoint.setLocalDip(k, l);
-			}
-			getSelectionHandleController().onSelectionChanged(i, j);
-			updateHandleScreenPositions();
-			mHasSelection = true;
-			return;
-		}
-		mUnselectAllOnActionModeDismiss = false;
-		hideSelectActionBar();
-		if (k == 0 || l == 0 || !mSelectionEditable) goto _L2; else goto _L1
-_L1:
-		if (mSelectionHandleController != null)
-			mSelectionHandleController.hide();
-		mInsertionHandlePoint.setLocalDip(k, l);
-		getInsertionHandleController().onCursorPositionChanged();
-		updateHandleScreenPositions();
-		InputMethodManager inputmethodmanager = (InputMethodManager)getContext().getSystemService("input_method");
-		if (inputmethodmanager.isWatchingCursor(mContainerView))
-		{
-			int k1 = (int)mInsertionHandlePoint.getXPix();
-			int l1 = (int)mInsertionHandlePoint.getYPix();
-			inputmethodmanager.updateCursor(mContainerView, k1, l1, k1, l1);
-		}
-_L4:
-		mHasSelection = false;
-		return;
-_L2:
-		if (mSelectionHandleController != null)
-			mSelectionHandleController.hideAndDisallowAutomaticShowing();
-		if (mInsertionHandleController != null)
-			mInsertionHandleController.hideAndDisallowAutomaticShowing();
-		if (true) goto _L4; else goto _L3
-_L3:
+//		int k;
+//		int l;
+//		k = rect.left;
+//		l = rect.bottom;
+//		int i1 = rect1.left;
+//		int j1 = rect1.bottom;
+//		if (k != i1 || l != j1 || mSelectionHandleController != null && mSelectionHandleController.isDragging())
+//		{
+//			if (mInsertionHandleController != null)
+//				mInsertionHandleController.hide();
+//			if (flag)
+//			{
+//				mStartHandlePoint.setLocalDip(k, l);
+//				mEndHandlePoint.setLocalDip(i1, j1);
+//			} else
+//			{
+//				mStartHandlePoint.setLocalDip(i1, j1);
+//				mEndHandlePoint.setLocalDip(k, l);
+//			}
+//			getSelectionHandleController().onSelectionChanged(i, j);
+//			updateHandleScreenPositions();
+//			mHasSelection = true;
+//			return;
+//		}
+//		mUnselectAllOnActionModeDismiss = false;
+//		hideSelectActionBar();
+//		if (k == 0 || l == 0 || !mSelectionEditable) goto _L2; else goto _L1
+//_L1:
+//		if (mSelectionHandleController != null)
+//			mSelectionHandleController.hide();
+//		mInsertionHandlePoint.setLocalDip(k, l);
+//		getInsertionHandleController().onCursorPositionChanged();
+//		updateHandleScreenPositions();
+//		InputMethodManager inputmethodmanager = (InputMethodManager)getContext().getSystemService("input_method");
+//		if (inputmethodmanager.isWatchingCursor(mContainerView))
+//		{
+//			int k1 = (int)mInsertionHandlePoint.getXPix();
+//			int l1 = (int)mInsertionHandlePoint.getYPix();
+//			inputmethodmanager.updateCursor(mContainerView, k1, l1, k1, l1);
+//		}
+//_L4:
+//		mHasSelection = false;
+//		return;
+//_L2:
+//		if (mSelectionHandleController != null)
+//			mSelectionHandleController.hideAndDisallowAutomaticShowing();
+//		if (mInsertionHandleController != null)
+//			mInsertionHandleController.hideAndDisallowAutomaticShowing();
+//		if (true) goto _L4; else goto _L3
+//_L3:
 	}
 
 	private void onSelectionChanged(String s)
@@ -966,8 +905,6 @@ _L3:
 		if (mDeferredHandleFadeInRunnable == null)
 			mDeferredHandleFadeInRunnable = new Runnable() {
 
-				final ContentViewCore this$0;
-
 				public void run()
 				{
 					if (!allowTextHandleFadeIn())
@@ -985,11 +922,6 @@ _L3:
 					}
 				}
 
-			
-			{
-				this$0 = ContentViewCore.this;
-				super();
-			}
 			};
 		mContainerView.removeCallbacks(mDeferredHandleFadeInRunnable);
 		mContainerView.postDelayed(mDeferredHandleFadeInRunnable, 300L);
@@ -1001,19 +933,13 @@ _L3:
 		{
 			(new Runnable() {
 
-				final ContentViewCore this$0;
-
 				public void run()
 				{
 					if (mNativeContentViewCore != 0)
 						nativeScrollFocusedEditableNodeIntoView(mNativeContentViewCore);
 				}
 
-			
-			{
-				this$0 = ContentViewCore.this;
-				super();
-			}
+	
 			}).run();
 			mScrolledAndZoomedFocusedEditableNode = true;
 		}
@@ -1085,8 +1011,6 @@ _L3:
 		}
 		SelectActionModeCallback.ActionHandler actionhandler = new SelectActionModeCallback.ActionHandler() {
 
-			final ContentViewCore this$0;
-
 			public boolean copy()
 			{
 				return mImeAdapter.copy();
@@ -1125,11 +1049,6 @@ _L3:
 				return mImeAdapter.selectAll();
 			}
 
-			
-			{
-				this$0 = ContentViewCore.this;
-				super();
-			}
 		};
 		mActionMode = null;
 		if (mContainerView.getParent() != null)
@@ -1170,19 +1089,12 @@ _L3:
 		if (mScrolledAndZoomedFocusedEditableNode && flag && mNativeContentViewCore != 0)
 			(new Runnable() {
 
-				final ContentViewCore this$0;
-
 				public void run()
 				{
 					if (mNativeContentViewCore != 0)
 						nativeUndoScrollFocusedEditableNodeIntoView(mNativeContentViewCore);
 				}
 
-			
-			{
-				this$0 = ContentViewCore.this;
-				super();
-			}
 			}).run();
 		mScrolledAndZoomedFocusedEditableNode = false;
 	}
@@ -1208,31 +1120,31 @@ _L3:
 
 	private void updateAfterSizeChanged()
 	{
-		mPopupZoomer.hide(false);
-		if (mFocusPreOSKViewportRect.isEmpty()) goto _L2; else goto _L1
-_L1:
-		Rect rect = new Rect();
-		getContainerView().getWindowVisibleDisplayFrame(rect);
-		if (!rect.equals(mFocusPreOSKViewportRect))
-		{
-			scrollFocusedEditableNodeIntoView();
-			mFocusPreOSKViewportRect.setEmpty();
-		}
-_L4:
-		if (mNeedUpdateOrientationChanged)
-		{
-			sendOrientationChangeEvent();
-			mNeedUpdateOrientationChanged = false;
-		}
-		return;
-_L2:
-		if (mUnfocusOnNextSizeChanged)
-		{
-			undoScrollFocusedEditableNodeIntoViewIfNeeded(true);
-			mUnfocusOnNextSizeChanged = false;
-		}
-		if (true) goto _L4; else goto _L3
-_L3:
+//		mPopupZoomer.hide(false);
+//		if (mFocusPreOSKViewportRect.isEmpty()) goto _L2; else goto _L1
+//_L1:
+//		Rect rect = new Rect();
+//		getContainerView().getWindowVisibleDisplayFrame(rect);
+//		if (!rect.equals(mFocusPreOSKViewportRect))
+//		{
+//			scrollFocusedEditableNodeIntoView();
+//			mFocusPreOSKViewportRect.setEmpty();
+//		}
+//_L4:
+//		if (mNeedUpdateOrientationChanged)
+//		{
+//			sendOrientationChangeEvent();
+//			mNeedUpdateOrientationChanged = false;
+//		}
+//		return;
+//_L2:
+//		if (mUnfocusOnNextSizeChanged)
+//		{
+//			undoScrollFocusedEditableNodeIntoViewIfNeeded(true);
+//			mUnfocusOnNextSizeChanged = false;
+//		}
+//		if (true) goto _L4; else goto _L3
+//_L3:
 	}
 
 	private void updateFrameInfo(float f, float f1, float f2, float f3, float f4, float f5, float f6, 
@@ -1369,7 +1281,7 @@ _L3:
 
 	public void addJavascriptInterface(Object obj, String s)
 	{
-		addPossiblyUnsafeJavascriptInterface(obj, s, org/chromium/content/browser/JavascriptInterface);
+		addPossiblyUnsafeJavascriptInterface(obj, s, org.chromium.content.browser.JavascriptInterface.class);
 	}
 
 	public void addPossiblyUnsafeJavascriptInterface(Object obj, String s, Class class1)
@@ -1529,20 +1441,21 @@ _L3:
 
 	public boolean dispatchKeyEventPreIme(KeyEvent keyevent)
 	{
-		TraceEvent.begin();
-		if (keyevent.getKeyCode() != 4 || !mImeAdapter.isActive())
-			break MISSING_BLOCK_LABEL_42;
-		mUnfocusOnNextSizeChanged = true;
-_L1:
-		boolean flag = mContainerViewInternals.super_dispatchKeyEventPreIme(keyevent);
-		TraceEvent.end();
-		return flag;
-		undoScrollFocusedEditableNodeIntoViewIfNeeded(false);
-		  goto _L1
-		Exception exception;
-		exception;
-		TraceEvent.end();
-		throw exception;
+	    return true;
+//		TraceEvent.begin();
+//		if (keyevent.getKeyCode() != 4 || !mImeAdapter.isActive())
+//			break MISSING_BLOCK_LABEL_42;
+//		mUnfocusOnNextSizeChanged = true;
+//_L1:
+//		boolean flag = mContainerViewInternals.super_dispatchKeyEventPreIme(keyevent);
+//		TraceEvent.end();
+//		return flag;
+//		undoScrollFocusedEditableNodeIntoViewIfNeeded(false);
+//		  goto _L1
+//		Exception exception;
+//		exception;
+//		TraceEvent.end();
+//		throw exception;
 	}
 
 	public void evaluateJavaScript(String s, JavaScriptCallback javascriptcallback)
@@ -1793,8 +1706,6 @@ _L1:
 		mVSyncProvider = provider;
 		mVSyncListener = new VSyncManager.Listener() {
 
-			final ContentViewCore this$0;
-
 			public void onVSync(long l)
 			{
 				animateIfNecessary(l);
@@ -1816,11 +1727,6 @@ _L1:
 					nativeUpdateVSyncParameters(mNativeContentViewCore, l, l1);
 			}
 
-			
-			{
-				this$0 = ContentViewCore.this;
-				super();
-			}
 		};
 		if (mVSyncSubscriberCount > 0)
 		{
@@ -1834,8 +1740,7 @@ _L1:
 	{
 		return new ViewAndroidDelegate() {
 
-			static final boolean $assertionsDisabled;
-			final ContentViewCore this$0;
+			static final boolean $assertionsDisabled = false;
 
 			public View acquireAnchorView()
 			{
@@ -1880,21 +1785,15 @@ _L1:
 				}
 			}
 
-			static 
-			{
-				boolean flag;
-				if (!org/chromium/content/browser/ContentViewCore.desiredAssertionStatus())
-					flag = true;
-				else
-					flag = false;
-				$assertionsDisabled = flag;
-			}
-
-			
-			{
-				this$0 = ContentViewCore.this;
-				super();
-			}
+//			static 
+//			{
+////				boolean flag;
+////				if (!org/chromium/content/browser/ContentViewCore.desiredAssertionStatus())
+////					flag = true;
+////				else
+////					flag = false;
+////				$assertionsDisabled = false;
+//			}
 		};
 	}
 
@@ -1991,14 +1890,12 @@ _L1:
 			Log.w("ContentViewCore", "TZ based NfWebcrpyto is missing from /system/lib/libwebcryptotz.so");
 		}
 		s = "Web View";
-		if (org.chromium.content.R.string.accessibility_content_view == 0)
-			Log.w("ContentViewCore", "Setting contentDescription to 'Web View' as no value was specified.");
-		else
-			s = mContext.getResources().getString(org.chromium.content.R.string.accessibility_content_view);
+//		if (org.chromium.content.R.string.accessibility_content_view == 0)
+//			Log.w("ContentViewCore", "Setting contentDescription to 'Web View' as no value was specified.");
+//		else
+//			s = mContext.getResources().getString(org.chromium.content.R.string.accessibility_content_view);
 		mContainerView.setContentDescription(s);
 		mWebContentsObserver = new WebContentsObserverAndroid(this) {
-
-			final ContentViewCore this$0;
 
 			public void didFinishLoad(long l1, String s1, boolean flag)
 			{
@@ -2012,11 +1909,6 @@ _L1:
 				resetGestureDetectors();
 			}
 
-			
-			{
-				this$0 = ContentViewCore.this;
-				super(contentviewcore1);
-			}
 		};
 		mPid = nativeGetCurrentRenderProcessId(mNativeContentViewCore);
 	}
@@ -2046,41 +1938,32 @@ _L1:
 			return false;
 		int i;
 		if (getContext().checkCallingOrSelfPermission("android.permission.INTERNET") != 0)
-			break MISSING_BLOCK_LABEL_134;
-		Field field = android/provider/Settings$Secure.getField("ACCESSIBILITY_SCRIPT_INJECTION");
+			return true;
+		
+		Field field = null;//android/provider/Settings$Secure.getField("ACCESSIBILITY_SCRIPT_INJECTION");
 		field.setAccessible(true);
-		String s = (String)field.get(null);
+		String s = null;//(String)field.get(null);
 		ContentResolver contentresolver = getContext().getContentResolver();
 		if (mAccessibilityScriptInjectionObserver == null)
 		{
 			ContentObserver contentobserver = new ContentObserver(new Handler()) {
-
-				final ContentViewCore this$0;
-
 				public void onChange(boolean flag1, Uri uri)
 				{
 					setAccessibilityState(mAccessibilityManager.isEnabled());
 				}
-
-			
-			{
-				this$0 = ContentViewCore.this;
-				super(handler);
-			}
 			};
 			contentresolver.registerContentObserver(android.provider.Settings.Secure.getUriFor(s), false, contentobserver);
 			mAccessibilityScriptInjectionObserver = contentobserver;
 		}
 		i = android.provider.Settings.Secure.getInt(contentresolver, s, 0);
-		if (i != flag)
-			flag = false;
+
 		return flag;
-		IllegalAccessException illegalaccessexception;
-		illegalaccessexception;
-		return false;
-		NoSuchFieldException nosuchfieldexception;
-		nosuchfieldexception;
-		return false;
+//		IllegalAccessException illegalaccessexception;
+//		illegalaccessexception;
+//		return false;
+//		NoSuchFieldException nosuchfieldexception;
+//		nosuchfieldexception;
+//		return false;
 	}
 
 	public boolean isInjectingAccessibilityScript()
@@ -2222,36 +2105,34 @@ _L1:
 
 	public boolean onGenericMotionEvent(MotionEvent motionevent)
 	{
-		if ((2 & motionevent.getSource()) == 0) goto _L2; else goto _L1
-_L1:
-		motionevent.getAction();
-		JVM INSTR tableswitch 8 8: default 32
-	//	               8 43;
-		   goto _L2 _L3
-_L2:
-		return mContainerViewInternals.super_onGenericMotionEvent(motionevent);
-_L3:
-		nativeSendMouseWheelEvent(mNativeContentViewCore, motionevent.getEventTime(), motionevent.getX(), motionevent.getY(), motionevent.getAxisValue(9));
-		mContainerView.removeCallbacks(mFakeMouseMoveRunnable);
-		mFakeMouseMoveRunnable = new Runnable() {
-
-			final ContentViewCore this$0;
-			final MotionEvent val$eventFakeMouseMove;
-
-			public void run()
-			{
-				onHoverEvent(eventFakeMouseMove);
-			}
-
-			
-			{
-				this$0 = ContentViewCore.this;
-				eventFakeMouseMove = motionevent;
-				super();
-			}
-		};
-		mContainerView.postDelayed(mFakeMouseMoveRunnable, 250L);
-		return true;
+	    return true;
+//		if ((2 & motionevent.getSource()) == 0) goto _L2; else goto _L1
+//_L1:
+//		motionevent.getAction();
+//		JVM INSTR tableswitch 8 8: default 32
+//	//	               8 43;
+//		   goto _L2 _L3
+//_L2:
+//		return mContainerViewInternals.super_onGenericMotionEvent(motionevent);
+//_L3:
+//		nativeSendMouseWheelEvent(mNativeContentViewCore, motionevent.getEventTime(), motionevent.getX(), motionevent.getY(), motionevent.getAxisValue(9));
+//		mContainerView.removeCallbacks(mFakeMouseMoveRunnable);
+//		mFakeMouseMoveRunnable = new Runnable() {
+//
+//			public void run()
+//			{
+//				onHoverEvent(eventFakeMouseMove);
+//			}
+//
+//			
+//			{
+//				this$0 = ContentViewCore.this;
+//				eventFakeMouseMove = motionevent;
+//				super();
+//			}
+//		};
+//		mContainerView.postDelayed(mFakeMouseMoveRunnable, 250L);
+//		return true;
 	}
 
 	public void onHide()
@@ -2611,31 +2492,31 @@ label0:
 
 	void setVSyncNotificationEnabled(boolean flag)
 	{
-		boolean flag1 = true;
-		if (!isVSyncNotificationEnabled() && flag)
-			mDidSignalVSyncUsingInputEvent = false;
-		int i;
-		if (mVSyncProvider != null)
-			if (!mVSyncListenerRegistered && flag)
-			{
-				mVSyncProvider.registerVSyncListener(mVSyncListener);
-				mVSyncListenerRegistered = flag1;
-			} else
-			if (mVSyncSubscriberCount == flag1 && !flag)
-			{
-				if (!$assertionsDisabled && !mVSyncListenerRegistered)
-					throw new AssertionError();
-				mVSyncProvider.unregisterVSyncListener(mVSyncListener);
-				mVSyncListenerRegistered = false;
-			}
-		i = mVSyncSubscriberCount;
-		if (!flag)
-			flag1 = -1;
-		mVSyncSubscriberCount = flag1 + i;
-		if (!$assertionsDisabled && mVSyncSubscriberCount < 0)
-			throw new AssertionError();
-		else
-			return;
+//		boolean flag1 = true;
+//		if (!isVSyncNotificationEnabled() && flag)
+//			mDidSignalVSyncUsingInputEvent = false;
+//		int i;
+//		if (mVSyncProvider != null)
+//			if (!mVSyncListenerRegistered && flag)
+//			{
+//				mVSyncProvider.registerVSyncListener(mVSyncListener);
+//				mVSyncListenerRegistered = flag1;
+//			} else
+//			if (mVSyncSubscriberCount == flag1 && !flag)
+//			{
+//				if (!$assertionsDisabled && !mVSyncListenerRegistered)
+//					throw new AssertionError();
+//				mVSyncProvider.unregisterVSyncListener(mVSyncListener);
+//				mVSyncListenerRegistered = false;
+//			}
+//		i = mVSyncSubscriberCount;
+//		if (!flag)
+//			flag1 = -1;
+//		mVSyncSubscriberCount = flag1 + i;
+//		if (!$assertionsDisabled && mVSyncSubscriberCount < 0)
+//			throw new AssertionError();
+//		else
+//			return;
 	}
 
 	public void setViewportSizeOffset(int i, int j)
@@ -2752,12 +2633,12 @@ label0:
 
 	static 
 	{
-		boolean flag;
-		if (!org/chromium/content/browser/ContentViewCore.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
+//		boolean flag;
+//		if (!org/chromium/content/browser/ContentViewCore.desiredAssertionStatus())
+//			flag = true;
+//		else
+//			flag = false;
+		//$assertionsDisabled = false;
 	}
 
 

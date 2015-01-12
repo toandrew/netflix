@@ -75,11 +75,9 @@ public class ColorPickerSimple extends View
 		}
 
 		mBorderPaint = new Paint();
-		int j = getContext().getResources().getColor(R.color.color_picker_border_color);
+		int j = 0;//getContext().getResources().getColor(R.color.color_picker_border_color);
 		mBorderPaint.setColor(j);
 		setOnClickListener(new android.view.View.OnClickListener() {
-
-			final ColorPickerSimple this$0;
 
 			public void onClick(View view)
 			{
@@ -89,12 +87,6 @@ public class ColorPickerSimple extends View
 					if (k >= 0 && k < ColorPickerSimple.COLORS.length)
 						mOnColorTouchedListener.onColorChanged(ColorPickerSimple.COLORS[k]);
 				}
-			}
-
-			
-			{
-				this$0 = ColorPickerSimple.this;
-				super();
 			}
 		});
 	}

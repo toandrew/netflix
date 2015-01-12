@@ -19,43 +19,13 @@ import java.util.UUID;
 public class MediaDRMBridge
 	implements android.drm.DrmManagerClient.OnEventListener, android.drm.DrmManagerClient.OnErrorListener
 {
-	private static final class LicenseAcquisitionState extends Enum
+	private static enum LicenseAcquisitionState
 	{
 
-		private static final LicenseAcquisitionState $VALUES[];
-		public static final LicenseAcquisitionState FAILED_TO_PROCESS_RESPONSE;
-		public static final LicenseAcquisitionState IDLE;
-		public static final LicenseAcquisitionState PROCESSED_RESPONSE;
-		public static final LicenseAcquisitionState WAITING_FOR_RESPONSE;
-
-		public static LicenseAcquisitionState valueOf(String s)
-		{
-			return (LicenseAcquisitionState)Enum.valueOf(org/chromium/media/MediaDRMBridge$LicenseAcquisitionState, s);
-		}
-
-		public static LicenseAcquisitionState[] values()
-		{
-			return (LicenseAcquisitionState[])$VALUES.clone();
-		}
-
-		static 
-		{
-			IDLE = new LicenseAcquisitionState("IDLE", 0);
-			WAITING_FOR_RESPONSE = new LicenseAcquisitionState("WAITING_FOR_RESPONSE", 1);
-			PROCESSED_RESPONSE = new LicenseAcquisitionState("PROCESSED_RESPONSE", 2);
-			FAILED_TO_PROCESS_RESPONSE = new LicenseAcquisitionState("FAILED_TO_PROCESS_RESPONSE", 3);
-			LicenseAcquisitionState alicenseacquisitionstate[] = new LicenseAcquisitionState[4];
-			alicenseacquisitionstate[0] = IDLE;
-			alicenseacquisitionstate[1] = WAITING_FOR_RESPONSE;
-			alicenseacquisitionstate[2] = PROCESSED_RESPONSE;
-			alicenseacquisitionstate[3] = FAILED_TO_PROCESS_RESPONSE;
-			$VALUES = alicenseacquisitionstate;
-		}
-
-		private LicenseAcquisitionState(String s, int i)
-		{
-			super(s, i);
-		}
+			IDLE ,
+			WAITING_FOR_RESPONSE,
+			PROCESSED_RESPONSE,
+			FAILED_TO_PROCESS_RESPONSE;
 	}
 
 
@@ -183,66 +153,66 @@ label0:
 			return;
 		}
 		waitForPlayReadyCallback();
-		static class 5
-		{
-
-			static final int $SwitchMap$org$chromium$media$MediaDRMBridge$LicenseAcquisitionState[];
-
-			static 
-			{
-				$SwitchMap$org$chromium$media$MediaDRMBridge$LicenseAcquisitionState = new int[LicenseAcquisitionState.values().length];
-				try
-				{
-					$SwitchMap$org$chromium$media$MediaDRMBridge$LicenseAcquisitionState[LicenseAcquisitionState.PROCESSED_RESPONSE.ordinal()] = 1;
-				}
-				catch (NoSuchFieldError nosuchfielderror) { }
-				try
-				{
-					$SwitchMap$org$chromium$media$MediaDRMBridge$LicenseAcquisitionState[LicenseAcquisitionState.FAILED_TO_PROCESS_RESPONSE.ordinal()] = 2;
-				}
-				catch (NoSuchFieldError nosuchfielderror1) { }
-				try
-				{
-					$SwitchMap$org$chromium$media$MediaDRMBridge$LicenseAcquisitionState[LicenseAcquisitionState.WAITING_FOR_RESPONSE.ordinal()] = 3;
-				}
-				catch (NoSuchFieldError nosuchfielderror2)
-				{
-					return;
-				}
-			}
-		}
-
-		5..SwitchMap.org.chromium.media.MediaDRMBridge.LicenseAcquisitionState[mLicenseAcquisitionState.ordinal()];
-		JVM INSTR tableswitch 1 3: default 188
-	//	               1 226
-	//	               2 244
-	//	               3 266;
-		   goto _L1 _L2 _L3 _L4
-_L4:
-		break MISSING_BLOCK_LABEL_266;
-_L1:
-		Log.e("MediaDRMBridge", "Impossible License Acquisition State");
-		OnKeyError(s, 1, 0x80050000L);
-_L5:
-		mLicenseAcquisitionState = LicenseAcquisitionState.IDLE;
-		obj;
-		JVM INSTR monitorexit ;
-		return;
-		exception;
-		obj;
-		JVM INSTR monitorexit ;
-		throw exception;
-_L2:
-		Log.v("MediaDRMBridge", "Processed License Response Successfully");
-		OnKeyAdded(s);
-		  goto _L5
-_L3:
-		Log.e("MediaDRMBridge", "Error while processing License Response");
-		OnKeyError(s, 3, 0x80050000L);
-		  goto _L5
-		Log.e("MediaDRMBridge", "PlayReady timed out while processing License Response");
-		OnKeyError(s, 3, 0x80050000L);
-		  goto _L5
+//		static class 5
+//		{
+//
+//			static final int $SwitchMap$org$chromium$media$MediaDRMBridge$LicenseAcquisitionState[];
+//
+//			static 
+//			{
+//				$SwitchMap$org$chromium$media$MediaDRMBridge$LicenseAcquisitionState = new int[LicenseAcquisitionState.values().length];
+//				try
+//				{
+//					$SwitchMap$org$chromium$media$MediaDRMBridge$LicenseAcquisitionState[LicenseAcquisitionState.PROCESSED_RESPONSE.ordinal()] = 1;
+//				}
+//				catch (NoSuchFieldError nosuchfielderror) { }
+//				try
+//				{
+//					$SwitchMap$org$chromium$media$MediaDRMBridge$LicenseAcquisitionState[LicenseAcquisitionState.FAILED_TO_PROCESS_RESPONSE.ordinal()] = 2;
+//				}
+//				catch (NoSuchFieldError nosuchfielderror1) { }
+//				try
+//				{
+//					$SwitchMap$org$chromium$media$MediaDRMBridge$LicenseAcquisitionState[LicenseAcquisitionState.WAITING_FOR_RESPONSE.ordinal()] = 3;
+//				}
+//				catch (NoSuchFieldError nosuchfielderror2)
+//				{
+//					return;
+//				}
+//			}
+//		}
+//
+//		5..SwitchMap.org.chromium.media.MediaDRMBridge.LicenseAcquisitionState[mLicenseAcquisitionState.ordinal()];
+//		JVM INSTR tableswitch 1 3: default 188
+//	//	               1 226
+//	//	               2 244
+//	//	               3 266;
+//		   goto _L1 _L2 _L3 _L4
+//_L4:
+//		break MISSING_BLOCK_LABEL_266;
+//_L1:
+//		Log.e("MediaDRMBridge", "Impossible License Acquisition State");
+//		OnKeyError(s, 1, 0x80050000L);
+//_L5:
+//		mLicenseAcquisitionState = LicenseAcquisitionState.IDLE;
+//		obj;
+//		JVM INSTR monitorexit ;
+//		return;
+//		exception;
+//		obj;
+//		JVM INSTR monitorexit ;
+//		throw exception;
+//_L2:
+//		Log.v("MediaDRMBridge", "Processed License Response Successfully");
+//		OnKeyAdded(s);
+//		  goto _L5
+//_L3:
+//		Log.e("MediaDRMBridge", "Error while processing License Response");
+//		OnKeyError(s, 3, 0x80050000L);
+//		  goto _L5
+//		Log.e("MediaDRMBridge", "PlayReady timed out while processing License Response");
+//		OnKeyError(s, 3, 0x80050000L);
+//		  goto _L5
 	}
 
 	private void CancelKeyRequest(String s)
@@ -256,92 +226,93 @@ _L3:
 
 	private MediaCrypto CreateMediaCrypto(byte abyte0[], String s, byte abyte1[], int i)
 	{
-		boolean flag = MediaCrypto.isCryptoSchemeSupported(PLAYREADY_UUID);
-		boolean flag1 = false;
-		if (!flag)
-		{
-			if (!MediaCrypto.isCryptoSchemeSupported(PLAYREADY_SYSTEMID))
-			{
-				Log.e("MediaDRMBridge", "Playready crypto scheme is not supported!");
-				throw new RuntimeException("Playready crypto scheme is not supported");
-			}
-			flag1 = true;
-		}
-		if (s.isEmpty())
-		{
-			Log.e("MediaDRMBridge", "Session ID is empty, app either doesn't have a session ID or sent us an invalid session ID");
-			OnKeyError(s, 1, 0x80050000L);
-			return null;
-		}
-		String s1;
-		byte abyte2[];
-		int j;
-		try
-		{
-			s1 = new String(abyte1, 10, i - 10, "UTF-16LE");
-		}
-		catch (UnsupportedEncodingException unsupportedencodingexception1)
-		{
-			Log.e("MediaDRMBridge", "Impossible exception while initializing lLicResponse, UTF-8 is a valid encoding");
-			OnKeyError(s, 1, 0x80050000L);
-			return null;
-		}
-		Log.i("MediaDRMBridge", (new StringBuilder()).append("DRM Scheme Protection Header is").append(s1).toString());
-		String s2;
-		byte abyte3[];
-		ByteBuffer bytebuffer;
-		byte abyte4[];
-		UnsupportedEncodingException unsupportedencodingexception;
-		try
-		{
-			abyte2 = new byte[-10 + abyte1.length];
-		}
-		catch (MediaCryptoException mediacryptoexception)
-		{
-			Log.e("MediaDRMBridge", "Exception while creating MediaCrypto Instance");
-			OnKeyError(s, 1, 0x80050000L);
-			return null;
-		}
-		j = 0;
-		if (j >= abyte2.length)
-			break; /* Loop/switch isn't completed */
-		abyte2[j] = abyte1[j + 10];
-		j++;
-		if (true) goto _L2; else goto _L1
-_L2:
-		break MISSING_BLOCK_LABEL_134;
-_L1:
-		s2 = new String(abyte2, 0, abyte2.length, "UTF-16LE");
-		Log.i("MediaDRMBridge", (new StringBuilder()).append("DRM Scheme Protection Header Byte Array being used to instantiate a Media Crypto object").append(s2).toString());
-		abyte3 = new byte[4];
-		abyte3[0] = (byte)mPRDRMContextID;
-		abyte3[1] = (byte)(mPRDRMContextID >>> 8);
-		abyte3[2] = (byte)(mPRDRMContextID >>> 16);
-		abyte3[3] = (byte)(mPRDRMContextID >>> 24);
-		bytebuffer = ByteBuffer.allocate("<header>".getBytes().length + abyte2.length + "</header>".getBytes().length + "<sessionid>".getBytes().length + abyte3.length + "</sessionid>".getBytes().length);
-		bytebuffer.put("<header>".getBytes());
-		bytebuffer.put(abyte2);
-		bytebuffer.put("</header>".getBytes());
-		bytebuffer.put("<sessionid>".getBytes());
-		bytebuffer.put(abyte3);
-		bytebuffer.put("</sessionid>".getBytes());
-		abyte4 = bytebuffer.array();
-		if (!flag1)
-			break MISSING_BLOCK_LABEL_477;
-		mMediaCryptoInstance = new MediaCrypto(PLAYREADY_SYSTEMID, abyte4);
-_L3:
-		if (mMediaCryptoInstance != null)
-		{
-			Log.i("MediaDRMBridge", (new StringBuilder()).append("Successfully created the Media Crypto Object for Session ID ").append(s).toString());
-			mSessionID_MediaCrypto_Map.put(s, mMediaCryptoInstance);
-		}
-		return mMediaCryptoInstance;
-		unsupportedencodingexception;
-		Log.e("MediaDRMBridge", "Impossible exception while initializing lPsshByteArrayDataString, UTF-16LE is a valid encoding");
-		OnKeyError(s, 1, 0x80050000L);
-		return null;
-		mMediaCryptoInstance = new MediaCrypto(PLAYREADY_UUID, abyte4);
-		  goto _L3
+	    return null;
+//		boolean flag = MediaCrypto.isCryptoSchemeSupported(PLAYREADY_UUID);
+//		boolean flag1 = false;
+//		if (!flag)
+//		{
+//			if (!MediaCrypto.isCryptoSchemeSupported(PLAYREADY_SYSTEMID))
+//			{
+//				Log.e("MediaDRMBridge", "Playready crypto scheme is not supported!");
+//				throw new RuntimeException("Playready crypto scheme is not supported");
+//			}
+//			flag1 = true;
+//		}
+//		if (s.isEmpty())
+//		{
+//			Log.e("MediaDRMBridge", "Session ID is empty, app either doesn't have a session ID or sent us an invalid session ID");
+//			OnKeyError(s, 1, 0x80050000L);
+//			return null;
+//		}
+//		String s1;
+//		byte abyte2[];
+//		int j;
+//		try
+//		{
+//			s1 = new String(abyte1, 10, i - 10, "UTF-16LE");
+//		}
+//		catch (UnsupportedEncodingException unsupportedencodingexception1)
+//		{
+//			Log.e("MediaDRMBridge", "Impossible exception while initializing lLicResponse, UTF-8 is a valid encoding");
+//			OnKeyError(s, 1, 0x80050000L);
+//			return null;
+//		}
+//		Log.i("MediaDRMBridge", (new StringBuilder()).append("DRM Scheme Protection Header is").append(s1).toString());
+//		String s2;
+//		byte abyte3[];
+//		ByteBuffer bytebuffer;
+//		byte abyte4[];
+//		UnsupportedEncodingException unsupportedencodingexception;
+//		try
+//		{
+//			abyte2 = new byte[-10 + abyte1.length];
+//		}
+//		catch (MediaCryptoException mediacryptoexception)
+//		{
+//			Log.e("MediaDRMBridge", "Exception while creating MediaCrypto Instance");
+//			OnKeyError(s, 1, 0x80050000L);
+//			return null;
+//		}
+//		j = 0;
+//		if (j >= abyte2.length)
+//			break; /* Loop/switch isn't completed */
+//		abyte2[j] = abyte1[j + 10];
+//		j++;
+//		if (true) goto _L2; else goto _L1
+//_L2:
+//		break MISSING_BLOCK_LABEL_134;
+//_L1:
+//		s2 = new String(abyte2, 0, abyte2.length, "UTF-16LE");
+//		Log.i("MediaDRMBridge", (new StringBuilder()).append("DRM Scheme Protection Header Byte Array being used to instantiate a Media Crypto object").append(s2).toString());
+//		abyte3 = new byte[4];
+//		abyte3[0] = (byte)mPRDRMContextID;
+//		abyte3[1] = (byte)(mPRDRMContextID >>> 8);
+//		abyte3[2] = (byte)(mPRDRMContextID >>> 16);
+//		abyte3[3] = (byte)(mPRDRMContextID >>> 24);
+//		bytebuffer = ByteBuffer.allocate("<header>".getBytes().length + abyte2.length + "</header>".getBytes().length + "<sessionid>".getBytes().length + abyte3.length + "</sessionid>".getBytes().length);
+//		bytebuffer.put("<header>".getBytes());
+//		bytebuffer.put(abyte2);
+//		bytebuffer.put("</header>".getBytes());
+//		bytebuffer.put("<sessionid>".getBytes());
+//		bytebuffer.put(abyte3);
+//		bytebuffer.put("</sessionid>".getBytes());
+//		abyte4 = bytebuffer.array();
+//		if (!flag1)
+//			break MISSING_BLOCK_LABEL_477;
+//		mMediaCryptoInstance = new MediaCrypto(PLAYREADY_SYSTEMID, abyte4);
+//_L3:
+//		if (mMediaCryptoInstance != null)
+//		{
+//			Log.i("MediaDRMBridge", (new StringBuilder()).append("Successfully created the Media Crypto Object for Session ID ").append(s).toString());
+//			mSessionID_MediaCrypto_Map.put(s, mMediaCryptoInstance);
+//		}
+//		return mMediaCryptoInstance;
+//		unsupportedencodingexception;
+//		Log.e("MediaDRMBridge", "Impossible exception while initializing lPsshByteArrayDataString, UTF-16LE is a valid encoding");
+//		OnKeyError(s, 1, 0x80050000L);
+//		return null;
+//		mMediaCryptoInstance = new MediaCrypto(PLAYREADY_UUID, abyte4);
+//		  goto _L3
 	}
 
 	private void DeleteKey(String s)
@@ -454,21 +425,10 @@ _L3:
 		if (mNativeMediaDrmBridge != 0)
 		{
 			mHandler.post(new Runnable() {
-
-				final MediaDRMBridge this$0;
-				final String val$lSession_Id;
-
 				public void run()
 				{
 					nativeOnKeyAdded(mNativeMediaDrmBridge, lSession_Id);
 				}
-
-			
-			{
-				this$0 = MediaDRMBridge.this;
-				lSession_Id = s;
-				super();
-			}
 			});
 			return;
 		} else
@@ -483,21 +443,10 @@ _L3:
 		if (mNativeMediaDrmBridge != 0)
 		{
 			mHandler.post(new Runnable() {
-
-				final MediaDRMBridge this$0;
-				final String val$lSession_Id;
-
 				public void run()
 				{
 					nativeOnKeyDeleted(mNativeMediaDrmBridge, lSession_Id);
 				}
-
-			
-			{
-				this$0 = MediaDRMBridge.this;
-				lSession_Id = s;
-				super();
-			}
 			});
 			return;
 		} else
@@ -512,25 +461,10 @@ _L3:
 		if (mNativeMediaDrmBridge != 0)
 		{
 			mHandler.post(new Runnable() {
-
-				final MediaDRMBridge this$0;
-				final int val$lError_Code;
-				final String val$lSession_Id;
-				final long val$lSystem_Code;
-
 				public void run()
 				{
 					nativeOnKeyError(mNativeMediaDrmBridge, lSession_Id, lError_Code, lSystem_Code);
 				}
-
-			
-			{
-				this$0 = MediaDRMBridge.this;
-				lSession_Id = s;
-				lError_Code = i;
-				lSystem_Code = l;
-				super();
-			}
 			});
 			return;
 		} else
@@ -545,25 +479,11 @@ _L3:
 		if (mNativeMediaDrmBridge != 0)
 		{
 			mHandler.post(new Runnable() {
-
-				final MediaDRMBridge this$0;
-				final String val$lDestination_Url;
-				final byte val$lMessage[];
-				final String val$lSession_Id;
-
 				public void run()
 				{
 					nativeOnKeyMessage(mNativeMediaDrmBridge, lSession_Id, lMessage, lDestination_Url);
 				}
 
-			
-			{
-				this$0 = MediaDRMBridge.this;
-				lSession_Id = s;
-				lMessage = abyte0;
-				lDestination_Url = s1;
-				super();
-			}
 			});
 			return;
 		} else
@@ -692,26 +612,26 @@ _L3:
 			s = "UNKNOWN_ERROR";
 _L3:
 		Log.e("MediaDRMBridge", stringbuilder.append(s).append(drmerrorevent.getMessage()).toString());
-		if (drmerrorevent.getType() != 2006)
-			break MISSING_BLOCK_LABEL_96;
-		obj = mProcessDrmInfoSyncObject;
-		obj;
-		JVM INSTR monitorenter ;
-		if (mLicenseAcquisitionState != LicenseAcquisitionState.WAITING_FOR_RESPONSE)
-			break MISSING_BLOCK_LABEL_232;
-		mLicenseAcquisitionState = LicenseAcquisitionState.FAILED_TO_PROCESS_RESPONSE;
-		mProcessDrmInfoSyncObject.notifyAll();
-_L1:
-		return;
-		Log.e("MediaDRMBridge", "PROCESS_DRM_INFO_FAILED error unexpected at this time");
-		  goto _L1
-		Exception exception;
-		exception;
-		obj;
-		JVM INSTR monitorexit ;
-		throw exception;
-		if (true) goto _L3; else goto _L2
-_L2:
+//		if (drmerrorevent.getType() != 2006)
+//			break MISSING_BLOCK_LABEL_96;
+//		obj = mProcessDrmInfoSyncObject;
+//		obj;
+//		JVM INSTR monitorenter ;
+//		if (mLicenseAcquisitionState != LicenseAcquisitionState.WAITING_FOR_RESPONSE)
+//			break MISSING_BLOCK_LABEL_232;
+//		mLicenseAcquisitionState = LicenseAcquisitionState.FAILED_TO_PROCESS_RESPONSE;
+//		mProcessDrmInfoSyncObject.notifyAll();
+//_L1:
+//		return;
+//		Log.e("MediaDRMBridge", "PROCESS_DRM_INFO_FAILED error unexpected at this time");
+//		  goto _L1
+//		Exception exception;
+//		exception;
+//		obj;
+//		JVM INSTR monitorexit ;
+//		throw exception;
+//		if (true) goto _L3; else goto _L2
+//_L2:
 	}
 
 	public void onEvent(DrmManagerClient drmmanagerclient, DrmEvent drmevent)
@@ -727,24 +647,24 @@ _L2:
 		else
 			s = "UNKNOWN_ERROR";
 		Log.v("MediaDRMBridge", stringbuilder.append(s).append(drmevent.getMessage()).toString());
-		if (drmevent.getType() != 1002)
-			break MISSING_BLOCK_LABEL_96;
-		obj = mProcessDrmInfoSyncObject;
-		obj;
-		JVM INSTR monitorenter ;
-		if (mLicenseAcquisitionState != LicenseAcquisitionState.WAITING_FOR_RESPONSE)
-			break MISSING_BLOCK_LABEL_124;
-		mLicenseAcquisitionState = LicenseAcquisitionState.PROCESSED_RESPONSE;
-		mProcessDrmInfoSyncObject.notifyAll();
-_L1:
-		return;
-		Log.e("MediaDRMBridge", "DRM_INFO_PROCESSED event unexpected at this time");
-		  goto _L1
-		Exception exception;
-		exception;
-		obj;
-		JVM INSTR monitorexit ;
-		throw exception;
+//		if (drmevent.getType() != 1002)
+//			break MISSING_BLOCK_LABEL_96;
+//		obj = mProcessDrmInfoSyncObject;
+//		obj;
+//		JVM INSTR monitorenter ;
+//		if (mLicenseAcquisitionState != LicenseAcquisitionState.WAITING_FOR_RESPONSE)
+//			break MISSING_BLOCK_LABEL_124;
+//		mLicenseAcquisitionState = LicenseAcquisitionState.PROCESSED_RESPONSE;
+//		mProcessDrmInfoSyncObject.notifyAll();
+//_L1:
+//		return;
+//		Log.e("MediaDRMBridge", "DRM_INFO_PROCESSED event unexpected at this time");
+//		  goto _L1
+//		Exception exception;
+//		exception;
+//		obj;
+//		JVM INSTR monitorexit ;
+//		throw exception;
 	}
 
 

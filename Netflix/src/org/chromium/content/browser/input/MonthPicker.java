@@ -22,7 +22,7 @@ public class MonthPicker extends TwoFieldDatePicker
 	public MonthPicker(Context context, long l, long l1)
 	{
 		super(context, l, l1);
-		getPositionInYearSpinner().setContentDescription(getResources().getString(org.chromium.content.R.string.accessibility_date_picker_month));
+//		getPositionInYearSpinner().setContentDescription(getResources().getString(org.chromium.content.R.string.accessibility_date_picker_month));
 		mShortMonths = DateFormatSymbols.getInstance(Locale.getDefault()).getShortMonths();
 		Calendar calendar = Calendar.getInstance();
 		init(calendar.get(1), calendar.get(2), null);

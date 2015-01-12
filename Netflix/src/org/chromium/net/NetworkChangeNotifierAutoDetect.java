@@ -122,58 +122,59 @@ public class NetworkChangeNotifierAutoDetect extends BroadcastReceiver
 
 	public int getCurrentConnectionType()
 	{
-		byte byte0 = 5;
-		if (mConnectivityManagerDelegate.activeNetworkExists() && mConnectivityManagerDelegate.isConnected()) goto _L2; else goto _L1
-_L1:
-		byte0 = 6;
-_L4:
-		return byte0;
-_L2:
-		switch (mConnectivityManagerDelegate.getNetworkType())
-		{
-		default:
-			return 0;
-
-		case 6: // '\006'
-			break;
-
-		case 9: // '\t'
-			return 1;
-
-		case 1: // '\001'
-			return 2;
-
-		case 0: // '\0'
-			switch (mConnectivityManagerDelegate.getNetworkSubtype())
-			{
-			default:
-				return 0;
-
-			case 1: // '\001'
-			case 2: // '\002'
-			case 4: // '\004'
-			case 7: // '\007'
-			case 11: // '\013'
-				return 3;
-
-			case 3: // '\003'
-			case 5: // '\005'
-			case 6: // '\006'
-			case 8: // '\b'
-			case 9: // '\t'
-			case 10: // '\n'
-			case 12: // '\f'
-			case 14: // '\016'
-			case 15: // '\017'
-				return 4;
-
-			case 13: // '\r'
-				break;
-			}
-			break;
-		}
-		if (true) goto _L4; else goto _L3
-_L3:
+	    return 0;
+//		byte byte0 = 5;
+//		if (mConnectivityManagerDelegate.activeNetworkExists() && mConnectivityManagerDelegate.isConnected()) goto _L2; else goto _L1
+//_L1:
+//		byte0 = 6;
+//_L4:
+//		return byte0;
+//_L2:
+//		switch (mConnectivityManagerDelegate.getNetworkType())
+//		{
+//		default:
+//			return 0;
+//
+//		case 6: // '\006'
+//			break;
+//
+//		case 9: // '\t'
+//			return 1;
+//
+//		case 1: // '\001'
+//			return 2;
+//
+//		case 0: // '\0'
+//			switch (mConnectivityManagerDelegate.getNetworkSubtype())
+//			{
+//			default:
+//				return 0;
+//
+//			case 1: // '\001'
+//			case 2: // '\002'
+//			case 4: // '\004'
+//			case 7: // '\007'
+//			case 11: // '\013'
+//				return 3;
+//
+//			case 3: // '\003'
+//			case 5: // '\005'
+//			case 6: // '\006'
+//			case 8: // '\b'
+//			case 9: // '\t'
+//			case 10: // '\n'
+//			case 12: // '\f'
+//			case 14: // '\016'
+//			case 15: // '\017'
+//				return 4;
+//
+//			case 13: // '\r'
+//				break;
+//			}
+//			break;
+//		}
+//		if (true) goto _L4; else goto _L3
+//_L3:
 	}
 
 	public void onActivityStateChange(int i)

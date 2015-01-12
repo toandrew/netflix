@@ -55,11 +55,6 @@ class MediaCodecBridge
 			mPresentationTimeMicroseconds = l;
 			mNumBytes = i1;
 		}
-
-		DequeueOutputResult(int i, int j, int k, long l, int i1, 1 1_1)
-		{
-			this(i, j, k, l, i1);
-		}
 	}
 
 	private static class PlayReadyDecryptionError
@@ -156,23 +151,10 @@ label0:
 				if (mNativeMediaCodecBridge == 0)
 					break label0;
 				mHandler.post(new Runnable() {
-
-					final MediaCodecBridge this$0;
-					final int val$lError_Code;
-					final long val$lSystem_Code;
-
 					public void run()
 					{
 						nativeOnDecodeError(mNativeMediaCodecBridge, lError_Code, lSystem_Code);
 					}
-
-			
-			{
-				this$0 = MediaCodecBridge.this;
-				lError_Code = i;
-				lSystem_Code = l;
-				super();
-			}
 				});
 			}
 			return;
@@ -182,35 +164,36 @@ label0:
 
 	private boolean configureAudio(MediaFormat mediaformat, MediaCrypto mediacrypto, int i, boolean flag)
 	{
-		int j;
-		byte byte0;
-		int k;
-		Exception exception;
-		try
-		{
-			mMediaCodec.configure(mediaformat, null, mediacrypto, i);
-		}
-		catch (IllegalStateException illegalstateexception)
-		{
-			Log.e("MediaCodecBridge", (new StringBuilder()).append("Cannot configure the audio codec ").append(illegalstateexception.toString()).toString());
-			return false;
-		}
-		if (!flag)
-			break MISSING_BLOCK_LABEL_131;
-		j = mediaformat.getInteger("sample-rate");
-		if (mediaformat.getInteger("channel-count") == 1)
-			byte0 = 4;
-		else
-			byte0 = 12;
-		k = getPlatfromAudioTrackFmt(mediaformat);
-		mAudioTrack = new AudioTrack(3, j, byte0, k, 2 * AudioTrack.getMinBufferSize(j, byte0, k), 1);
-		Log.d("AMZN", (new StringBuilder()).append("[MediaCodecBridge] Creating audiotrack ").append(mAudioTrack).append(" instance: ").append(this).toString());
-		mAudioTrackTsMethod = mAudioTrack.getClass().getDeclaredMethod("getTimestamp", new Class[0]);
-_L1:
-		return true;
-		exception;
-		Log.e("AMZN", (new StringBuilder()).append("[MediaCodecBridge] Audio-track get timestamp API is not available: ").append(exception).toString());
-		  goto _L1
+	    return true;
+//		int j;
+//		byte byte0;
+//		int k;
+//		Exception exception;
+//		try
+//		{
+//			mMediaCodec.configure(mediaformat, null, mediacrypto, i);
+//		}
+//		catch (IllegalStateException illegalstateexception)
+//		{
+//			Log.e("MediaCodecBridge", (new StringBuilder()).append("Cannot configure the audio codec ").append(illegalstateexception.toString()).toString());
+//			return false;
+//		}
+//		if (!flag)
+//			break MISSING_BLOCK_LABEL_131;
+//		j = mediaformat.getInteger("sample-rate");
+//		if (mediaformat.getInteger("channel-count") == 1)
+//			byte0 = 4;
+//		else
+//			byte0 = 12;
+//		k = getPlatfromAudioTrackFmt(mediaformat);
+//		mAudioTrack = new AudioTrack(3, j, byte0, k, 2 * AudioTrack.getMinBufferSize(j, byte0, k), 1);
+//		Log.d("AMZN", (new StringBuilder()).append("[MediaCodecBridge] Creating audiotrack ").append(mAudioTrack).append(" instance: ").append(this).toString());
+//		mAudioTrackTsMethod = mAudioTrack.getClass().getDeclaredMethod("getTimestamp", new Class[0]);
+//_L1:
+//		return true;
+//		exception;
+//		Log.e("AMZN", (new StringBuilder()).append("[MediaCodecBridge] Audio-track get timestamp API is not available: ").append(exception).toString());
+//		  goto _L1
 	}
 
 	private boolean configureVideo(MediaFormat mediaformat, Surface surface, MediaCrypto mediacrypto, int i)
@@ -474,19 +457,20 @@ _L1:
 
 	private static void setCodecSpecificData(MediaFormat mediaformat, int i, ByteBuffer bytebuffer)
 	{
-		if (i != 0) goto _L2; else goto _L1
-_L1:
-		String s = "csd-0";
-_L4:
-		if (s != null)
-			mediaformat.setByteBuffer(s, bytebuffer);
-		return;
-_L2:
-		s = null;
-		if (i == 1)
-			s = "csd-1";
-		if (true) goto _L4; else goto _L3
-_L3:
+	    return;
+//		if (i != 0) goto _L2; else goto _L1
+//_L1:
+//		String s = "csd-0";
+//_L4:
+//		if (s != null)
+//			mediaformat.setByteBuffer(s, bytebuffer);
+//		return;
+//_L2:
+//		s = null;
+//		if (i == 1)
+//			s = "csd-1";
+//		if (true) goto _L4; else goto _L3
+//_L3:
 	}
 
 	private static void setFrameHasADTSHeader(MediaFormat mediaformat)

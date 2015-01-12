@@ -32,45 +32,37 @@ public abstract class TwoFieldDatePicker extends FrameLayout
 	public TwoFieldDatePicker(Context context, long l, long l1)
 	{
 		super(context, null, 0x101035c);
-		((LayoutInflater)context.getSystemService("layout_inflater")).inflate(org.chromium.content.R.layout.two_field_date_picker, this, true);
+		//((LayoutInflater)context.getSystemService("layout_inflater")).inflate(org.chromium.content.R.layout.two_field_date_picker, this, true);
 		android.widget.NumberPicker.OnValueChangeListener onvaluechangelistener = new android.widget.NumberPicker.OnValueChangeListener() {
-
-			final TwoFieldDatePicker this$0;
 
 			public void onValueChange(NumberPicker numberpicker, int i, int j)
 			{
-				int k;
-				int i1;
-				k = getYear();
-				i1 = getPositionInYear();
-				if (numberpicker != mPositionInYearSpinner) goto _L2; else goto _L1
-_L1:
-				i1 = j;
-				if (i != numberpicker.getMaxValue() || j != numberpicker.getMinValue()) goto _L4; else goto _L3
-_L3:
-				k++;
-_L6:
-				setCurrentDate(k, i1);
-				updateSpinners();
-				notifyDateChanged();
-				return;
-_L4:
-				if (i == numberpicker.getMinValue() && j == numberpicker.getMaxValue())
-					k--;
-				continue; /* Loop/switch isn't completed */
-_L2:
-				if (numberpicker == mYearSpinner)
-					k = j;
-				else
-					throw new IllegalArgumentException();
-				if (true) goto _L6; else goto _L5
-_L5:
-			}
-
-			
-			{
-				this$0 = TwoFieldDatePicker.this;
-				super();
+//				int k;
+//				int i1;
+//				k = getYear();
+//				i1 = getPositionInYear();
+//				if (numberpicker != mPositionInYearSpinner) goto _L2; else goto _L1
+//_L1:
+//				i1 = j;
+//				if (i != numberpicker.getMaxValue() || j != numberpicker.getMinValue()) goto _L4; else goto _L3
+//_L3:
+//				k++;
+//_L6:
+//				setCurrentDate(k, i1);
+//				updateSpinners();
+//				notifyDateChanged();
+//				return;
+//_L4:
+//				if (i == numberpicker.getMinValue() && j == numberpicker.getMaxValue())
+//					k--;
+//				continue; /* Loop/switch isn't completed */
+//_L2:
+//				if (numberpicker == mYearSpinner)
+//					k = j;
+//				else
+//					throw new IllegalArgumentException();
+//				if (true) goto _L6; else goto _L5
+//_L5:
 			}
 		};
 		mCurrentDate = Calendar.getInstance();
@@ -85,10 +77,10 @@ _L5:
 			mMinDate = createDateFromValue(l);
 			mMaxDate = createDateFromValue(l1);
 		}
-		mPositionInYearSpinner = (NumberPicker)findViewById(org.chromium.content.R.id.position_in_year);
+		mPositionInYearSpinner = null;//(NumberPicker)findViewById(org.chromium.content.R.id.position_in_year);
 		mPositionInYearSpinner.setOnLongPressUpdateInterval(200L);
 		mPositionInYearSpinner.setOnValueChangedListener(onvaluechangelistener);
-		mYearSpinner = (NumberPicker)findViewById(org.chromium.content.R.id.year);
+		mYearSpinner = null;//(NumberPicker)findViewById(org.chromium.content.R.id.year);
 		mYearSpinner.setOnLongPressUpdateInterval(100L);
 		mYearSpinner.setOnValueChangedListener(onvaluechangelistener);
 	}

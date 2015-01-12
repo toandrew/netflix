@@ -22,7 +22,14 @@ import org.chromium.ui.ViewAndroidDelegate;
 public class AutofillPopup extends ListPopupWindow
 	implements android.widget.AdapterView.OnItemClickListener
 {
-	public static interface AutofillPopupDelegate
+	public AutofillPopup(Context context) {
+        super(context);
+        // TODO Auto-generated constructor stub
+        
+        AutofillPopup(context, null, null);
+    }
+
+    public static interface AutofillPopupDelegate
 	{
 
 		public abstract void requestHide();
@@ -40,39 +47,31 @@ public class AutofillPopup extends ListPopupWindow
 	private float mAnchorWidth;
 	private float mAnchorX;
 	private float mAnchorY;
-	private final AutofillPopupDelegate mAutofillCallback;
-	private final Context mContext;
+	private  AutofillPopupDelegate mAutofillCallback;
+	private  Context mContext;
 	private Paint mLabelViewPaint;
 	private android.view.View.OnLayoutChangeListener mLayoutChangeListener;
 	private Paint mSublabelViewPaint;
-	private final ViewAndroidDelegate mViewAndroidDelegate;
+	private  ViewAndroidDelegate mViewAndroidDelegate;
 
-	public AutofillPopup(Context context, ViewAndroidDelegate viewandroiddelegate, AutofillPopupDelegate autofillpopupdelegate)
+	public void AutofillPopup(Context context, ViewAndroidDelegate viewandroiddelegate, AutofillPopupDelegate autofillpopupdelegate)
 	{
-		super(context, null, 0, org.chromium.ui.R.style.AutofillPopupWindow);
+		//super(context, null, 0, org.chromium.ui.R.style.AutofillPopupWindow);
 		mContext = context;
 		mViewAndroidDelegate = viewandroiddelegate;
 		mAutofillCallback = autofillpopupdelegate;
 		setOnItemClickListener(this);
 		mAnchorView = mViewAndroidDelegate.acquireAnchorView();
-		mAnchorView.setId(org.chromium.ui.R.id.autofill_popup_window);
+		//mAnchorView.setId(org.chromium.ui.R.id.autofill_popup_window);
 		mAnchorView.setTag(this);
 		mViewAndroidDelegate.setAnchorViewPosition(mAnchorView, mAnchorX, mAnchorY, mAnchorWidth, mAnchorHeight);
 		mLayoutChangeListener = new android.view.View.OnLayoutChangeListener() {
-
-			final AutofillPopup this$0;
 
 			public void onLayoutChange(View view, int i, int j, int k, int l, int i1, int j1, 
 					int k1, int l1)
 			{
 				if (view == mAnchorView)
 					show();
-			}
-
-			
-			{
-				this$0 = AutofillPopup.this;
-				super();
 			}
 		};
 		mAnchorView.addOnLayoutChangeListener(mLayoutChangeListener);
@@ -83,9 +82,9 @@ public class AutofillPopup extends ListPopupWindow
 	{
 		if (mLabelViewPaint == null || mSublabelViewPaint == null)
 		{
-			View view = ((LayoutInflater)mContext.getSystemService("layout_inflater")).inflate(org.chromium.ui.R.layout.autofill_text, null);
-			mLabelViewPaint = ((TextView)view.findViewById(org.chromium.ui.R.id.autofill_label)).getPaint();
-			mSublabelViewPaint = ((TextView)view.findViewById(org.chromium.ui.R.id.autofill_sublabel)).getPaint();
+			//View view = ((LayoutInflater)mContext.getSystemService("layout_inflater")).inflate(org.chromium.ui.R.layout.autofill_text, null);
+//			mLabelViewPaint = ((TextView)view.findViewById(org.chromium.ui.R.id.autofill_label)).getPaint();
+//			mSublabelViewPaint = ((TextView)view.findViewById(org.chromium.ui.R.id.autofill_sublabel)).getPaint();
 		}
 		float f = 0.0F;
 		Rect rect = new Rect();
@@ -150,7 +149,7 @@ public class AutofillPopup extends ListPopupWindow
 				arraylist.add(aautofillsuggestion[i]);
 		}
 
-		setAdapter(new AutofillListAdapter(mContext, arraylist));
+		//setAdapter(new AutofillListAdapter(mContext, arraylist));
 		mAnchorWidth = Math.max(getDesiredWidth(arraylist), mAnchorWidth);
 		mViewAndroidDelegate.setAnchorViewPosition(mAnchorView, mAnchorX, mAnchorY, mAnchorWidth, mAnchorHeight);
 	}

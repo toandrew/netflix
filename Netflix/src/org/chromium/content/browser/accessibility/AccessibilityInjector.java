@@ -67,34 +67,35 @@ public class AccessibilityInjector extends WebContentsObserverAndroid
 
 		public int speak(String s, int i, String s1)
 		{
-			HashMap hashmap = null;
-			if (s1 == null) goto _L2; else goto _L1
-_L1:
-			HashMap hashmap1 = new HashMap();
-			try
-			{
-				JSONObject jsonobject = new JSONObject(s1);
-				Iterator iterator = jsonobject.keys();
-				do
-				{
-					if (!iterator.hasNext())
-						break;
-					String s2 = (String)iterator.next();
-					if (jsonobject.optJSONObject(s2) == null && jsonobject.optJSONArray(s2) == null)
-						hashmap1.put(s2, jsonobject.getString(s2));
-				} while (true);
-				break MISSING_BLOCK_LABEL_115;
-			}
-			catch (JSONException jsonexception) { }
-_L3:
-			hashmap = null;
-_L2:
-			return mTextToSpeech.speak(s, i, hashmap);
-			JSONException jsonexception1;
-			jsonexception1;
-			  goto _L3
-			hashmap = hashmap1;
-			  goto _L2
+		    return 0;
+//			HashMap hashmap = null;
+//			if (s1 == null) goto _L2; else goto _L1
+//_L1:
+//			HashMap hashmap1 = new HashMap();
+//			try
+//			{
+//				JSONObject jsonobject = new JSONObject(s1);
+//				Iterator iterator = jsonobject.keys();
+//				do
+//				{
+//					if (!iterator.hasNext())
+//						break;
+//					String s2 = (String)iterator.next();
+//					if (jsonobject.optJSONObject(s2) == null && jsonobject.optJSONArray(s2) == null)
+//						hashmap1.put(s2, jsonobject.getString(s2));
+//				} while (true);
+//				break MISSING_BLOCK_LABEL_115;
+//			}
+//			catch (JSONException jsonexception) { }
+//_L3:
+//			hashmap = null;
+//_L2:
+//			return mTextToSpeech.speak(s, i, hashmap);
+//			JSONException jsonexception1;
+//			jsonexception1;
+//			  goto _L3
+//			hashmap = hashmap1;
+//			  goto _L2
 		}
 
 		public int stop()
@@ -187,28 +188,29 @@ _L2:
 
 	private int getAxsUrlParameterValue()
 	{
-		if (mContentViewCore.getUrl() != null) goto _L2; else goto _L1
-_L1:
-		return -1;
-_L2:
-		Iterator iterator = URLEncodedUtils.parse(new URI(mContentViewCore.getUrl()), null).iterator();
-_L5:
-		if (!iterator.hasNext()) goto _L1; else goto _L3
-_L3:
-		NameValuePair namevaluepair = (NameValuePair)iterator.next();
-		if (!"axs".equals(namevaluepair.getName())) goto _L5; else goto _L4
-_L4:
-		int i = Integer.parseInt(namevaluepair.getValue());
-		return i;
-		IllegalArgumentException illegalargumentexception;
-		illegalargumentexception;
-		return -1;
-		NumberFormatException numberformatexception;
-		numberformatexception;
-		return -1;
-		URISyntaxException urisyntaxexception;
-		urisyntaxexception;
-		return -1;
+	    return -1;
+//		if (mContentViewCore.getUrl() != null) goto _L2; else goto _L1
+//_L1:
+//		return -1;
+//_L2:
+//		Iterator iterator = URLEncodedUtils.parse(new URI(mContentViewCore.getUrl()), null).iterator();
+//_L5:
+//		if (!iterator.hasNext()) goto _L1; else goto _L3
+//_L3:
+//		NameValuePair namevaluepair = (NameValuePair)iterator.next();
+//		if (!"axs".equals(namevaluepair.getName())) goto _L5; else goto _L4
+//_L4:
+//		int i = Integer.parseInt(namevaluepair.getValue());
+//		return i;
+//		IllegalArgumentException illegalargumentexception;
+//		illegalargumentexception;
+//		return -1;
+//		NumberFormatException numberformatexception;
+//		numberformatexception;
+//		return -1;
+//		URISyntaxException urisyntaxexception;
+//		urisyntaxexception;
+//		return -1;
 	}
 
 	private String getScreenReaderInjectingJs()

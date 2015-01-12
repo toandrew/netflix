@@ -45,7 +45,7 @@ public class SelectActionModeCallback
 	private static final int ID_SELECTALL = 0;
 	private static final int ID_SHARE = 2;
 	private static final int PASTE_ATTR_INDEX = 3;
-	private static final int SELECT_ALL_ATTR_INDEX;
+	private static final int SELECT_ALL_ATTR_INDEX = 0;
 	private ActionHandler mActionHandler;
 	private Context mContext;
 	private boolean mEditable;
@@ -74,10 +74,10 @@ public class SelectActionModeCallback
 			menu.add(0, 5, 0, 0x104000b).setIcon(typedarray.getResourceId(3, 0)).setAlphabeticShortcut('v').setShowAsAction(6);
 		if (!mEditable)
 		{
-			if (isShareHandlerAvailable())
-				menu.add(0, 2, 0, org.chromium.content.R.string.actionbar_share).setIcon(org.chromium.content.R.drawable.ic_menu_share_holo_light).setShowAsAction(6);
-			if (!mIncognito && isWebSearchAvailable())
-				menu.add(0, 3, 0, org.chromium.content.R.string.actionbar_web_search).setIcon(org.chromium.content.R.drawable.ic_menu_search_holo_light).setShowAsAction(6);
+//			if (isShareHandlerAvailable())
+//				menu.add(0, 2, 0, org.chromium.content.R.string.actionbar_share).setIcon(org.chromium.content.R.drawable.ic_menu_share_holo_light).setShowAsAction(6);
+//			if (!mIncognito && isWebSearchAvailable())
+//				menu.add(0, 3, 0, org.chromium.content.R.string.actionbar_web_search).setIcon(org.chromium.content.R.drawable.ic_menu_search_holo_light).setShowAsAction(6);
 		}
 		typedarray.recycle();
 	}
@@ -134,13 +134,13 @@ public class SelectActionModeCallback
 				intent1.putExtra("android.intent.extra.TEXT", s);
 				Intent intent;
 				ActivityNotFoundException activitynotfoundexception;
-				try
-				{
-					Intent intent2 = Intent.createChooser(intent1, getContext().getString(org.chromium.content.R.string.actionbar_share));
-					intent2.setFlags(0x10000000);
-					getContext().startActivity(intent2);
-				}
-				catch (ActivityNotFoundException activitynotfoundexception1) { }
+//				try
+//				{
+//					Intent intent2 = Intent.createChooser(intent1, getContext().getString(org.chromium.content.R.string.actionbar_share));
+//					intent2.setFlags(0x10000000);
+//					getContext().startActivity(intent2);
+//				}
+//				catch (ActivityNotFoundException activitynotfoundexception1) { }
 			}
 			actionmode.finish();
 			return true;
@@ -150,16 +150,16 @@ public class SelectActionModeCallback
 		}
 		if (!TextUtils.isEmpty(s))
 		{
-			intent = new Intent("android.intent.action.WEB_SEARCH");
-			intent.putExtra("new_search", true);
-			intent.putExtra("query", s);
-			intent.putExtra("com.android.browser.application_id", getContext().getPackageName());
-			try
-			{
-				getContext().startActivity(intent);
-			}
+//			intent = new Intent("android.intent.action.WEB_SEARCH");
+//			intent.putExtra("new_search", true);
+//			intent.putExtra("query", s);
+//			intent.putExtra("com.android.browser.application_id", getContext().getPackageName());
+//			try
+//			{
+//				getContext().startActivity(intent);
+//			}
 			// Misplaced declaration of an exception variable
-			catch (ActivityNotFoundException activitynotfoundexception) { }
+//			catch (ActivityNotFoundException activitynotfoundexception) { }
 		}
 		actionmode.finish();
 		return true;

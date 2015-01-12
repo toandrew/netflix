@@ -189,11 +189,11 @@ public class LoadUrlParams
 
 	static 
 	{
-		boolean flag;
-		if (!org/chromium/content/browser/LoadUrlParams.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
+//		boolean flag;
+//		if (!org/chromium/content/browser/LoadUrlParams.desiredAssertionStatus())
+//			flag = true;
+//		else
+//			flag = false;
+		$assertionsDisabled = false;
 	}
 }

@@ -34,98 +34,99 @@ public class ChildProcessLauncher
 
 		public ChildProcessConnection allocate(Context context, ChildProcessConnection.DeathCallback deathcallback)
 		{
-label0:
-			{
-				synchronized (mConnectionLock)
-				{
-					if (!mFreeConnectionIndices.isEmpty())
-						break label0;
-					Log.w(ChildProcessLauncher.TAG, "Ran out of service.");
-				}
-				return null;
-			}
-			int i;
-			i = ((Integer)mFreeConnectionIndices.remove(0)).intValue();
-			if (!$assertionsDisabled && mChildProcessConnections[i] != null)
-				throw new AssertionError();
-			break MISSING_BLOCK_LABEL_77;
-			exception;
-			obj;
-			JVM INSTR monitorexit ;
-			throw exception;
-			ChildProcessConnection childprocessconnection;
-			mChildProcessConnections[i] = new ChildProcessConnection(context, i, mInSandbox, deathcallback, mChildClass);
-			childprocessconnection = mChildProcessConnections[i];
-			obj;
-			JVM INSTR monitorexit ;
-			return childprocessconnection;
+		    return null;
+//label0:
+//			{
+//				synchronized (mConnectionLock)
+//				{
+//					if (!mFreeConnectionIndices.isEmpty())
+//						break label0;
+//					Log.w(ChildProcessLauncher.TAG, "Ran out of service.");
+//				}
+//				return null;
+//			}
+//			int i;
+//			i = ((Integer)mFreeConnectionIndices.remove(0)).intValue();
+//			if (!$assertionsDisabled && mChildProcessConnections[i] != null)
+//				throw new AssertionError();
+//			break MISSING_BLOCK_LABEL_77;
+//			exception;
+//			obj;
+//			JVM INSTR monitorexit ;
+//			throw exception;
+//			ChildProcessConnection childprocessconnection;
+//			mChildProcessConnections[i] = new ChildProcessConnection(context, i, mInSandbox, deathcallback, mChildClass);
+//			childprocessconnection = mChildProcessConnections[i];
+//			obj;
+//			JVM INSTR monitorexit ;
+//			return childprocessconnection;
 		}
 
 		public void free(ChildProcessConnection childprocessconnection)
 		{
-			Object obj = mConnectionLock;
-			obj;
-			JVM INSTR monitorenter ;
-			int i;
-			i = childprocessconnection.getServiceNumber();
-			if (mChildProcessConnections[i] == childprocessconnection)
-				break MISSING_BLOCK_LABEL_108;
-			if (mChildProcessConnections[i] != null)
-				break MISSING_BLOCK_LABEL_93;
-			int j = -1;
-_L1:
-			Log.e(ChildProcessLauncher.TAG, (new StringBuilder()).append("Unable to find connection to free in slot: ").append(i).append(" already occupied by service: ").append(j).toString());
-			if (!$assertionsDisabled)
-				throw new AssertionError();
-			break MISSING_BLOCK_LABEL_158;
-			Exception exception;
-			exception;
-			obj;
-			JVM INSTR monitorexit ;
-			throw exception;
-			j = mChildProcessConnections[i].getServiceNumber();
-			  goto _L1
-			mChildProcessConnections[i] = null;
-			if (!$assertionsDisabled && mFreeConnectionIndices.contains(Integer.valueOf(i)))
-				throw new AssertionError();
-			mFreeConnectionIndices.add(Integer.valueOf(i));
-			obj;
-			JVM INSTR monitorexit ;
+//			Object obj = mConnectionLock;
+//			obj;
+//			JVM INSTR monitorenter ;
+//			int i;
+//			i = childprocessconnection.getServiceNumber();
+//			if (mChildProcessConnections[i] == childprocessconnection)
+//				break MISSING_BLOCK_LABEL_108;
+//			if (mChildProcessConnections[i] != null)
+//				break MISSING_BLOCK_LABEL_93;
+//			int j = -1;
+//_L1:
+//			Log.e(ChildProcessLauncher.TAG, (new StringBuilder()).append("Unable to find connection to free in slot: ").append(i).append(" already occupied by service: ").append(j).toString());
+//			if (!$assertionsDisabled)
+//				throw new AssertionError();
+//			break MISSING_BLOCK_LABEL_158;
+//			Exception exception;
+//			exception;
+//			obj;
+//			JVM INSTR monitorexit ;
+//			throw exception;
+//			j = mChildProcessConnections[i].getServiceNumber();
+//			  goto _L1
+//			mChildProcessConnections[i] = null;
+//			if (!$assertionsDisabled && mFreeConnectionIndices.contains(Integer.valueOf(i)))
+//				throw new AssertionError();
+//			mFreeConnectionIndices.add(Integer.valueOf(i));
+//			obj;
+//			JVM INSTR monitorexit ;
 		}
 
 		public void setServiceClass(Class class1)
 		{
 			mChildClass = class1;
 		}
-
+//
 		static 
 		{
-			boolean flag;
-			if (!org/chromium/content/browser/ChildProcessLauncher.desiredAssertionStatus())
-				flag = true;
-			else
-				flag = false;
-			$assertionsDisabled = flag;
+//			boolean flag;
+//			if (!org/chromium/content/browser/ChildProcessLauncher.desiredAssertionStatus())
+//				flag = true;
+//			else
+//				flag = false;
+			$assertionsDisabled = false;
 		}
 
 		public ChildConnectionAllocator(boolean flag)
 		{
-			byte byte0;
-			if (flag)
-				byte0 = 13;
-			else
-				byte0 = 3;
-			mChildProcessConnections = new ChildProcessConnection[byte0];
-			mFreeConnectionIndices = new ArrayList(byte0);
-			for (int i = 0; i < byte0; i++)
-				mFreeConnectionIndices.add(Integer.valueOf(i));
-
-			Object obj;
-			if (flag)
-				obj = org/chromium/content/app/SandboxedProcessService;
-			else
-				obj = org/chromium/content/app/PrivilegedProcessService;
-			setServiceClass(((Class) (obj)));
+//			byte byte0;
+//			if (flag)
+//				byte0 = 13;
+//			else
+//				byte0 = 3;
+//			mChildProcessConnections = new ChildProcessConnection[byte0];
+//			mFreeConnectionIndices = new ArrayList(byte0);
+//			for (int i = 0; i < byte0; i++)
+//				mFreeConnectionIndices.add(Integer.valueOf(i));
+//
+//			Object obj;
+//			if (flag)
+//				obj = org/chromium/content/app/SandboxedProcessService;
+//			else
+//				obj = org/chromium/content/app/PrivilegedProcessService;
+//			setServiceClass(((Class) (obj)));
 			mInSandbox = flag;
 		}
 	}
@@ -198,41 +199,40 @@ _L1:
 
 	private static IChildProcessCallback createCallback(int i)
 	{
-		return new org.chromium.content.common.IChildProcessCallback.Stub(i) {
-
-			final int val$callbackType;
-
-			public void establishSurfacePeer(int j, Surface surface, int k, int l)
-			{
-				if (callbackType != 1)
-				{
-					Log.e(ChildProcessLauncher.TAG, "Illegal callback for non-GPU process.");
-					return;
-				} else
-				{
-					ChildProcessLauncher.nativeEstablishSurfacePeer(j, surface, k, l);
-					return;
-				}
-			}
-
-			public Surface getViewSurface(int j)
-			{
-				if (callbackType != 1)
-				{
-					Log.e(ChildProcessLauncher.TAG, "Illegal callback for non-GPU process.");
-					return null;
-				} else
-				{
-					return ChildProcessLauncher.nativeGetViewSurface(j);
-				}
-			}
-
-			
-			{
-				callbackType = i;
-				super();
-			}
-		};
+	    return null;
+//		return new org.chromium.content.common.IChildProcessCallback.Stub(i) {
+//
+//			public void establishSurfacePeer(int j, Surface surface, int k, int l)
+//			{
+//				if (callbackType != 1)
+//				{
+//					Log.e(ChildProcessLauncher.TAG, "Illegal callback for non-GPU process.");
+//					return;
+//				} else
+//				{
+//					ChildProcessLauncher.nativeEstablishSurfacePeer(j, surface, k, l);
+//					return;
+//				}
+//			}
+//
+//			public Surface getViewSurface(int j)
+//			{
+//				if (callbackType != 1)
+//				{
+//					Log.e(ChildProcessLauncher.TAG, "Illegal callback for non-GPU process.");
+//					return null;
+//				} else
+//				{
+//					return ChildProcessLauncher.nativeGetViewSurface(j);
+//				}
+//			}
+//
+//			
+//			{
+//				callbackType = i;
+//				super();
+//			}
+//		};
 	}
 
 	private static void freeConnection(ChildProcessConnection childprocessconnection)
@@ -324,130 +324,130 @@ _L1:
 
 	static void start(Context context, String as[], int ai[], int ai1[], boolean aflag[], int i)
 	{
-		FileDescriptorInfo afiledescriptorinfo[];
-		boolean flag;
-		String s;
-		if (!$assertionsDisabled && (ai.length != ai1.length || ai1.length != aflag.length))
-			throw new AssertionError();
-		afiledescriptorinfo = new FileDescriptorInfo[ai1.length];
-		for (int j = 0; j < ai1.length; j++)
-			afiledescriptorinfo[j] = new FileDescriptorInfo(ai[j], ai1[j], aflag[j]);
-
-		if (!$assertionsDisabled && i == 0)
-			throw new AssertionError();
-		flag = true;
-		s = getSwitchValue(as, "type");
-		if (!"renderer".equals(s)) goto _L2; else goto _L1
-_L1:
-		byte byte0 = 2;
-_L4:
-		org/chromium/content/browser/ChildProcessLauncher;
-		JVM INSTR monitorenter ;
-		ChildProcessConnection childprocessconnection;
-		childprocessconnection = null;
-		if (!flag)
-			break MISSING_BLOCK_LABEL_140;
-		childprocessconnection = sSpareSandboxedConnection;
-		sSpareSandboxedConnection = null;
-		org/chromium/content/browser/ChildProcessLauncher;
-		JVM INSTR monitorexit ;
-		if (childprocessconnection == null)
-		{
-			childprocessconnection = allocateBoundConnection(context, as, flag);
-			if (childprocessconnection == null)
-			{
-				nativeOnChildProcessStarted(i, 0);
-				return;
-			}
-		}
-		break; /* Loop/switch isn't completed */
-_L2:
-		if ("gpu-process".equals(s))
-		{
-			byte0 = 1;
-		} else
-		{
-			boolean flag1 = "ppapi-broker".equals(s);
-			byte0 = 0;
-			if (flag1)
-			{
-				byte0 = 0;
-				flag = false;
-			}
-		}
-		if (true) goto _L4; else goto _L3
-		Exception exception;
-		exception;
-		org/chromium/content/browser/ChildProcessLauncher;
-		JVM INSTR monitorexit ;
-		throw exception;
-_L3:
-		ChildProcessConnection childprocessconnection1 = childprocessconnection;
-		Log.d(TAG, (new StringBuilder()).append("Setting up connection to process: slot=").append(childprocessconnection1.getServiceNumber()).toString());
-		ChildProcessConnection.ConnectionCallbacks connectioncallbacks = new ChildProcessConnection.ConnectionCallbacks(i, childprocessconnection1) {
-
-			static final boolean $assertionsDisabled;
-			final int val$clientContext;
-			final ChildProcessConnection val$connection;
-
-			public void onConnected(int k, int l)
-			{
-				Log.d(ChildProcessLauncher.TAG, (new StringBuilder()).append("on connect callback, pid=").append(k).append(" context=").append(clientContext).toString());
-				if (k != 0)
-				{
-					ChildProcessLauncher.sOomBindingCount.put(k, l);
-					ChildProcessLauncher.sServiceMap.put(Integer.valueOf(k), connection);
-				} else
-				{
-					ChildProcessLauncher.freeConnection(connection);
-				}
-				ChildProcessLauncher.nativeOnChildProcessStarted(clientContext, k);
-			}
-
-			public void onOomBindingAdded(int k)
-			{
-				if (k != 0)
-					ChildProcessLauncher.sOomBindingCount.put(k, 1 + ChildProcessLauncher.sOomBindingCount.get(k));
-			}
-
-			public void onOomBindingRemoved(int k)
-			{
-label0:
-				{
-					if (k != 0)
-					{
-						int l = ChildProcessLauncher.sOomBindingCount.get(k, -1);
-						if (!$assertionsDisabled && l <= 0)
-							throw new AssertionError();
-						int i1 = l - 1;
-						if (i1 <= 0)
-							break label0;
-						ChildProcessLauncher.sOomBindingCount.put(k, i1);
-					}
-					return;
-				}
-				ChildProcessLauncher.sOomBindingCount.delete(k);
-			}
-
-			static 
-			{
-				boolean flag2;
-				if (!org/chromium/content/browser/ChildProcessLauncher.desiredAssertionStatus())
-					flag2 = true;
-				else
-					flag2 = false;
-				$assertionsDisabled = flag2;
-			}
-
-			
-			{
-				clientContext = i;
-				connection = childprocessconnection;
-				super();
-			}
-		};
-		childprocessconnection1.setupConnection(as, afiledescriptorinfo, createCallback(byte0), connectioncallbacks);
-		return;
+//		FileDescriptorInfo afiledescriptorinfo[];
+//		boolean flag;
+//		String s;
+//		if (!$assertionsDisabled && (ai.length != ai1.length || ai1.length != aflag.length))
+//			throw new AssertionError();
+//		afiledescriptorinfo = new FileDescriptorInfo[ai1.length];
+//		for (int j = 0; j < ai1.length; j++)
+//			afiledescriptorinfo[j] = new FileDescriptorInfo(ai[j], ai1[j], aflag[j]);
+//
+//		if (!$assertionsDisabled && i == 0)
+//			throw new AssertionError();
+//		flag = true;
+//		s = getSwitchValue(as, "type");
+//		if (!"renderer".equals(s)) goto _L2; else goto _L1
+//_L1:
+//		byte byte0 = 2;
+//_L4:
+//		org/chromium/content/browser/ChildProcessLauncher;
+//		JVM INSTR monitorenter ;
+//		ChildProcessConnection childprocessconnection;
+//		childprocessconnection = null;
+//		if (!flag)
+//			break MISSING_BLOCK_LABEL_140;
+//		childprocessconnection = sSpareSandboxedConnection;
+//		sSpareSandboxedConnection = null;
+//		org/chromium/content/browser/ChildProcessLauncher;
+//		JVM INSTR monitorexit ;
+//		if (childprocessconnection == null)
+//		{
+//			childprocessconnection = allocateBoundConnection(context, as, flag);
+//			if (childprocessconnection == null)
+//			{
+//				nativeOnChildProcessStarted(i, 0);
+//				return;
+//			}
+//		}
+//		break; /* Loop/switch isn't completed */
+//_L2:
+//		if ("gpu-process".equals(s))
+//		{
+//			byte0 = 1;
+//		} else
+//		{
+//			boolean flag1 = "ppapi-broker".equals(s);
+//			byte0 = 0;
+//			if (flag1)
+//			{
+//				byte0 = 0;
+//				flag = false;
+//			}
+//		}
+//		if (true) goto _L4; else goto _L3
+//		Exception exception;
+//		exception;
+//		org/chromium/content/browser/ChildProcessLauncher;
+//		JVM INSTR monitorexit ;
+//		throw exception;
+//_L3:
+//		ChildProcessConnection childprocessconnection1 = childprocessconnection;
+//		Log.d(TAG, (new StringBuilder()).append("Setting up connection to process: slot=").append(childprocessconnection1.getServiceNumber()).toString());
+//		ChildProcessConnection.ConnectionCallbacks connectioncallbacks = new ChildProcessConnection.ConnectionCallbacks(i, childprocessconnection1) {
+//
+//			static final boolean $assertionsDisabled;
+//			final int val$clientContext;
+//			final ChildProcessConnection val$connection;
+//
+//			public void onConnected(int k, int l)
+//			{
+//				Log.d(ChildProcessLauncher.TAG, (new StringBuilder()).append("on connect callback, pid=").append(k).append(" context=").append(clientContext).toString());
+//				if (k != 0)
+//				{
+//					ChildProcessLauncher.sOomBindingCount.put(k, l);
+//					ChildProcessLauncher.sServiceMap.put(Integer.valueOf(k), connection);
+//				} else
+//				{
+//					ChildProcessLauncher.freeConnection(connection);
+//				}
+//				ChildProcessLauncher.nativeOnChildProcessStarted(clientContext, k);
+//			}
+//
+//			public void onOomBindingAdded(int k)
+//			{
+//				if (k != 0)
+//					ChildProcessLauncher.sOomBindingCount.put(k, 1 + ChildProcessLauncher.sOomBindingCount.get(k));
+//			}
+//
+//			public void onOomBindingRemoved(int k)
+//			{
+//label0:
+//				{
+//					if (k != 0)
+//					{
+//						int l = ChildProcessLauncher.sOomBindingCount.get(k, -1);
+//						if (!$assertionsDisabled && l <= 0)
+//							throw new AssertionError();
+//						int i1 = l - 1;
+//						if (i1 <= 0)
+//							break label0;
+//						ChildProcessLauncher.sOomBindingCount.put(k, i1);
+//					}
+//					return;
+//				}
+//				ChildProcessLauncher.sOomBindingCount.delete(k);
+//			}
+//
+//			static 
+//			{
+//				boolean flag2;
+//				if (!org/chromium/content/browser/ChildProcessLauncher.desiredAssertionStatus())
+//					flag2 = true;
+//				else
+//					flag2 = false;
+//				$assertionsDisabled = flag2;
+//			}
+//
+//			
+//			{
+//				clientContext = i;
+//				connection = childprocessconnection;
+//				super();
+//			}
+//		};
+//		childprocessconnection1.setupConnection(as, afiledescriptorinfo, createCallback(byte0), connectioncallbacks);
+//		return;
 	}
 
 	static void stop(int i)
@@ -482,31 +482,31 @@ label0:
 
 	public static void warmUp(Context context)
 	{
-		org/chromium/content/browser/ChildProcessLauncher;
-		JVM INSTR monitorenter ;
-		if (!$assertionsDisabled && ThreadUtils.runningOnUiThread())
-			throw new AssertionError();
-		break MISSING_BLOCK_LABEL_29;
-		Exception exception;
-		exception;
-		org/chromium/content/browser/ChildProcessLauncher;
-		JVM INSTR monitorexit ;
-		throw exception;
-		if (sSpareSandboxedConnection == null)
-			sSpareSandboxedConnection = allocateBoundConnection(context, null, true);
-		org/chromium/content/browser/ChildProcessLauncher;
-		JVM INSTR monitorexit ;
+//		org/chromium/content/browser/ChildProcessLauncher;
+//		JVM INSTR monitorenter ;
+//		if (!$assertionsDisabled && ThreadUtils.runningOnUiThread())
+//			throw new AssertionError();
+//		break MISSING_BLOCK_LABEL_29;
+//		Exception exception;
+//		exception;
+//		org/chromium/content/browser/ChildProcessLauncher;
+//		JVM INSTR monitorexit ;
+//		throw exception;
+//		if (sSpareSandboxedConnection == null)
+//			sSpareSandboxedConnection = allocateBoundConnection(context, null, true);
+//		org/chromium/content/browser/ChildProcessLauncher;
+//		JVM INSTR monitorexit ;
 	}
 
-	static 
-	{
-		boolean flag;
-		if (!org/chromium/content/browser/ChildProcessLauncher.desiredAssertionStatus())
-			flag = true;
-		else
-			flag = false;
-		$assertionsDisabled = flag;
-	}
+//	static 
+//	{
+//		boolean flag;
+//		if (!org/chromium/content/browser/ChildProcessLauncher.desiredAssertionStatus())
+//			flag = true;
+//		else
+//			flag = false;
+//		$assertionsDisabled = flag;
+//	}
 
 
 

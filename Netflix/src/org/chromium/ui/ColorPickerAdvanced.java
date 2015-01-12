@@ -55,9 +55,9 @@ public class ColorPickerAdvanced extends LinearLayout
 	private void init()
 	{
 		setOrientation(1);
-		mHueDetails = createAndAddNewGradient(R.string.color_picker_hue, 360, this);
-		mSaturationDetails = createAndAddNewGradient(R.string.color_picker_saturation, 100, this);
-		mValueDetails = createAndAddNewGradient(R.string.color_picker_value, 100, this);
+		mHueDetails = null;//createAndAddNewGradient(R.string.color_picker_hue, 360, this);
+		mSaturationDetails = null;//createAndAddNewGradient(R.string.color_picker_saturation, 100, this);
+		mValueDetails = null;//createAndAddNewGradient(R.string.color_picker_value, 100, this);
 		refreshGradientComponents();
 	}
 
@@ -122,7 +122,7 @@ public class ColorPickerAdvanced extends LinearLayout
 
 	public ColorPickerAdvancedComponent createAndAddNewGradient(int i, int j, android.widget.SeekBar.OnSeekBarChangeListener onseekbarchangelistener)
 	{
-		android.view.View view = ((LayoutInflater)getContext().getSystemService("layout_inflater")).inflate(R.layout.color_picker_advanced_component, null);
+		android.view.View view = null;//((LayoutInflater)getContext().getSystemService("layout_inflater")).inflate(R.layout.color_picker_advanced_component, null);
 		addView(view);
 		return new ColorPickerAdvancedComponent(view, i, j, onseekbarchangelistener);
 	}

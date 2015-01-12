@@ -22,9 +22,6 @@ public class HeapStatsLogger
 
 	private class HeapStatsLoggerReceiver extends BroadcastReceiver
 	{
-
-		final HeapStatsLogger this$0;
-
 		public void onReceive(Context context, Intent intent)
 		{
 			if ("com.google.android.apps.chrome.LOG_HEAP_STATS".equals(intent.getAction()))
@@ -40,8 +37,6 @@ public class HeapStatsLogger
 
 		private HeapStatsLoggerReceiver()
 		{
-			this$0 = HeapStatsLogger.this;
-			super();
 		}
 
 	}

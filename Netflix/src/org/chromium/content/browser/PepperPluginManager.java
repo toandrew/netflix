@@ -68,43 +68,45 @@ public class PepperPluginManager
 
 	public static String getPlugins(Context context)
 	{
-		StringBuffer stringbuffer;
-		PackageManager packagemanager;
-		Iterator iterator;
-		if (DeviceUtils.isTv(context) && !ContextTypes.isRunningInWebapp(context))
-			return null;
-		stringbuffer = new StringBuffer();
-		packagemanager = context.getPackageManager();
-		iterator = packagemanager.queryIntentServices(new Intent("org.chromium.intent.PEPPERPLUGIN"), 132).iterator();
-_L2:
-		ServiceInfo serviceinfo;
-		if (!iterator.hasNext())
-			break; /* Loop/switch isn't completed */
-		ResolveInfo resolveinfo = (ResolveInfo)iterator.next();
-		serviceinfo = resolveinfo.serviceInfo;
-		if (serviceinfo == null || serviceinfo.metaData == null || serviceinfo.packageName == null)
-		{
-			Log.e("PepperPluginManager", (new StringBuilder()).append("Can't get service information from ").append(resolveinfo).toString());
-			continue; /* Loop/switch isn't completed */
-		}
-		PackageInfo packageinfo = packagemanager.getPackageInfo(serviceinfo.packageName, 0);
-		if (packageinfo != null && (1 & packageinfo.applicationInfo.flags) != 0)
-		{
-			Log.i("PepperPluginManager", (new StringBuilder()).append("The given plugin package is preloaded: ").append(serviceinfo.packageName).toString());
-			String s = getPluginDescription(serviceinfo.metaData);
-			if (s != null)
-			{
-				if (stringbuffer.length() > 0)
-					stringbuffer.append(',');
-				stringbuffer.append(s);
-			}
-		}
-		continue; /* Loop/switch isn't completed */
-		android.content.pm.PackageManager.NameNotFoundException namenotfoundexception;
-		namenotfoundexception;
-		Log.e("PepperPluginManager", (new StringBuilder()).append("Can't find plugin: ").append(serviceinfo.packageName).toString());
-		if (true) goto _L2; else goto _L1
-_L1:
-		return stringbuffer.toString();
+	    return null;
+	    
+//		StringBuffer stringbuffer;
+//		PackageManager packagemanager;
+//		Iterator iterator;
+//		if (DeviceUtils.isTv(context) && !ContextTypes.isRunningInWebapp(context))
+//			return null;
+//		stringbuffer = new StringBuffer();
+//		packagemanager = context.getPackageManager();
+//		iterator = packagemanager.queryIntentServices(new Intent("org.chromium.intent.PEPPERPLUGIN"), 132).iterator();
+//_L2:
+//		ServiceInfo serviceinfo;
+//		if (!iterator.hasNext())
+//			break; /* Loop/switch isn't completed */
+//		ResolveInfo resolveinfo = (ResolveInfo)iterator.next();
+//		serviceinfo = resolveinfo.serviceInfo;
+//		if (serviceinfo == null || serviceinfo.metaData == null || serviceinfo.packageName == null)
+//		{
+//			Log.e("PepperPluginManager", (new StringBuilder()).append("Can't get service information from ").append(resolveinfo).toString());
+//			continue; /* Loop/switch isn't completed */
+//		}
+//		PackageInfo packageinfo = packagemanager.getPackageInfo(serviceinfo.packageName, 0);
+//		if (packageinfo != null && (1 & packageinfo.applicationInfo.flags) != 0)
+//		{
+//			Log.i("PepperPluginManager", (new StringBuilder()).append("The given plugin package is preloaded: ").append(serviceinfo.packageName).toString());
+//			String s = getPluginDescription(serviceinfo.metaData);
+//			if (s != null)
+//			{
+//				if (stringbuffer.length() > 0)
+//					stringbuffer.append(',');
+//				stringbuffer.append(s);
+//			}
+//		}
+//		continue; /* Loop/switch isn't completed */
+//		android.content.pm.PackageManager.NameNotFoundException namenotfoundexception;
+//		namenotfoundexception;
+//		Log.e("PepperPluginManager", (new StringBuilder()).append("Can't find plugin: ").append(serviceinfo.packageName).toString());
+//		if (true) goto _L2; else goto _L1
+//_L1:
+//		return stringbuffer.toString();
 	}
 }
